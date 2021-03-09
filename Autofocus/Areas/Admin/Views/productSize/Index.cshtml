@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Product Size";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+    @*<div class="page-header">
+            <h4 class="page-title">Tax</h4>
+            <ol class="breadcrumb">
+
+            </ol>
+        </div>*@
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card-header">
+                <h3 class="card-title">@ViewData["Title"]</h3>
+            </div>
+            <div class="card">
+                <div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">
+                    <a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add Product Size</a>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
+
+
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+
+                                    <th class="text-warning">Actions</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/productSize.js"></script>
+
+}

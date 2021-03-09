@@ -1,0 +1,356 @@
+﻿@page
+@model RegisterModel
+@using Autofocus.Utility;
+@{
+
+    ViewData["Title"] = "Register";
+    // Layout = "~/Views/Shared/_front.cshtml";
+    // <a href="E:\yogita 6.8.19\asp.net core\Final backup 4.9.20\plathoraNewDomain\plathora final\plathora\Views\Shared\_front.cshtml">E:\yogita 6.8.19\asp.net core\Final backup 4.9.20\plathoraNewDomain\plathora final\plathora\Views\Shared\_front.cshtml</a>
+}
+
+<div class="side-app">
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+        <!-- end row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-b-20">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="card-header">
+                        <h3 class="card-title" style="color:darkorange">Create a new account.</h3>
+                    </div>
+                    <div class="card-body">
+
+
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Input.name"></label>
+                                <input asp-for="Input.name" minlength="3" placeholder="Enter Name" class="form-control" />
+                                <span asp-validation-for="Input.name" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.phonenumber "></label>
+                                    <input asp-for="Input.phonenumber" placeholder="Enter Mobile No." class="form-control" />
+                                    <span asp-validation-for="Input.phonenumber" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+
+
+                            <hr>
+                            <div class="form-group  col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Email"></label>
+                                    <input asp-for="Input.Email" placeholder="Enter Email" class="form-control" />
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.Ceritification"></label>
+                                <input asp-for="Input.Ceritification" placeholder="Enter Certification" class="form-control" />
+                                <span asp-validation-for="Input.Ceritification" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" placeholder="Enter Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.ConfirmPassword"></label>
+                                <input asp-for="Input.ConfirmPassword" placeholder="Enter Confirmed Password" class="form-control" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.countryid"></label>
+
+                                <select asp-for="Input.countryid" asp-items="Model.Countries" id="countryid" class="form-control">
+                                    <option value="0" selected="selected"> Select </option>
+                                </select>
+
+                                <span asp-validation-for="Input.countryid" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.stateid"> </label>
+                                <select id="stateid" asp-for="Input.stateid" class="form-control"
+                                        asp-items="@(new SelectList(String.Empty,"id","StateName"))">
+                                    <option value="">Select</option>
+                                </select>
+
+
+                                <span asp-validation-for="Input.stateid" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.cityid"> </label>
+                                <select id="cityid" asp-for="Input.cityid" class="form-control"
+                                        asp-items="@(new SelectList(String.Empty,"id","cityName"))">
+                                    <option value="">Select</option>
+                                </select>
+                                <span asp-validation-for="Input.cityid" class="text-danger"></span>
+                            </div>
+
+
+
+
+                           
+
+                          
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.ExportToCountries"></label>
+                                <input asp-for="Input.ExportToCountries" class="form-control" />
+                                <span asp-validation-for="Input.ExportToCountries" class="text-danger"></span>
+                            </div>
+
+
+                            
+                          
+
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.businessYear"></label>
+                                <input asp-for="Input.businessYear" placeholder="Enter Business Year" class="form-control" />
+                                <span asp-validation-for="Input.businessYear" class="text-danger"></span>
+                            </div>
+                           
+                            
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.productDealin"></label>
+                                <input asp-for="Input.productDealin" placeholder="Enter Product Dealin" class="form-control" />
+                                <span asp-validation-for="Input.productDealin" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.Role"></label>
+                                @Html.DropDownListFor(m => m.Input.Role, Model.Input.roleList, "Please Select Role", new { @class = "form-control" })
+                                <span asp-validation-for="Input.Role" class="text-danger"></span>
+                            </div>
+                            
+                        </div>
+
+
+                       
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title" style="color:darkorange">Documentation</h3>
+                    </div>
+                    <div class="card-body">
+
+
+
+                        <div class="form-row">
+
+
+
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.CancellerdChequeImg"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.CancellerdChequeImg" onchange="loadFile(event,'CancellerdChequeImg1')" id="CancellerdChequeImg" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.CancellerdChequeImg" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group  col-md-2">
+                                @*<img id="output"  class="imgclass"/>*@
+                                <img id="CancellerdChequeImg1" class="imgclass" />
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.CompanyRegCeritificate"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.CompanyRegCeritificate" onchange="loadFile(event,'CompanyRegCeritificate1')" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.CompanyRegCeritificate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+                                <img id="CompanyRegCeritificate1" class="imgclass" />
+                            </div>
+
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.VisitingCardImg"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.VisitingCardImg" onchange="loadFile(event,'VisitingCardImg1')" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.VisitingCardImg" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+                                <img id="VisitingCardImg1" class="imgclass" />
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.aadharBackImg"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.aadharBackImg" onchange="loadFile(event,'aadharBackImg1')" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.aadharBackImg" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+                                <img id="aadharBackImg1" class="imgclass" />
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.aadharFrontImg"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.aadharFrontImg" onchange="loadFile(event,'aadharFrontImg1')" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.aadharFrontImg" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+                                <img id="aadharFrontImg1" class="imgclass" />
+                            </div>
+
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.logo">Logo</label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.logo" onchange="loadFile(event,'logo1')" type="file" />
+                                    <span asp-validation-for="Input.logo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+                                <img id="logo1" class="imgclass" />
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="Input.pancardImg"></label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="Input.pancardImg" onchange="loadFile(event,'pancardImg1')" type="file" value="Upload" />
+                                    <span asp-validation-for="Input.pancardImg" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group  col-md-2">
+                                <img id="pancardImg1" class="imgclass" />
+                            </div>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Register</button>
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+@*<link href="~/css/custom.css" rel="stylesheet" />
+<script src="~/js/custom.js"></script>*@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*<script>
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>*@
+<script type="text/javascript">
+     
+   // loadCountry();
+    $(function () {
+        //$("#CancellerdChequeImg").change(function () {
+        //    //alert($("#CancellerdChequeImg").val());
+        //    $('#CancellerdChequeImg1').attr('src', $("#CancellerdChequeImg").val());
+        //   // $("#CancellerdChequeImg1").val($("#CancellerdChequeImg").val());
+        //});
+        $("#countryid").change(function () {
+
+            var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
+            var ddlsource = "#countryid";
+            $.getJSON(url,
+                { id: $(ddlsource).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = '<option value="">Select</option >';
+                    $("#stateid").empty();
+                    $("#cityid").empty();
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#stateid").html(item);
+                }
+            )
+        });
+
+        $("#stateid").change(function () {
+
+            var url = '@Url.Content("~/")' + 'Admin/GetJsonData/getCitybyStateid';
+            var ddlsource1 = "#stateid";
+            $.getJSON(url,
+                { stateid: $(ddlsource1).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = '<option value="-1">Select</option >';
+                    $("#cityid").empty();
+
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#cityid").html(item);
+                }
+            )
+        });
+        //$("#cityid").change(function () {
+        //    alert($("#cityid").val());
+        //    $("#cityid1").val($("#cityid").val());
+
+
+        //    alert($("#cityid1").val());
+        //});
+    });
+
+    @*function loadCountry() {
+
+       // $("[data-rel='chosen']").chosen();
+          var url = '@Url.Content("~/")' + 'Admin/GetJsonData/getCountry';
+
+            $.getJSON(url,
+
+                function (data) {
+                console.log(data);
+                    var item = '<option value="0" >Select</option >';
+                   // $("#cityid").empty();
+                    var s = '';
+                    $.each(data, function (i, row) {
+                        s += '<option value="' + row.value + '">' + row.text + '</option>';
+                        //if (row.value == $("#countryid").val()) {
+                        //          s += '<option selected="'+"selected"+'" value="' + row.value + '">' + row.text + '</option>';
+
+                        //    }
+                        //    else {
+                        //          s += '<option value="' + row.value + '">' + row.text + '</option>';
+
+                        //    }
+
+                    });
+                    $("#countryid").html(s);
+                   // $("[data-rel='chosen']").trigger("chosen:updated");
+                    console.log(item);
+                   // $("#cityid").html(item);
+                }
+        )
+
+
+
+    }*@
+
+</script>

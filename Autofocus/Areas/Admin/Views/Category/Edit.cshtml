@@ -1,0 +1,70 @@
+﻿
+@model Autofocus.Models.ViewModels.MainCategoryCreateViewModel
+@{
+    ViewData["Title"] = "Edit Category";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+
+    <!-- end row test-->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+
+                                <label class="form-label" asp-for="name">Name</label>
+                                <input type="text" class="form-control" asp-for="name" id="name1" placeholder="Enter Name">
+                                <span asp-validation-for="name" class="text-danger"></span>
+
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-label" asp-for="img">Image</label>
+                                <input asp-for="img" type="file" class="dropify" data-default-file="@Model.imgName" data-height="40" value="Upload" />
+                                @*<div class="btn btn-primary btn-icon-text">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <input asp-for="img" type="file" onchange="loadFile(event,'imgName')" value="Upload" />
+                                        <span asp-validation-for="img" class="text-danger"></span>
+                                    </div>*@
+                                <span asp-validation-for="img" class="text-danger"></span>
+
+                            </div>
+
+                            @*<div class="form-group col-md-2">
+                                <label>  </label>
+                                <img src="@Model.imgName" id="imgName" style="height:70px;width:100px;" />
+
+                            </div>*@
+
+
+
+
+                        </div>
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

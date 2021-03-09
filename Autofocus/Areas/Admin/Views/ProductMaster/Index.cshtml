@@ -1,0 +1,80 @@
+﻿@model Autofocus.Models.ViewModels.productMasterViewModel;
+@using Autofocus.Utility;
+@{
+    ViewData["Title"] = "Product Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+    @*<div class="page-header">
+            <h4 class="page-title">Tax</h4>
+            <ol class="breadcrumb">
+
+            </ol>
+        </div>*@
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card-header">
+                <h3 class="card-title">@ViewData["Title"]</h3>
+            </div>
+            <div class="card">
+                <br />
+                <div class="form-row">
+                    <br />
+                    <input type="hidden" id="txtURLpath" value="@SD.APIBaseUrl" />
+                    <div class="form-group  col-md-1">
+                        <label class="form-label" asp-for="mainCategroyId">Main Category  </label>
+                    </div>
+                    <div class="form-group  col-md-3">
+                        <select asp-for="mainCategroyId" class="form-control" asp-items="ViewBag.AllMainCategory">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group  col-md-1">
+                        <label class="form-label" asp-for="subCategroyId">Sub Category  </label>
+                    </div>
+                    <div class="form-group  col-md-3">
+                        <select name="subCategroyId" id="subCategroyId" asp-for="subCategroyId" class="form-control">
+                            @*asp-items="@(new SelectList(String.Empty,"id","StateName"))">*@
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">
+                    <a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add New Product</a>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
+
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Description</th>
+                                    <th class="text-warning">Actions</th>
+
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/productMaster.js"></script>
+
+}
+

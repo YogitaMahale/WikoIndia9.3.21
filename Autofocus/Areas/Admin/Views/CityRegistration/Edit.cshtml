@@ -1,0 +1,108 @@
+﻿
+@model Autofocus.Models.ViewModels.CityRegistrationCreateViewModel
+@{
+    ViewData["Title"] = "Edit Country";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+
+    <!-- end row -->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-row">
+                             
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="countryid">  </label>
+                                <select name="countryid" id="countryid" asp-for="countryid" class="form-control"
+                                        asp-items="@ViewBag.Allcountry"
+                                        onchange="DoPostBack();">
+                                    <option value=""></option>
+                                </select>
+
+                                <span asp-validation-for="countryid" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="stateid">  </label>
+                                <select class="form-control" name="stateid" id="stateid" asp-for="stateid" class="form-control"
+                                        asp-items="@ViewBag.States">
+                                    @*disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"*@
+                                    <option value=""></option>
+                                </select>
+
+
+                                <span asp-validation-for="stateid" class="text-danger"></span>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="cityName">City Name</label>
+                                    <input type="text" class="form-control" asp-for="cityName" id="name1" placeholder="Enter Name">
+                                    <span asp-validation-for="cityName" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#countryid").change(function () {
+            //alert($("#countryid").val());
+            var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
+            var ddlsource = "#countryid";
+            $.getJSON(url,
+                { id: $(ddlsource).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = '';
+                    $("#stateid").empty();
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#stateid").html(item);
+                }
+            )
+        });
+    });
+
+</script>

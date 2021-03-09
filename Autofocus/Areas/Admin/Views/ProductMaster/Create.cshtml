@@ -1,0 +1,123 @@
+﻿
+@model Autofocus.Models.ViewModels.productMasterViewModel;
+@{
+    ViewData["Title"] = "Add New Product";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="side-app">
+
+    <!-- end row -->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-row">
+
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="mainCategroyId">  </label>
+                                <select asp-for="mainCategroyId" class="form-control" asp-items="ViewBag.AllMainCategory">
+                                    <option value="">Select</option>
+                                </select>
+
+                                <span asp-validation-for="mainCategroyId" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="subCategroyId"> </label>
+                                    <select name="subCategroyId" id="subCategroyId" asp-for="subCategroyId" class="form-control"
+                                            asp-items="@(new SelectList(String.Empty,"id","StateName"))">
+                                        <option>Select</option>
+                                    </select>
+
+
+                                    <span asp-validation-for="subCategroyId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="name">Name</label>
+                                    <input type="text" class="form-control" asp-for="name" id="name1" placeholder="Enter Name">
+                                    <span asp-validation-for="name" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <label class="form-label" asp-for="name">Image</label>
+                                <input asp-for="img" type="file" class="dropify" data-height="50" value="Upload" />
+                                <span asp-validation-for="img" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="description">Description</label>
+
+                                    <textarea class="form-control" asp-for="description" placeholder="Enter Description" rows="3"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Save</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#mainCategroyId").change(function () {
+
+           // var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
+            var url = '@Url.Content("~/")' + 'subcategory/GetSubCategorybyMaincategoryId';
+            console.log(url);
+            var ddlsource = "#mainCategroyId";
+            $.getJSON(url,
+                { maincategoryId: $(ddlsource).val() },
+                function (data) {
+                  // console.log(data);
+                    var item = '<option> select </option >';
+                    $("#subCategroyId").empty();
+
+                    $.each(data, function (i, row) {
+                        console.log("--------------");
+                        console.log(row);
+                        item += "<option value='" + row.id + "'>" + row.name + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#subCategroyId").html(item);
+                }
+            )
+        });
+
+
+    });
+
+</script>

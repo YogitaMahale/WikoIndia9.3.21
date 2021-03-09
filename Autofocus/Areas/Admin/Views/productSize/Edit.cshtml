@@ -1,0 +1,54 @@
+﻿
+@model Autofocus.Models.ViewModels.productSizeUpsertViewModel
+@{
+    ViewData["Title"] = "Edit Product Size";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+
+    <!-- end row -->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <div class="card m-b-20">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="size">Size</label>
+                                    <input type="text" class="form-control" asp-for="size" id="name1" placeholder="Enter Size">
+                                    <span asp-validation-for="size" class="text-danger"></span>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

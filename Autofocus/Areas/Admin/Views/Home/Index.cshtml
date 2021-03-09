@@ -1,0 +1,361 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="side-app">
+    <div class="page-header">
+        <h4 class="page-title">Dashboard 01</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+        </ol>
+    </div>
+
+    <div class="row row-cards">
+        <div class="col-sm-12 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-body iconfont text-center">
+                    <h5 class="text-muted">Total Customers</h5>
+                    <h1 class="mb-2 font-weight-semibold">6,545</h1>
+                    <p><span class="text-green"><i class="fa fa-arrow-up text-green"> </i>23% increase</span> in Last week</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-body iconfont text-center">
+                    <h5 class="text-muted">Total Listings</h5>
+                    <h1 class="mb-2 font-weight-semibold">6,54,856</h1>
+                    <p><span class="text-green"><i class="fa fa-arrow-up text-green"></i> 3.25% less</span> than 1 yrs ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-body iconfont text-center">
+                    <h5 class="text-muted">Average Listing Value</h5>
+                    <h1 class="mb-2 font-weight-semibold">525</h1>
+                    <p><span class="text-red"><i class="fa fa-arrow-down text-red"></i> 4 lead less</span> than last week</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-6 col-xl-3">
+            <div class="card">
+                <div class="card-body iconfont text-center">
+                    <h5 class="text-muted">Total Profits</h5>
+                    <h1 class="mb-2 font-weight-semibold">42%</h1>
+                    <p><span class="text-green"><i class="fa fa-arrow-up text-green"></i> 5.25% increase</span> last month</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-deck">
+        <div class="col-xl-8 col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Last Year Overview</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart-wrapper">
+                        <canvas id="sales-status" class="h-350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Browser Usage</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="browser-stats">
+                        <div class="d-flex align-items-center border-bottom px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-chrome bg-secondary text-white mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Chrome</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1 fs-16">35,502</span>
+                                    <span class="text-success fs-15 mt-1"><i class="fe fe-arrow-up"></i>12.75%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center border-bottom px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-opera text-white bg-danger mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Opera</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1 fs-16">12,563</span>
+                                    <span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>15.12%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center border-bottom px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-edge text-white bg-info mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Internet Explorer</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1">25,364</span>
+                                    <span class="text-success mt-1"><i class="fe fe-arrow-up"></i>24.37%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center border-bottom px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-firefox text-white bg-primary mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Firefox</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1">14,635</span>
+                                    <span class="text-success mt-1"><i class="fe fe-arrow-up"></i>15,63%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center border-bottom px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-android text-white bg-success mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Android</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1">15,453</span>
+                                    <span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>23.70%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center px-4 py-3">
+                            <div class="d-flex support-service2">
+                                <i class="fa fa-edge text-white bg-indigo mr-2"></i>
+                                <p class="fs-16 mt-3 mb-0">Edge</p>
+                            </div>
+                            <div class="ml-auto">
+                                <div class="d-flex">
+                                    <span class="mr-4 mt-1">35,657</span>
+                                    <span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>12.54%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-4 col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Customer Satisfaction</h3>
+                </div>
+                <div class="card-body">
+                    <div class="chats-wrap">
+                        <div class="chat-details p-2 px-0">
+                            <h6 class="mb-0">
+                                <span class="font-weight-normal">Good</span>
+                                <span class="float-right p-1">78%</span>
+                            </h6>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success w-35"></div>
+                            </div>
+                        </div>
+                        <div class="chat-details p-2 px-0">
+                            <h6 class="mb-0">
+                                <span class="font-weight-normal">Satisfied</span>
+                                <span class="float-right p-1">82%</span>
+                            </h6>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary w-75"></div>
+                            </div>
+                        </div>
+                        <div class="chat-details p-2 px-0">
+                            <h6 class="mb-0">
+                                <span class="font-weight-normal">Excellent</span>
+                                <span class="float-right p-1">89%</span>
+                            </h6>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary w-65"></div>
+                            </div>
+                        </div>
+                        <div class="chat-details p-2 px-0">
+                            <h6 class="mb-0">
+                                <span class="font-weight-normal">Average</span>
+                                <span class="float-right p-1">40%</span>
+                            </h6>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning w-80"></div>
+                            </div>
+                        </div>
+                        <div class="chat-details p-2 px-0">
+                            <h6 class="mb-0">
+                                <span class="font-weight-normal">Unsatisfied</span>
+                                <span class="float-right p-1">20%</span>
+                            </h6>
+                            <div class="progress progress-sm mt-3">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info w-80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Developing Bizdire</div>
+                </div>
+                <div class="card-body">
+                    <div class="ibox teams mb-30 bg-boxshadow">
+                        <!-- Ibox Content -->
+                        <div class="ibox-content teams">
+                            <!-- Team Board Details -->
+                            <div class="teams-board-details">
+                                <h4 class="font-weight-semibold">About Bizdire</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam velit quisquam veniam excepturi. Contrary to popular belief, Lorem Ipsum is not simply random text classical Latin </p>
+                            </div>
+                            <!-- Progress Details -->
+                            <span class="font-weight-semibold">Status of Listings:</span>
+                            <div class="progress-details-teams mt-2 mb-4">
+                                <div class="stat-percent mb-2 fs-20 font-weight-semibold">58%</div>
+                                <div class="progress progress-md">
+                                    <div class="progress-bar bg-primary w-50" role="progressbar"></div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-4">
+                                    <div class="teams-rank text-muted">Total Listings</div>
+                                    <span class="fs-26 font-weight-semibold">6,85,965</span>
+                                </div>
+                                <div class="col-4">
+                                    <div class="teams-rank text-muted">Featured Listings</div>
+                                    <span class="fs-26 font-weight-semibold">6,758</span>
+                                </div>
+                                <div class="col-4">
+                                    <div class="teams-rank text-muted">Expired Listings</div>
+                                    <span class="fs-26 font-weight-semibold">3,542</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Invoice List</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive border-top">
+                        <table class="table table-bordered table-hover mb-0 text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Invoice ID</th>
+                                    <th>Category</th>
+                                    <th>Listing Date</th>
+                                    <th>Listing Views</th>
+                                    <th>Price</th>
+                                    <th>Due Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#INV-348</td>
+                                    <td>Resturant</td>
+                                    <td>07-12-2019</td>
+                                    <td>6,458</td>
+                                    <td class="font-weight-semibold fs-16">$89</td>
+                                    <td>17-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-186</td>
+                                    <td>Rela Estate</td>
+                                    <td>02-12-2019</td>
+                                    <td>7,854</td>
+                                    <td class="font-weight-semibold fs-16">$14,276</td>
+                                    <td>14-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-831</td>
+                                    <td>Jobs</td>
+                                    <td>30-11-2019</td>
+                                    <td>9,584</td>
+                                    <td class="font-weight-semibold fs-16">$25,000</td>
+                                    <td>04-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-672</td>
+                                    <td>Education</td>
+                                    <td>25-18-2019</td>
+                                    <td>7,845</td>
+                                    <td class="font-weight-semibold fs-16">$50.00</td>
+                                    <td>07-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-428</td>
+                                    <td>Electornics</td>
+                                    <td>24-11-2019</td>
+                                    <td>1,584</td>
+                                    <td class="font-weight-semibold fs-16">$99.99</td>
+                                    <td>11-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-543</td>
+                                    <td>Vechicle</td>
+                                    <td>22-11-2019</td>
+                                    <td>9,854</td>
+                                    <td class="font-weight-semibold fs-16">$145</td>
+                                    <td>12-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-986</td>
+                                    <td>Pet &amp; Animals</td>
+                                    <td>18-11-2019</td>
+                                    <td>9,854</td>
+                                    <td class="font-weight-semibold fs-16">$378</td>
+                                    <td>07-12-2019</td>
+                                    <td>
+                                        <a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+                                        <a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

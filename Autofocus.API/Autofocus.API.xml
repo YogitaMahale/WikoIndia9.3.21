@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Autofocus.API</name>
+    </assembly>
+    <members>
+        <member name="M:Autofocus.API.Controllers.MainCategoryController.GetMainCategory">
+            <summary>
+            Get All Main Category      
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Autofocus.API.Controllers.MainCategoryController.GetMainCategory(System.Int32)">
+            <summary>
+            Get Main category by id        
+            </summary>
+            <param name="maincategoryId"> Maincategory id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Autofocus.API.Controllers.MainCategoryV2Controller.GetMainCategory">
+            <summary>
+            Get All Main Category      
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Autofocus.API.Controllers.MainCategoryV2Controller.GetMainCategory(System.Int32)">
+            <summary>
+            Get Main category by id        
+            </summary>
+            <param name="maincategoryId"> Maincategory id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Autofocus.API.Controllers.SubCategoryController.GetSubCategory">
+            <summary>
+            Get All Main Category      
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

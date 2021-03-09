@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+	<head>
+		<!-- META DATA -->
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Bizdire - HTML & CSS dashboard design premium directory bootstrap admin template">
+		<meta name="author" content="Spruko Technologies Private Limited">
+		<meta name="keywords" content="admin dashboard template bootstrap,admin panel template bootstrap 4,bootstrap 4 admin dashboard,bootstrap 4 admin template,bootstrap admin panel template,bootstrap admin template premium,bootstrap admin template responsive,bootstrap admin ui,bootstrap application template,dashboard css,dashboard css framework,dashboard css template,dashboard design template,dashboard graphs,dashboard html,dashboard html bootstrap,dashboard html css,dashboard html5,dashboard layout,dashboard template bootstrap 4,dashboard template html5,dashboard ui,dashboard ui templates,dashboard website,dashboard website template,business listing sites,top business listing sites,local business listing sites,local business directory">
+		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+		<!-- Title -->
+		<title>Bizdire - HTML & CSS dashboard design premium directory bootstrap admin template</title>
+
+		<!-- Sidemenu Css -->
+		<link href="../assets/css/sidemenu.css" rel="stylesheet" />
+
+		<!-- Bootstrap Css -->
+		<link href="../assets/plugins/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Dashboard Css -->
+		<link href="../assets/css/style.css" rel="stylesheet" />
+		<link href="../assets/css/admin-custom.css" rel="stylesheet" />
+
+		<!-- JQVMap -->
+		<link href="../assets/plugins/jqvmap/jqvmap.min.css" rel="stylesheet"/>
+
+		<!-- Morris.js Charts Plugin -->
+		<link href="../assets/plugins/morris/morris.css" rel="stylesheet" />
+
+		<!-- Perfect scroll bar css-->
+		<link href="../assets/plugins/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" />
+
+		<!---Font icons-->
+		<link href="../assets/css/icons.css" rel="stylesheet"/>
+
+		<!-- Color Skins -->
+		<link id="theme" href="../assets/color-skins/color1.css"  rel="stylesheet"/>
+
+	</head>
+	<body class="app sidebar-mini">
+
+		<!--Loader-->
+		<div id="global-loader">
+			<img src="../assets/images/products/products/loader.png" class="loader-img floating" alt="">
+		</div>
+
+		<!--Page-->
+		<div class="page">
+			<div class="page-main h-100">
+				<div class="app-header1 header-search-icon">
+					<div class="header-style1">
+						<a class="header-brand" href="index.html">
+							<img src="../assets/images/brand/logo1.png" class="header-brand-img desktop-logo" alt="logo">
+							<img src="../assets/images/brand/favicon-white.png" class="header-brand-img mobile-logo" alt="logo">
+						</a><!-- LOGO -->
+					</div>
+					<div class="app-sidebar__toggle" data-toggle="sidebar">
+						<a class="open-toggle" href="#"><i class="fe fe-align-left"></i></a>
+						<a class="close-toggle" href="#"><i class="fe fe-x"></i></a>
+					</div>
+					<div class="d-flex ml-auto header-right-icons">
+						<div class="header-navsearch">
+							<a href="#" class=" "></a>
+							<form class="form-inline mr-auto">
+								<div class="nav-search">
+									<input type="search" class="form-control header-search" placeholder="Search…" aria-label="Search" >
+									<a class="absolute-header-button" href="#"><i class="fa fa-search"></i></a>
+								</div>
+							</form>
+						</div>
+						<div class="dropdown d-none d-md-flex" >
+							<a class="nav-link icon full-screen-link">
+								<i class="fe fe-maximize-2"  id="fullscreen-button"></i>
+							</a>
+						</div>
+						<div class="dropdown d-none d-md-flex country-selector">
+							<a href="#" class="d-flex nav-link leading-none" data-toggle="dropdown">
+								<img src="../assets/images/us_flag.jpg" alt="img" class="avatar avatar-xs mr-1 align-self-center">
+								<div>
+									<strong class="text-white-80">English</strong>
+								</div>
+							</a>
+							<div class="language-width dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<img src="../assets/images/french_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+									<div>
+										<strong>French</strong>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<img src="../assets/images/germany_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+									<div>
+										<strong>Germany</strong>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<img src="../assets/images/italy_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+									<div>
+										<strong>Italy</strong>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<img src="../assets/images/russia_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+									<div>
+										<strong>Russia</strong>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<img src="../assets/images/spain_flag.jpg"  alt="flag-img" class="avatar  mr-3 align-self-center" >
+									<div>
+										<strong>Spain</strong>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="dropdown d-none d-md-flex">
+							<a class="nav-link icon" data-toggle="dropdown">
+								<i class="fa fa-bell-o"></i>
+								<span class=" nav-unread badge badge-danger  badge-pill">4</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+								<a href="#" class="dropdown-item text-center">You have 4 notification</a>
+								<div class="dropdown-divider"></div>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<div class="notifyimg">
+										<i class="fa fa-envelope-o"></i>
+									</div>
+									<div>
+										<strong>2 new Messages</strong>
+										<div class="small text-muted">17:50 Pm</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<div class="notifyimg">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<div>
+										<strong> 1 Event Soon</strong>
+										<div class="small text-muted">19-10-2019</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<div class="notifyimg">
+										<i class="fa fa-comment-o"></i>
+									</div>
+									<div>
+										<strong> 3 new Comments</strong>
+										<div class="small text-muted">05:34 Am</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item d-flex pb-3">
+									<div class="notifyimg">
+										<i class="fa fa-exclamation-triangle"></i>
+									</div>
+									<div>
+										<strong> Application Error</strong>
+										<div class="small text-muted">13:45 Pm</div>
+									</div>
+								</a>
+								<div class="dropdown-divider"></div>
+								<a href="#" class="dropdown-item text-center">See all Notification</a>
+							</div>
+						</div>
+						<div class="dropdown d-none d-md-flex">
+							<a class="nav-link icon" data-toggle="dropdown">
+								<i class="fa fa-envelope-o"></i>
+								<span class=" nav-unread badge badge-warning  badge-pill">3</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+								<a href="#" class="dropdown-item pb-3">
+									<div>
+										<strong>Blake</strong> I've finished it! See you so.......
+										<div class="small text-muted">30 mins ago</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item pb-3">
+									<div>
+										<strong>Caroline</strong> Just see the my Admin....
+										<div class="small text-muted">12 mins ago</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item pb-3">
+									<div>
+										<strong>Jonathan</strong> Hi! I'am singer......
+										<div class="small text-muted">1 hour ago</div>
+									</div>
+								</a>
+								<a href="#" class="dropdown-item pb-3">
+									<div>
+										<strong>Emily</strong> Just a reminder that you have.....
+										<div class="small text-muted">45 mins ago</div>
+									</div>
+								</a>
+								<div class="dropdown-divider"></div>
+								<a href="#" class="dropdown-item text-center">View all Messages</a>
+							</div>
+						</div>
+						<div class="dropdown d-none d-md-flex">
+							<a class="nav-link icon" data-toggle="dropdown">
+								<i class="fe fe-grid"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow  app-selector">
+								<ul class="drop-icon-wrap">
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-speech"></i>
+											<span class="block"> E-mail</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-map"></i>
+											<span class="block">map</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-bubbles"></i>
+											<span class="block">Messages</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-user-follow"></i>
+											<span class="block">Followers</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-picture"></i>
+											<span class="block">Photos</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="drop-icon-item">
+											<i class="icon icon-settings"></i>
+											<span class="block">Settings</span>
+										</a>
+									</li>
+								</ul>
+								<div class="dropdown-divider"></div>
+								<a href="#" class="dropdown-item text-center">View all</a>
+							</div>
+						</div>
+						<div class="dropdown ">
+							<a href="#" class="nav-link pr-0 leading-none user-img" data-toggle="dropdown">
+								<img src="../assets/images/faces/male/25.jpg" alt="profile-img" class="avatar avatar-md brround">
+							</a>
+							<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
+								<a class="dropdown-item" href="profile.html">
+									<i class="dropdown-icon icon icon-user"></i> My Profile
+								</a>
+								<a class="dropdown-item" href="emailservices.html">
+									<i class="dropdown-icon icon icon-speech"></i> Inbox
+								</a>
+								<a class="dropdown-item" href="editprofile.html">
+									<i class="dropdown-icon  icon icon-settings"></i> Account Settings
+								</a>
+								<a class="dropdown-item" href="login.html">
+									<i class="dropdown-icon icon icon-power"></i> Log out
+								</a>
+							</div>
+						</div><!-- SIDE-MENU -->
+					</div>
+				</div>
+				<!-- Sidebar menu-->
+				<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+				<aside class="app-sidebar doc-sidebar">
+					<ul class="side-menu">
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-home-outline"></i><span class="side-menu__label">Dashboard</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item" href="index.html"><i class="fa fa-angle-right mr-1"></i> Dashboard 1</a></li>
+								<li><a class="slide-item" href="index2.html"><i class="fa fa-angle-right mr-1"></i> Dashboard 2</a></li>
+								<li><a class="slide-item" href="index3.html"><i class="fa fa-angle-right mr-1"></i> Dashboard 3</a></li>
+								<li><a class="slide-item" href="index4.html"><i class="fa fa-angle-right mr-1"></i> Dashboard 4</a></li>
+								<li><a class="slide-item" href="index5.html"><i class="fa fa-angle-right mr-1"></i> Dashboard 5</a></li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-cog-outline"></i><span class="side-menu__label">Admin settings</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a class="slide-item" href="admin-pricing.html"><i class="fa fa-angle-right mr-1"></i> Admin Pricing</a></li>
+								<li><a class="slide-item" href="ads.html"><i class="fa fa-angle-right mr-1"></i> Ads List</a></li>
+								<li><a class="slide-item" href="comments.html"><i class="fa fa-angle-right mr-1"></i> Comments</a></li>
+								<li><a class="slide-item" href="email-users.html"><i class="fa fa-angle-right mr-1"></i> Email-Users</a></li>
+								<li><a class="slide-item" href="media-gallery.html"><i class="fa fa-angle-right mr-1"></i> Media Gallery</a></li>
+								<li><a class="slide-item" href="newad.html"><i class="fa fa-angle-right mr-1"></i> New Ad</a></li>
+								<li><a class="slide-item" href="newuser.html"><i class="fa fa-angle-right mr-1"></i> New User</a></li>
+								<li><a class="slide-item" href="favourite-ads.html"><i class="fa fa-angle-right mr-1"></i> Favourite-Ads</a></li>
+								<li><a class="slide-item" href="payment-orders.html"><i class="fa fa-angle-right mr-1"></i> Payment Orders</a></li>
+								<li><a class="slide-item" href="payments-adpacks.html"><i class="fa fa-angle-right mr-1"></i> Payment Adpacks</a></li>
+								<li><a class="slide-item" href="payment-settings.html"><i class="fa fa-angle-right mr-1"></i> Payment Settings</a></li>
+								<li><a class="slide-item" href="payments-membership.html"><i class="fa fa-angle-right mr-1"></i> Payment Membership</a></li>
+								<li><a class="slide-item" href="profile-admin.html"><i class="fa fa-angle-right mr-1"></i> Profile Admin</a></li>
+								<li><a class="slide-item" href="settings.html"><i class="fa fa-angle-right mr-1"></i> Settings</a></li>
+								<li><a class="slide-item" href="users-all.html"><i class="fa fa-angle-right mr-1"></i> All Users</a></li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-tabs-outline"></i><span class="side-menu__label">Apps</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="cards.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Cards design</a>
+								</li>
+								<li>
+									<a href="chat.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Default Chat</a>
+								</li>
+								<li>
+									<a href="notify.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Notifications</a>
+								</li>
+								<li>
+									<a href="email.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Email</a>
+								</li>
+								<li>
+									<a href="emailservices.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Email Inbox</a>
+								</li>
+								<li>
+									<a href="sweetalert.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Sweet alerts</a>
+								</li>
+								<li>
+									<a href="rangeslider.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Range slider</a>
+								</li>
+								<li>
+									<a href="scroll.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Content Scroll bar</a>
+								</li>
+								<li>
+									<a href="counters.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Counters</a>
+								</li>
+								<li>
+									<a href="loaders.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Loaders</a>
+								</li>
+								<li>
+									<a href="time-line.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Time Line</a>
+								</li>
+								<li>
+									<a href="rating.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Rating </a>
+								</li>
+								<li>
+									<a href="users-list.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> User List</a>
+								</li>
+								<li>
+									<a href="search.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Search page</a>
+								</li>
+								<li>
+									<a href="crypto-currencies.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Crypto-currencies</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item" href="widgets.html"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label">Widget</span></a>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-calendar-outline"></i><span class="side-menu__label">Calendar</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="calendar.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Default calendar</a>
+								</li>
+								<li>
+									<a href="calendar2.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Full calendar</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-chart-bar-outline"></i><span class="side-menu__label">Charts</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="chart-chartist.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Chartjs Charts </a>
+								</li>
+								<li>
+									<a href="chart-dygraph.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Dygraph Charts</a>
+								</li>
+								<li>
+									<a href="chart-echart.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Echart Charts</a>
+								</li>
+								<li>
+									<a href="chart-flot.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Flot Charts</a>
+								</li>
+								<li>
+									<a href="chart-nvd3.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Nvd3 Charts</a>
+								</li>
+								<li>
+									<a href="sparklinechart.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Sparkline Chart</a>
+								</li>
+								<li>
+									<a href="chart-morris.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Morris Charts</a>
+								</li>
+								<li>
+									<a href="charts.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> C3 Bar Charts</a>
+								</li>
+								<li>
+									<a href="chart-line.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> C3 Line Charts</a>
+								</li>
+								<li>
+									<a href="chart-donut.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> C3 Donut Charts</a>
+								</li>
+								<li>
+									<a href="chart-pie.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> C3 Pie charts</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-th-small-outline"></i><span class="side-menu__label"> Elements</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="alerts.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Alerts</a>
+								</li>
+								<li>
+									<a href="buttons.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Buttons</a>
+								</li>
+								<li>
+									<a href="colors.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Colors</a>
+								</li>
+								<li>
+									<a href="avatars.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Avatar-Square</a>
+								</li>
+								<li>
+									<a href="avatar-round.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Avatar-Rounded</a>
+								</li>
+								<li>
+									<a href="avatar-radius.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Avatar-Radius</a>
+								</li>
+								<li>
+									<a href="dropdown.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Drop downs</a>
+								</li>
+								<li>
+									<a href="thumbnails.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Thumbnails</a>
+								</li>
+								<li>
+									<a href="mediaobject.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Media Object</a>
+								</li>
+								<li>
+									<a href="list.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> List</a>
+								</li>
+								<li>
+									<a href="tags.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Tags</a>
+								</li>
+								<li>
+									<a href="pagination.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Pagination</a>
+								</li>
+								<li>
+									<a href="navigation.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Navigation</a>
+								</li>
+								<li>
+									<a href="typography.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Typography</a>
+								</li>
+								<li>
+									<a href="breadcrumbs.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Breadcrumbs</a>
+								</li>
+								<li>
+									<a href="badge.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Badges</a>
+								</li>
+								<li>
+									<a href="jumbotron.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Jumbotron</a>
+								</li>
+								<li>
+									<a href="panels.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Panels</a>
+								</li>
+								<li>
+									<a href="modal.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Modal</a>
+								</li>
+								<li>
+									<a href="tooltipandpopover.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Tooltip and popover</a>
+								</li>
+								<li>
+									<a href="progress.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Progress</a>
+								</li>
+								<li>
+									<a href="carousel.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Carousels</a>
+								</li>
+								<li>
+									<a href="accordion.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Accordions</a>
+								</li>
+								<li>
+									<a href="tabs.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Tabs</a>
+								</li>
+								<li>
+									<a href="headers.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Headers</a>
+								</li>
+								<li>
+									<a href="footers.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Footers</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-input-checked-outline"></i><span class="side-menu__label">Forms</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="form-elements.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Form Elements</a>
+								</li>
+								<li>
+									<a href="form-wizard.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Form-wizard Elements</a>
+								</li>
+								<li>
+									<a href="wysiwyag.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Text Editor</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-th-list-outline"></i><span class="side-menu__label">Tables</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="tables.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Default table</a>
+								</li>
+								<li>
+									<a href="datatable.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Data Table</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item" href="maps.html"><i class="side-menu__icon typcn typcn-location-outline"></i><span class="side-menu__label"> Maps</span></a>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-flag-outline"></i><span class="side-menu__label">Icons</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="icons.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Font Awesome</a>
+								</li>
+								<li>
+									<a href="icons2.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Material Design Icons</a>
+								</li>
+								<li>
+									<a href="icons3.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Simple Line Iocns</a>
+								</li>
+								<li>
+									<a href="icons4.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Feather Icons</a>
+								</li>
+								<li>
+									<a href="icons5.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Ionic Icons</a>
+								</li>
+								<li>
+									<a href="icons6.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Flag Icons</a>
+								</li>
+								<li>
+									<a href="icons7.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> pe7 Icons</a>
+								</li>
+								<li>
+									<a href="icons8.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Themify Icons</a>
+								</li>
+								<li>
+									<a href="icons9.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Typicons Icons</a>
+								</li>
+								<li>
+									<a href="icons10.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Weather Icons</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-export-outline"></i><span class="side-menu__label">Pages</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="profile.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Profile</a>
+								</li>
+								<li>
+									<a href="editprofile.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Edit Profile</a>
+								</li>
+								<li>
+									<a href="gallery.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Gallery</a>
+								</li>
+								<li>
+									<a href="about.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> About Company</a>
+								</li>
+								<li>
+									<a href="company-history.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Company History</a>
+								</li>
+								<li>
+									<a href="services.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Services</a>
+								</li>
+								<li>
+									<a href="faq.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> FAQS</a>
+								</li>
+								<li>
+									<a href="terms.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Terms and Conditions</a>
+								</li>
+								<li>
+									<a href="empty.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Empty Page</a>
+								</li>
+								<li>
+									<a href="construction.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Under Construction</a>
+								</li>
+								<li>
+									<a href="blog.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Blog</a>
+								</li>
+								<li>
+									<a href="invoice.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Invoice</a>
+								</li>
+								<li>
+									<a href="pricing.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Pricing Tables</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-shopping-cart"></i><span class="side-menu__label">E-commerce</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="shop.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Products</a>
+								</li>
+								<li>
+									<a href="shop-des.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Product Details</a>
+								</li>
+								<li>
+									<a href="cart.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Shopping Cart</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-attachment-outline"></i><span class="side-menu__label">Custom  Pages</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="login.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Login</a>
+								</li>
+								<li>
+									<a href="register.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Register</a>
+								</li>
+								<li>
+									<a href="forgot-password.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Forgot password</a>
+								</li>
+								<li>
+									<a href="lockscreen.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> Lock screen</a>
+								</li>
+							</ul>
+						</li>
+						<li class="slide">
+							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon typcn typcn-info-outline"></i><span class="side-menu__label">Error pages</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li>
+									<a href="400.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 400 Error</a>
+								</li>
+								<li>
+									<a href="401.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 401 Error</a>
+								</li>
+								<li>
+									<a href="403.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 403 Error</a>
+								</li>
+								<li>
+									<a href="404.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 404 Error</a>
+								</li>
+								<li>
+									<a href="500.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 500 Error</a>
+								</li>
+								<li>
+									<a href="503.html" class="slide-item"><i class="fa fa-angle-right mr-1"></i> 503 Error</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</aside>
+
+				<!--app-content-->
+				<div class="app-content">
+					<div class="side-app">
+						<div class="page-header">
+							<h4 class="page-title">Dashboard 03</h4>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Dashboard 03</li>
+							</ol>
+						</div>
+						<div class="row">
+							<div class="col-xl-3 col-lg-6 col-md-12">
+								<div class="card ">
+									<div class="card-body text-center">
+										<div class="counter-status dash3-counter">
+											<div class="counter-icon bg-primary text-primary">
+												<i class="icon icon-people text-white"></i>
+											</div>
+											<h5>Clients</h5>
+											<h2 class="counter">1554</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-12">
+								<div class="card ">
+									<div class="card-body text-center">
+										<div class="counter-status dash3-counter">
+											<div class="counter-icon bg-info text-info">
+												<i class="icon icon-rocket text-white"></i>
+											</div>
+											<h5>Total Listings</h5>
+											<h2 class="counter">1068</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-12">
+								<div class="card ">
+									<div class="card-body text-center">
+										<div class="counter-status dash3-counter">
+											<div class="counter-icon bg-success text-success">
+												<i class="icon icon-docs text-white"></i>
+											</div>
+											<h5>New Listings</h5>
+											<h2 class="counter">8754</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-12">
+								<div class="card ">
+									<div class="card-body text-center">
+										<div class="counter-status dash3-counter">
+											<div class="counter-icon bg-danger text-danger">
+												<i class="icon icon-emotsmile text-white"></i>
+											</div>
+											<h5>Happy Customers</h5>
+											<h2 class="counter">4388</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row row-deck">
+							<div class="col-xl-8 col-lg-7">
+								<div class="card">
+								    <div class="card-header">
+									    <h3 class="card-title">Listing Details</h3>
+									</div>
+									<div class="card-body">
+										<div class="chart-wrapper">
+											<canvas id="purchase" class="h-350"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-5">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Browser Usage</h3>
+									</div>
+									<div class="card-body p-0">
+										<div class="browser-stats">
+											<div class="d-flex align-items-center border-bottom px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-chrome bg-secondary text-white mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Chrome</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1 fs-16">35,502</span>
+														<span class="text-success fs-15 mt-1"><i class="fe fe-arrow-up"></i>12.75%</span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex align-items-center border-bottom px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-opera text-white bg-danger mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Opera</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1 fs-16">12,563</span>
+														<span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>15.12%</span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex align-items-center border-bottom px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-edge text-white bg-info mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Internet Explorer</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1">25,364</span>
+														<span class="text-success mt-1"><i class="fe fe-arrow-up"></i>24.37%</span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex align-items-center border-bottom px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-firefox text-white bg-purple mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Firefox</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1">14,635</span>
+														<span class="text-success mt-1"><i class="fe fe-arrow-up"></i>15,63%</span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex align-items-center border-bottom px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-android text-white bg-success mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Android</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1">15,453</span>
+														<span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>23.70%</span>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex align-items-center px-4 py-3">
+												<div class="d-flex support-service2">
+													<i class="fa fa-edge text-white bg-indigo mr-2"></i>
+													<p class="fs-16 mt-3 mb-0">Edge</p>
+												</div>
+												<div class="ml-auto">
+													<div class="d-flex">
+														<span class="mr-4 mt-1">35,657</span>
+														<span class="text-danger mt-1"><i class="fe fe-arrow-down"></i>12.54%</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-4 col-lg-12">
+								<div class="card ">
+									<div class="card-header">
+										<div class="card-title">Dailywise Feedback</div>
+									</div>
+									<div class="card-body">
+										<div id="echart5" class="chartsh"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 col-lg-6 col-xl-4">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">Daily Analytics</div>
+									</div>
+									<div class="card-body overflow-hidden">
+										<div id="placeholder4" class="chartsh"></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 col-lg-6 col-xl-4">
+								<div class="card">
+									<div class="card-header border-bottom">
+										<h5 class="card-title">Summary</h5>
+									</div>
+									<div class="card-body">
+										<div class="clearfix row mb-4">
+											<div class="col">
+												<div class="float-left">
+													<h5 class="mb-0"><strong>Total Listing</strong></h5>
+													<small class="text-muted">Details By Weekwise</small>
+												</div>
+											</div>
+											<div class="col">
+												<div class="float-right">
+													<h4 class="font-weight-bold mb-0 mt-2 text-primary">63,548,754</h4>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix row mb-4">
+											<div class="col">
+												<div class="float-left">
+													<h5 class="mb-0"><strong>Total Categories</strong></h5>
+													<small class="text-muted">Details By Weekwise</small>
+												</div>
+											</div>
+											<div class="col">
+												<div class="float-right">
+													<h4 class="font-weight-bold mt-2 mb-0 text-success">3256</h4>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix row mb-4">
+											<div class="col">
+												<div class="float-left">
+													<h5 class="mb-0"><strong>Total Users</strong></h5>
+													<small class="text-muted">Details By Weekwise</small>
+												</div>
+											</div>
+											<div class="col">
+												<div class="float-right">
+													<h4 class="font-weight-bold mt-2 mb-0 text-warning">65,7854</h4>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix row mb-4">
+											<div class="col">
+												<div class="float-left">
+													<h5 class="mb-0"><strong>New Users</strong></h5>
+													<small class="text-muted">Details By Weekwise</small>
+												</div>
+											</div>
+											<div class="col">
+												<div class="float-right">
+													<h4 class="font-weight-bold mt-2 mb-0 text-info">6,354</h4>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix row mb-0">
+											<div class="col">
+												<div class="float-left">
+													<h5 class="mb-0"><strong>Expired Listing</strong></h5>
+													<small class="text-muted">Details By Weekwise</small>
+												</div>
+											</div>
+											<div class="col">
+												<div class="float-right">
+													<h4 class="font-weight-bold mt-2 mb-0 text-danger">6,457</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Payments List</h3>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive border-top">
+											<table class="table table-bordered table-hover mb-0 text-nowrap">
+												<thead>
+													<tr>
+														<th>Invoice ID</th>
+														<th>Category</th>
+														<th>Purchase Date</th>
+														<th>Price</th>
+														<th>Due Date</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>#INV-348</td>
+														<td>Resturant</td>
+														<td>07-12-2019</td>
+														<td class="font-weight-semibold fs-16">$89</td>
+														<td>17-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-186</td>
+														<td>Rela Estate</td>
+														<td>02-12-2019</td>
+														<td class="font-weight-semibold fs-16">$14,276</td>
+														<td>14-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-831</td>
+														<td>Jobs</td>
+														<td>30-11-2019</td>
+														<td class="font-weight-semibold fs-16">$25,000</td>
+														<td>04-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-672</td>
+														<td>Education</td>
+														<td>25-18-2019</td>
+														<td class="font-weight-semibold fs-16">$50.00</td>
+														<td>07-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-428</td>
+														<td>Electornics</td>
+														<td>24-11-2019</td>
+														<td class="font-weight-semibold fs-16">$99.99</td>
+														<td>11-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-543</td>
+														<td>Vechicle</td>
+														<td>22-11-2019</td>
+														<td class="font-weight-semibold fs-16">$145</td>
+														<td>12-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+													<tr>
+														<td>#INV-986</td>
+														<td>Pet &amp; Animals</td>
+														<td>18-11-2019</td>
+														<td class="font-weight-semibold fs-16">$378</td>
+														<td>07-12-2019</td>
+														<td>
+															<a class="btn btn-light btn-sm mb-1" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-danger btn-sm text-white mb-1" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a><br>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--footer-->
+			<footer class="footer">
+				<div class="container">
+					<div class="row align-items-center flex-row-reverse">
+						<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
+							Copyright © 2020 <a href="#">Bizdire</a>. Designed by <a href="#">Spruko</a> All rights reserved.
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- End Footer-->
+		</div>
+
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top" ><i class="fa fa-rocket"></i></a>
+
+		<!-- Dashboard Core -->
+		<script src="../assets/js/vendors/jquery-3.2.1.min.js"></script>
+		<script src="../assets/plugins/bootstrap-4.4.1-dist/js/popper.min.js"></script>
+		<script src="../assets/plugins/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+		<script src="../assets/js/vendors/jquery.sparkline.min.js"></script>
+		<script src="../assets/js/vendors/selectize.min.js"></script>
+		<script src="../assets/js/vendors/jquery.tablesorter.min.js"></script>
+		<script src="../assets/js/vendors/circle-progress.min.js"></script>
+		<script src="../assets/plugins/rating/jquery.rating-stars.js"></script>
+
+		<!-- Fullside-menu Js-->
+		<script src="../assets/plugins/toggle-sidebar/sidemenu.js"></script>
+
+		<!-- Input Mask Plugin -->
+		<script src="../assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+		<!-- JQVMap -->
+		<script src="../assets/plugins/jqvmap/jquery.vmap.js"></script>
+		<script src="../assets/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
+		<script src="../assets/plugins/jqvmap/jquery.vmap.sampledata.js"></script>
+
+		<!-- ECharts Plugin -->
+		<script src="../assets/plugins/echarts/echarts.js"></script>
+
+		<!-- jQuery Sparklines -->
+		<script src="../assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- Flot Chart -->
+		<script src="../assets/plugins/flot/jquery.flot.js"></script>
+		<script src="../assets/plugins/flot/jquery.flot.fillbetween.js"></script>
+		<script src="../assets/plugins/flot/jquery.flot.pie.js"></script>
+
+		<!--Counters -->
+		<script src="../assets/plugins/counters/counterup.min.js"></script>
+		<script src="../assets/plugins/counters/waypoints.min.js"></script>
+
+		<!-- Perfect scroll bar Js-->
+		<script src="../assets/plugins/perfect-scrollbar/perfect-scrollbar.js"></script>
+		<script src="../assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+		<!-- CHARTJS CHART -->
+		<script src="../assets/plugins/chart/Chart.bundle.js"></script>
+		<script src="../assets/plugins/chart/utils.js"></script>
+
+		<!-- Custom Js-->
+		<script src="../assets/js/admin-custom.js"></script>
+
+		<!-- Dashboard Js-->
+		<script src="../assets/js/index3.js"></script>
+
+	</body>
+</html>

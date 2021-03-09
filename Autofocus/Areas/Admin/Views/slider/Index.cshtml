@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Autofocus.Models.ViewModels.sliderIndexViewModel>
+@{
+    ViewData["Title"] = "Slider Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card-header">
+                <h3 class="card-title">@ViewData["Title"]</h3>
+            </div>
+            <div class="card">
+                <div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">
+                    <a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add New Image</a>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
+
+
+                            <thead>
+                                <tr>
+                                    @*<th>ID</th>*@
+                                    <th>Image</th>
+
+                                    <th class="text-warning">Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+
+                                        @*<td>@item.id</td>*@
+                                        <td>
+                                            @if (item.name == null || item.name.Trim() == "")
+                                            {
+                                                // <img alt="image" src="~/images/not-found.png" />
+                                            }
+                                            else
+                                            {<img alt="image" src="@Url.Content(item.name)" style="width:150px;height:100px;" />
+
+
+                                            }
+
+                                        </td>
+
+                                        <td>
+                                            <a class="text-success" asp-action="Edit" asp-route-id="@item.id" >
+                                                <i class="os-icon os-icon-ui-49"></i> Edit
+                                            </a>
+
+                                            @*<a class="text-danger" asp-action="Delete" asp-route-id="@item.id">
+                                                    <i class="far fa-trash-alt"></i> Delete
+                                                </a>*@
+                                            <a class="text-danger" onclick=Delete('/Admin/slider/Delete/@item.id')>
+                                                <i class="os-icon os-icon-ui-15"></i> Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+       
+    });
+    function Delete(url) {
+        swal({
+            title: "Are you sure you want to delete?",
+            text: "You will not be able to restore the data",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            toastr.success(data.message);
+                      /*  dataTable.ajax.reload()*/;
+                           // $('#tblData').DataTable().ajax.reload()
+                            window.location.reload();
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+
+
+        });
+
+    }
+</script>
