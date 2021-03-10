@@ -6,6 +6,7 @@ using Dapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +15,20 @@ using System.Threading.Tasks;
 namespace Autofocus.Webapi
 {
     [Route("api/product")]
-   
+
     public class ProductController : ControllerBase
     {
         private readonly IUnitofWork _unitofWork;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        private readonly ISP_CALL _spcall;
+        // private readonly ISP_CALL _spcall;
 
-        public ProductController(IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, ISP_CALL spcall)
+        public ProductController(IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment)
         {
             _unitofWork = unitofWork;
             _mapper = mapper;
             _hostingEnvironment = hostingEnvironment;
-            _spcall = spcall;
+            //  _spcall = spcall;, ISP_CALL spcall
         }
         [HttpPost("[action]")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -83,8 +84,13 @@ namespace Autofocus.Webapi
                 ModelState.AddModelError("", $"Something went wrong saving record");
                 return StatusCode(500, ModelState);
             }
-            return Ok(model);
-            // return CreatedAtRoute("GetMainCategory", new { Version = HttpContext.GetRequestedApiVersion().ToString(), maincategoryId = mainCategoryObj.id }, mainCategoryObj);
+            // return Ok(model);
+
+
+            string output = JsonConvert.SerializeObject(model);
+            string finalResult = "{\"success\" : 1, \"message\" : \" Record Saved Successfully\", \"data\" :" + output + "}";
+            return Ok(finalResult);
+
         }
 
 
@@ -95,17 +101,17 @@ namespace Autofocus.Webapi
         public ActionResult GetProuductbyUserId(string userId)
         {
             //ProductViewModelDtos
-           //var obj = _unitofWork.product.GetAll(includeProperties: "ApplicationUser,ProductMaster,productSize,CityRegistration,packingType").Where(x => x.isdeleted == false).ToList();
-           // if (obj == null)
-           // {
-           //     return NotFound();
-           // }
+            //var obj = _unitofWork.product.GetAll(includeProperties: "ApplicationUser,ProductMaster,productSize,CityRegistration,packingType").Where(x => x.isdeleted == false).ToList();
+            // if (obj == null)
+            // {
+            //     return NotFound();
+            // }
             var paramter = new DynamicParameters();
-          //  paramter.Add("@Latitude", Latitude);
+            //  paramter.Add("@Latitude", Latitude);
             paramter.Add("@userId", userId);
-          //  paramter.Add("@distance", 5);
+            //  paramter.Add("@distance", 5);
             //storedetailsListViewmodel
-            var storeList = _spcall.List<productListbyUserID>("getProductListbyUserId", paramter);
+            var storeList = _unitofWork.sp_call.List<productListbyUserID>("getProductListbyUserId", paramter);
             if (storeList != null)
             {
                 return Ok(storeList);
@@ -125,7 +131,7 @@ namespace Autofocus.Webapi
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult GetProductbyProductId(int productId)
         {
-            var obj = _unitofWork.product.GetAll(includeProperties: "ApplicationUser,ProductMaster,productSize,CityRegistration,packingType").Where(x => x.isdeleted == false&&x.id==productId).FirstOrDefault();
+            var obj = _unitofWork.product.GetAll(includeProperties: "ApplicationUser,ProductMaster,productSize,CityRegistration,packingType").Where(x => x.isdeleted == false && x.id == productId).FirstOrDefault();
             if (obj == null)
             {
                 return NotFound();
@@ -139,7 +145,7 @@ namespace Autofocus.Webapi
             //{
             //    Dtosobj.productDetailsViewModelDtos.Add(_mapper.Map<ProductDetailsbyidViewModelDtos>(item));
             //}
-           // obj.ApplicationUser = obj.ApplicationUser.wher.Include(p => p.Category);
+            // obj.ApplicationUser = obj.ApplicationUser.wher.Include(p => p.Category);
 
             return Ok(obj);
         }

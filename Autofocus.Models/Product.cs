@@ -47,6 +47,9 @@ namespace Autofocus.Models
         [DefaultValue("false")]
         public Boolean isNegotiable { get; set; }
         [DefaultValue("false")]
+        public Boolean isAvailable { get; set; }
+
+        [DefaultValue("false")]
         public Boolean isdeleted { get; set; } 
         
 

@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,12 +56,18 @@ namespace Autofocus.Webapi
             var obj = _unitofWork.productMaster.GetAll().Where(x => x.id == id).FirstOrDefault();
             if (obj == null)
             {
-                return NotFound();
+                string finalResult = "{\"success\" : 0, \"message\" : \"No Data \", \"data\" : \"\"}";                
+                return Ok(finalResult);
             }
-            var Dtosobj = new ProductMasterDtos();
-            Dtosobj = _mapper.Map<ProductMasterDtos>(obj);
-
-            return Ok(Dtosobj);
+            else
+            {
+                var Dtosobj = new ProductMasterDtos();
+                Dtosobj = _mapper.Map<ProductMasterDtos>(obj);
+                string output = JsonConvert.SerializeObject(Dtosobj);
+                string finalResult = "{\"success\" : 1, \"message\" : \" Category All Data\", \"data\" :" + output + "}";
+                return Ok(finalResult);
+            }
+           
         }
 
 

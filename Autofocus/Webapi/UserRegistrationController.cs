@@ -157,7 +157,7 @@ namespace Autofocus.Webapi
                     //var Dtosobj = new ApplicationUserViewModelDtos();
                     //Dtosobj = _mapper.Map<ApplicationUserViewModelDtos>(obj);
                     string myJson = "{\"message\": " + "\"This Mobile Number Allready Exist\"" + "}";
-                    
+
                     
                     return StatusCode(409, myJson);
                     //  return Ok(Dtosobj);

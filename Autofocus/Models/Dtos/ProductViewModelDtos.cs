@@ -29,8 +29,8 @@ namespace Autofocus.Models.Dtos
         [Required]
         public int packingTypeId { get; set; }
         [Required]
-        public Boolean isNegotiable { get; set; }        
-
+        public Boolean isNegotiable { get; set; }
+        public Boolean isAvailable { get; set; }
         public IEnumerable<ProductDetailsViewModelDtos>  productDetailsViewModelDtos { get; set; }
 
     }
