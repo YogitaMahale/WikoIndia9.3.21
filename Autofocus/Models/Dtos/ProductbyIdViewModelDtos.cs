@@ -1,54 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Autofocus.Models
+namespace Autofocus.Models.Dtos
 {
-   public class Product
+   public class ProductbyIdViewModelDtos
     {
         public int id { get; set; }
-
-        public string userId { get; set; }
-        [ForeignKey("userId")]
+        public string userId { get; set; }        
         public virtual ApplicationUser ApplicationUser { get; set; }
-
-        
-
-        [ForeignKey("ProductMaster")]
         public int productmasterId { get; set; }
         public ProductMaster ProductMaster { get; set; }
         public string gradeId { get; set; }
-
-
-        public int productSizeId { get; set; }
-        [ForeignKey("productSizeId")]
+        public int productSizeId { get; set; }       
         public virtual productSize productSize { get; set; }
-
-
-        [Column(TypeName = "decimal(18, 2)")]
         public decimal spotRate { get; set; }
-        [Column(TypeName = "decimal(18, 2)")]
+       
         public decimal quantityAvailable { get; set; }
 
         public DateTime rateTill { get; set; }
-        public int cityId { get; set; }
-        [ForeignKey("cityId")]
+        public int cityId { get; set; }      
         public virtual CityRegistration CityRegistration { get; set; }
 
 
-        public int packingTypeId { get; set; }
-        [ForeignKey("packingTypeId")]
+        public int packingTypeId { get; set; }      
         public virtual packingType packingType { get; set; }
 
         public string tradeId { get; set; }
 
-        [DefaultValue("false")]
+       
         public Boolean isNegotiable { get; set; }
-        [DefaultValue("false")]
-        public Boolean isdeleted { get; set; } 
-        
+  
+
+        public IEnumerable<ProductDetailsViewModelDtos>  productDetailsViewModelDtos { get; set; }
 
     }
 }

@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Autofocus.DataAccess.Repository
 {
-   public class SP_CALL : ISP_CALL
+    public class SP_CALL : ISP_CALL
     {
         private readonly ApplicationDbContext _db;
         private static string ConnenctioString = "";
@@ -41,7 +41,8 @@ namespace Autofocus.DataAccess.Repository
             using (SqlConnection con = new SqlConnection(ConnenctioString))
             {
                 con.Open();
-               return  con.Query<T>(ProcedureName, commandType: System.Data.CommandType.StoredProcedure);
+                //return  con.Query<T>(ProcedureName, commandType: System.Data.CommandType.StoredProcedure);
+                return con.Query<T>(ProcedureName,param, commandType: System.Data.CommandType.StoredProcedure);
             }
         }
 

@@ -19,24 +19,27 @@ namespace Autofocus.DataAccess.Repository
             _db = db;
         }
 
-        //public void Update(Product product)
-        //{
-        //    var obj = _db.Product.FirstOrDefault(s => s.id  == product.id);
-        //    if(obj!=null)
-        //    {
-        //        obj.userId = product.userId;
-        //        obj.subCategoryId = product.subCategoryId;               
-        //        obj.gradeId = product.gradeId;
-        //        obj.packingSizeId = product.packingSizeId;
-        //        obj.quantity = product.quantity;
-        //        obj.spotRate = product.spotRate;
-        //        obj.cityId = product.cityId;
-        //        obj.rateTill = product.rateTill;
-        //        obj.isdeleted = product.isdeleted;
+        public void Update(Product product)
+        {
+            var obj = _db.Product.FirstOrDefault(s => s.id == product.id);
+            if (obj != null)
+            {
+                obj.userId = product.userId;
+                obj.productmasterId = product.productmasterId;
+                obj.gradeId = product.gradeId;
+                obj.productSizeId = product.productSizeId;
+                obj.spotRate = product.spotRate;
+                obj.quantityAvailable = product.quantityAvailable;
+                obj.rateTill = product.rateTill;
+                obj.cityId = product.cityId;
+                obj.packingTypeId = product.packingTypeId;
+                obj.isNegotiable = product.isNegotiable;
+                obj.isdeleted = product.isdeleted;
+                obj.tradeId = product.tradeId;
+                
+                //_db.SaveChanges();
+            }
 
-        //        //_db.SaveChanges();
-        //    }
-
-        //}
+        }
     }
 }

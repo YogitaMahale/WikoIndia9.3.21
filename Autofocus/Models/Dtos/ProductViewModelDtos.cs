@@ -10,26 +10,26 @@ namespace Autofocus.Models.Dtos
    public class ProductViewModelDtos
     {
         public int id { get; set; }
-
         [Required]
-        public string  userId { get; set; }
+        public string userId { get; set; }
         [Required]
-        public int subCategoryId { get; set; }
+        public int productmasterId { get; set; }
         [Required]
         public string gradeId { get; set; }
         [Required]
-        public int packingSizeId { get; set; }
+        public int productSizeId { get; set; }
         [Required]
-
-        public decimal quantity { get; set; }
+        public decimal spotRate { get; set; }
         [Required]
-
-        public decimal  spotRate { get; set; }
+        public decimal quantityAvailable { get; set; }
         [Required]
-        public string cityId { get; set; }
+        public DateTime rateTill { get; set; }
         [Required]
-       public DateTime  rateTill { get; set; }
-        
+        public int cityId { get; set; }
+        [Required]
+        public int packingTypeId { get; set; }
+        [Required]
+        public Boolean isNegotiable { get; set; }        
 
         public IEnumerable<ProductDetailsViewModelDtos>  productDetailsViewModelDtos { get; set; }
 

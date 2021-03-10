@@ -320,8 +320,11 @@ namespace Autofocus.Areas.Identity.Pages.Account
                     {
                         await _roleManager.CreateAsync(new IdentityRole(SD.Role_Seller));
                     }
-
-                   //   await _userManager.AddToRoleAsync(user, SD.Role_Admin);
+                    if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
+                    }
+                   // await _userManager.AddToRoleAsync(user, SD.Role_Admin);
 
 
                     if (user.Role == null)

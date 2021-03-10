@@ -18,16 +18,17 @@ namespace Autofocus.Utility
         public const string Role_Admin = "Admin";
         public const string Role_Buyer = "Buyer";
         public const string Role_Seller = "Seller";
+        public const string Role_Employee = "Employee";
 
         //public const string Role_Vendor = "Vendor";
         //public const string Role_Account = "Account";
 
         // public static string APIBaseUrl = "https://localhost:44375/";
 
- 
 
 
-      public static string APIBaseUrl = "https://localhost:44368/";
+
+        public static string APIBaseUrl = "https://localhost:44368/";
     //  public static string APIBaseUrl = "http://wikoindia.onlineerp.org/";
         //public static string APIBaseUrls = "https://wikoindia.onlineerp.org/";
         public static string MainCategoryAPIPath = APIBaseUrl + "api/v1/MainCategory";

@@ -394,18 +394,43 @@ namespace Autofocus.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     userId = table.Column<string>(nullable: true),
                     productmasterId = table.Column<int>(nullable: false),
-                    productSizeId = table.Column<int>(nullable: false),
-                    packingTypeId = table.Column<int>(nullable: false),
                     gradeId = table.Column<string>(nullable: true),
+                    productSizeId = table.Column<int>(nullable: false),
                     spotRate = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    quantity = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    quantityAvailable = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     rateTill = table.Column<DateTime>(nullable: false),
-                    cityId = table.Column<string>(nullable: true),
+                    cityId = table.Column<int>(nullable: false),
+                    packingTypeId = table.Column<int>(nullable: false),
+                    isNegotiable = table.Column<bool>(nullable: false),
                     isdeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Product_CityRegistration_cityId",
+                        column: x => x.cityId,
+                        principalTable: "CityRegistration",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Product_packingType_packingTypeId",
+                        column: x => x.packingTypeId,
+                        principalTable: "packingType",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Product_productSize_productSizeId",
+                        column: x => x.productSizeId,
+                        principalTable: "productSize",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Product_ProductMaster_productmasterId",
+                        column: x => x.productmasterId,
+                        principalTable: "ProductMaster",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Product_AspNetUsers_userId",
                         column: x => x.userId,
@@ -492,6 +517,26 @@ namespace Autofocus.DataAccess.Migrations
                 column: "stateid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Product_cityId",
+                table: "Product",
+                column: "cityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_packingTypeId",
+                table: "Product",
+                column: "packingTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_productSizeId",
+                table: "Product",
+                column: "productSizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_productmasterId",
+                table: "Product",
+                column: "productmasterId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Product_userId",
                 table: "Product",
                 column: "userId");
@@ -543,16 +588,7 @@ namespace Autofocus.DataAccess.Migrations
                 name: "Grade");
 
             migrationBuilder.DropTable(
-                name: "packingType");
-
-            migrationBuilder.DropTable(
                 name: "ProductDetails");
-
-            migrationBuilder.DropTable(
-                name: "ProductMaster");
-
-            migrationBuilder.DropTable(
-                name: "productSize");
 
             migrationBuilder.DropTable(
                 name: "slider");
@@ -567,16 +603,25 @@ namespace Autofocus.DataAccess.Migrations
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Subcategory");
+                name: "packingType");
+
+            migrationBuilder.DropTable(
+                name: "productSize");
+
+            migrationBuilder.DropTable(
+                name: "ProductMaster");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "MainCategory");
+                name: "Subcategory");
 
             migrationBuilder.DropTable(
                 name: "CityRegistration");
+
+            migrationBuilder.DropTable(
+                name: "MainCategory");
 
             migrationBuilder.DropTable(
                 name: "StateRegistration");

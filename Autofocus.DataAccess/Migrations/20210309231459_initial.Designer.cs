@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Autofocus.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210309224711_initial")]
+    [Migration("20210309231459_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,11 +148,14 @@ namespace Autofocus.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("cityId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("cityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("gradeId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isNegotiable")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("isdeleted")
                         .HasColumnType("bit");
@@ -166,7 +169,7 @@ namespace Autofocus.DataAccess.Migrations
                     b.Property<int>("productmasterId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("quantity")
+                    b.Property<decimal>("quantityAvailable")
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime>("rateTill")
@@ -179,6 +182,14 @@ namespace Autofocus.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("cityId");
+
+                    b.HasIndex("packingTypeId");
+
+                    b.HasIndex("productSizeId");
+
+                    b.HasIndex("productmasterId");
 
                     b.HasIndex("userId");
 
@@ -679,6 +690,30 @@ namespace Autofocus.DataAccess.Migrations
 
             modelBuilder.Entity("Autofocus.Models.Product", b =>
                 {
+                    b.HasOne("Autofocus.Models.CityRegistration", "CityRegistration")
+                        .WithMany()
+                        .HasForeignKey("cityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Autofocus.Models.packingType", "packingType")
+                        .WithMany()
+                        .HasForeignKey("packingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Autofocus.Models.productSize", "productSize")
+                        .WithMany()
+                        .HasForeignKey("productSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Autofocus.Models.ProductMaster", "ProductMaster")
+                        .WithMany()
+                        .HasForeignKey("productmasterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Autofocus.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("userId");

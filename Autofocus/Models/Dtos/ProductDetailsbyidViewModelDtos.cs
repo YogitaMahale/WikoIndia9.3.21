@@ -7,11 +7,12 @@ using System.Text;
 
 namespace Autofocus.Models.Dtos
 {
-   public  class ProductDetailsViewModelDtos
+   public  class ProductDetailsbyidViewModelDtos
     {     
         
       //  public int pid { get; set; }  
-        public int packingSizeId { get; set; } 
+        public int packingSizeId { get; set; }
+        public virtual packingSize packingSize { get; set; }
         public decimal amount { get; set; }
 
         
