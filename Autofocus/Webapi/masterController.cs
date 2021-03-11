@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -185,6 +186,37 @@ namespace Autofocus.Webapi
             }
 
             return Ok(Dtosobj);
+        }
+
+        [HttpGet]
+        [Route("getProductMasterbySubcategoryID")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(sliderViewModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult getProductMasterbySubcategoryID(int SubcategoryID)
+        {
+            var obj = _unitofWork.productMaster.GetAll().Where(x => x.subCategroyId == SubcategoryID && x.isdeleted == false).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            var Dtosobj = new List<ProductMasterDtos>();
+            foreach (var item in obj)
+            {
+                Dtosobj.Add(_mapper.Map<ProductMasterDtos>(item));
+            }
+            if (obj == null)
+            {
+                string finalResult = "{\"success\" : 0, \"message\" : \"No Data \", \"data\" : \"\"}";
+                return Ok(finalResult);
+            }
+            else
+            {
+           
+                string output = JsonConvert.SerializeObject(Dtosobj);
+                string finalResult = "{\"success\" : 1, \"message\" : \" Category All Data\", \"data\" :" + output + "}";
+                return Ok(finalResult);
+            }
+           // return Ok(Dtosobj);
         }
     }
 }

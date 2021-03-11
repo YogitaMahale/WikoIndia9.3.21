@@ -18,7 +18,11 @@ namespace Autofocus.DataAccess.Repository
         {
             _db = db;
         }
-
+        public bool PackingSizeExists(string name)
+        {
+            bool obj = _db.packingSize.Any(a => a.name.ToLower().Trim() == name.ToLower().Trim());
+            return obj;
+        }
         public void Update(packingSize packingSize)
         {
             var obj = _db.packingSize.FirstOrDefault(s => s.id  == packingSize.id);

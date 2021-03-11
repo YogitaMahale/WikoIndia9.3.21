@@ -23,7 +23,18 @@ namespace Autofocus.Models.ViewModels
         public Boolean isdeleted { get; set; }
         [DefaultValue("false")]
         public Boolean isactive { get; set; }
+        [Required]
+        [Display(Name = "Select Country")]
+        public int countryid { get; set; } = 0;
+
+        [Required]
+        [Display(Name = "Select State")]
+        public int stateid { get; set; } = 0;
 
 
+        [Required]
+        [Display(Name = "Select City")]
+        public int cityid { get; set; } = 0;
+        public string multipleCityIds { get; set; }
     }
 }

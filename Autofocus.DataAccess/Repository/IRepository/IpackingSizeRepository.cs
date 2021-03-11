@@ -10,6 +10,6 @@ namespace Autofocus.DataAccess.Repository.IRepository
   public   interface IpackingSizeRepository : IRepository<packingSize>
     {
         void Update(packingSize packingSize);
-        
+        bool PackingSizeExists(string name);
     }
 }

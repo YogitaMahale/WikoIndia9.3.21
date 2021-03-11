@@ -29,7 +29,7 @@ namespace Autofocus.Models.Dtos
         public string phoneNumber { get; set; }
         [Required]
         public string password { get; set; }
-
+        public int? cityid { get; set; }
 
         //public string Ceritification { get; set; }
         //public string CompanyRegCeritificate { get; set; }

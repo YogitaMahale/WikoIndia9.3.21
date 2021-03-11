@@ -43,6 +43,11 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
                 Text=x.name ,
                 Value=x.id.ToString()
             });
+            ViewBag.AllCountries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
+            {
+                Text = x.countryname,
+                Value = x.id.ToString()
+            });
             var model = new SubcategoryCreateViewModel();
             return View(model);
         }

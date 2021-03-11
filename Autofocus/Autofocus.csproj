@@ -72,6 +72,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\Bizdire\LTR\assets\plugins\calendar2\" />
     <Folder Include="wwwroot\Bizdire\RTL\assets\plugins\calendar2\" />
+    <Folder Include="wwwroot\dropdownselect\New folder\" />
     <Folder Include="wwwroot\uploads\MainCategory\" />
     <Folder Include="wwwroot\uploads\ProductMaster\" />
     <Folder Include="wwwroot\uploads\Subcategory\" />
@@ -94,6 +95,17 @@
     <None Include="Areas\Admin\Views\StateRegistration\Edit.cshtml" />
     <None Include="Areas\Admin\Views\StateRegistration\Index.cshtml" />
     <None Include="Areas\Admin\Views\User\Index.cshtml" />
+    <None Include="wwwroot\dropdownselect\chosen.jquery.js" />
+    <None Include="wwwroot\dropdownselect\chosen.jquery.min.js" />
+    <None Include="wwwroot\dropdownselect\chosen.proto.js" />
+    <None Include="wwwroot\dropdownselect\chosen.proto.min.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\init.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\init.proto.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\jquery-1.12.4.min.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\prism.js" />
+    <None Include="wwwroot\dropdownselect\docsupport\prototype-1.7.0.0.js" />
+    <None Include="wwwroot\dropdownselect\LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>

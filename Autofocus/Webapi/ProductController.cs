@@ -149,5 +149,37 @@ namespace Autofocus.Webapi
 
             return Ok(obj);
         }
+
+        [HttpGet]
+        [Route("ProductSearch")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(productSearchDtos))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult ProductSearch(string  seachtext)
+        {
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@seachtext", seachtext);
+                var obj = _unitofWork.sp_call.List<productSearchDtos>("searchProduct", parameter);
+                if (obj == null)
+                {
+                    string finalResult = "{\"success\" : 0, \"message\" : \"No Data \", \"data\" : \"\"}";
+                    return Ok(finalResult);
+                }
+                else
+                {
+
+                    string output = JsonConvert.SerializeObject(obj);
+                    string finalResult = "{\"success\" : 1, \"message\" : \" Category All Data\", \"data\" :" + output + "}";
+                    return Ok(finalResult);
+                }
+            }
+            catch (Exception obj)
+            {
+                string myJson = "{\"Message\": " + "\"Bad Request\"" + "}";
+                return BadRequest(myJson);
+
+            }
+        }
     }
 }

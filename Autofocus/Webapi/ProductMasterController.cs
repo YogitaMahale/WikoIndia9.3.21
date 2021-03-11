@@ -47,6 +47,11 @@ namespace Autofocus.Webapi
 
             return Ok(Dtosobj);
         }
+
+
+       
+
+
         [HttpGet]
         [Route("GetProductMasterbyid")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MainCategoryDtos))]
@@ -192,6 +197,7 @@ namespace Autofocus.Webapi
             return NoContent();
         }
 
+        
 
     }
 }

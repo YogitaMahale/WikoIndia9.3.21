@@ -22,6 +22,7 @@ namespace Autofocus.Models
         [Required]
         public string name { get; set; }
         public string img { get; set; }
+        public string cityIds { get; set; }
 
 
         [DefaultValue("false")]

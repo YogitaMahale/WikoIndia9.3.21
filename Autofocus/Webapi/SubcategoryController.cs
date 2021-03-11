@@ -3,9 +3,11 @@ using Autofocus.Models;
 using Autofocus.Models.Dtos;
 using Autofocus.Utility;
 using AutoMapper;
+using Dapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -200,7 +202,37 @@ namespace Autofocus.Webapi
             return Ok(Dtosobj);
         }
 
+        [HttpGet]
+        [Route("GetSubCategorybyCityId")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SubcategoryDtos))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult GetSubCategorybyCityId(int cityId)
+        {
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@cityId", cityId);
+                var obj = _unitofWork.sp_call.List<SubcategoryDtos>("GetSubCategorybyCityId", parameter);
+                if (obj == null)
+                {
+                    string finalResult = "{\"success\" : 0, \"message\" : \"No Data \", \"data\" : \"\"}";
+                    return Ok(finalResult);
+                }
+                else
+                {
+                     
+                    string output = JsonConvert.SerializeObject(obj);
+                    string finalResult = "{\"success\" : 1, \"message\" : \" Category All Data\", \"data\" :" + output + "}";
+                    return Ok(finalResult);
+                }
+            }
+            catch (Exception obj)
+            {
+                string myJson = "{\"Message\": " + "\"Bad Request\"" + "}";
+                return BadRequest(myJson);
 
+            }
+        }
 
         //[HttpDelete]
         //[Route("DeleteMainCategory")]

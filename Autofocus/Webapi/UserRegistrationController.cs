@@ -78,7 +78,8 @@ namespace Autofocus.Webapi
                     PhoneNumber = model.phoneNumber,
                     Email = model.email,
                     createddate = DateTime.Now,
-                    companyName = model.companyName
+                    companyName = model.companyName,
+                    cityid=model.cityid
                 };
 
 
@@ -106,10 +107,11 @@ namespace Autofocus.Webapi
                         await _userManager.AddToRoleAsync(user, SD.Role_Seller);
                     }
 
-                  //  string s = HttpContext.GetRequestedApiVersion().ToString();
 
-                  //  return CreatedAtRoute("GetUserDetails", new { Version = HttpContext.GetRequestedApiVersion().ToString(), id = user.Id }, user);
-                          return Ok(user);
+                    string output = JsonConvert.SerializeObject(user);
+                    string finalResult = "{\"success\" : 1, \"message\" : \" User Saved Successfully\", \"data\" :" + output + "}";
+
+                    return Ok(finalResult);
                 }
 
                 else
