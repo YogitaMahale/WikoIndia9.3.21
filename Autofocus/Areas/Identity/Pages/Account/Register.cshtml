@@ -9,7 +9,7 @@
 }
 
 <div class="side-app">
-    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+    @*<form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">*@
         <!-- end row -->
         <div class="row">
             <div class="col-md-12">
@@ -20,122 +20,148 @@
                     </div>
                     <div class="card-body">
 
-
+                        <input type="hidden"  value="@SD.APIBaseUrl" id="lblAPIPath" />
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label asp-for="Input.name"></label>
-                                <input asp-for="Input.name" minlength="3" placeholder="Enter Name" class="form-control" />
+                                <input id="txtname" asp-for="Input.name" minlength="3" placeholder="Enter Name" required="required" class="form-control" />
                                 <span asp-validation-for="Input.name" class="text-danger"></span>
                             </div>
 
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.Role"></label>
+                                @Html.DropDownListFor(m => m.Input.Role, Model.Input.roleList, "Please Select Role", new { @class = "form-control", @id = "rolee" })
+                                <span asp-validation-for="Input.Role" class="text-danger"></span>
+                            </div>
 
+
+                            <hr>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Input.Password"></label>
+                                <input id="txtPassword" asp-for="Input.Password" placeholder="Enter Password"  required="required" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="Input.ConfirmPassword"></label>
+                                <input id="txtConfirmPassword" asp-for="Input.ConfirmPassword" required="required" placeholder="Enter Confirmed Password" class="form-control" />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
                             <div class="form-group col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Input.phonenumber "></label>
-                                    <input asp-for="Input.phonenumber" placeholder="Enter Mobile No." class="form-control" />
+                                    <input id="txtMobileNo" asp-for="Input.phonenumber" required="required" placeholder="Enter Mobile No." class="form-control" />
                                     <span asp-validation-for="Input.phonenumber" class="text-danger"></span>
                                 </div>
 
                             </div>
 
-
-
-                            <hr>
                             <div class="form-group  col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Input.Email"></label>
-                                    <input asp-for="Input.Email" placeholder="Enter Email" class="form-control" />
+                                    <input type="email" id="txtEmail" asp-for="Input.Email" placeholder="Enter Email" class="form-control" />
                                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.Ceritification"></label>
-                                <input asp-for="Input.Ceritification" placeholder="Enter Certification" class="form-control" />
-                                <span asp-validation-for="Input.Ceritification" class="text-danger"></span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label asp-for="Input.Password"></label>
-                                <input asp-for="Input.Password" placeholder="Enter Password" class="form-control" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                            </div>
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.ConfirmPassword"></label>
-                                <input asp-for="Input.ConfirmPassword" placeholder="Enter Confirmed Password" class="form-control" />
-                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                            </div>
 
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.countryid"></label>
+                            <div class="form-group col-md-2">
+                                <div class="form-group">
+                                    <label></label>
 
-                                <select asp-for="Input.countryid" asp-items="Model.Countries" id="countryid" class="form-control">
-                                    <option value="0" selected="selected"> Select </option>
-                                </select>
-
-                                <span asp-validation-for="Input.countryid" class="text-danger"></span>
+                                    <button type="button" id="btnOTPSend" class="btn btn-primary">Send OTP</button>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <div class="form-group">
+                                    <label></label>
+                                    <button id="btnSubmit" type="submit" class="btn btn-primary">Register</button>
+                                </div>
                             </div>
                             <div class="form-group  col-md-6">
-                                <label asp-for="Input.stateid"> </label>
-                                <select id="stateid" asp-for="Input.stateid" class="form-control"
-                                        asp-items="@(new SelectList(String.Empty,"id","StateName"))">
-                                    <option value="">Select</option>
-                                </select>
-
-
-                                <span asp-validation-for="Input.stateid" class="text-danger"></span>
+                                @*<label></label>*@
+                                <input id="txtOtpNo" placeholder="Enter OTP" class="form-control" />
                             </div>
+                            <input id="txtSendOtpNo" class="form-control" />
+                            @*<div class="form-group  col-md-6">
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" placeholder="Enter Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.Ceritification"></label>
+            <input asp-for="Input.Ceritification" placeholder="Enter Certification" class="form-control" />
+            <span asp-validation-for="Input.Ceritification" class="text-danger"></span>
+        </div>*@
+
+
+                            @*<div class="form-group  col-md-6">
+            <label asp-for="Input.countryid"></label>
+
+            <select asp-for="Input.countryid" asp-items="Model.Countries" id="countryid" class="form-control">
+                <option value="0" selected="selected"> Select </option>
+            </select>
+
+            <span asp-validation-for="Input.countryid" class="text-danger"></span>
+        </div>
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.stateid"> </label>
+            <select id="stateid" asp-for="Input.stateid" class="form-control"
+                    asp-items="@(new SelectList(String.Empty,"id","StateName"))">
+                <option value="">Select</option>
+            </select>
+
+
+            <span asp-validation-for="Input.stateid" class="text-danger"></span>
+        </div>
 
 
 
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.cityid"> </label>
-                                <select id="cityid" asp-for="Input.cityid" class="form-control"
-                                        asp-items="@(new SelectList(String.Empty,"id","cityName"))">
-                                    <option value="">Select</option>
-                                </select>
-                                <span asp-validation-for="Input.cityid" class="text-danger"></span>
-                            </div>
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.cityid"> </label>
+            <select id="cityid" asp-for="Input.cityid" class="form-control"
+                    asp-items="@(new SelectList(String.Empty,"id","cityName"))">
+                <option value="">Select</option>
+            </select>
+            <span asp-validation-for="Input.cityid" class="text-danger"></span>
+        </div>
 
 
 
 
-                           
-
-                          
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.ExportToCountries"></label>
-                                <input asp-for="Input.ExportToCountries" class="form-control" />
-                                <span asp-validation-for="Input.ExportToCountries" class="text-danger"></span>
-                            </div>
 
 
-                            
-                          
 
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.businessYear"></label>
-                                <input asp-for="Input.businessYear" placeholder="Enter Business Year" class="form-control" />
-                                <span asp-validation-for="Input.businessYear" class="text-danger"></span>
-                            </div>
-                           
-                            
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.productDealin"></label>
-                                <input asp-for="Input.productDealin" placeholder="Enter Product Dealin" class="form-control" />
-                                <span asp-validation-for="Input.productDealin" class="text-danger"></span>
-                            </div>
-                            <div class="form-group  col-md-6">
-                                <label asp-for="Input.Role"></label>
-                                @Html.DropDownListFor(m => m.Input.Role, Model.Input.roleList, "Please Select Role", new { @class = "form-control" })
-                                <span asp-validation-for="Input.Role" class="text-danger"></span>
-                            </div>
-                            
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.ExportToCountries"></label>
+            <input asp-for="Input.ExportToCountries" class="form-control" />
+            <span asp-validation-for="Input.ExportToCountries" class="text-danger"></span>
+        </div>
+
+
+
+
+
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.businessYear"></label>
+            <input asp-for="Input.businessYear" placeholder="Enter Business Year" class="form-control" />
+            <span asp-validation-for="Input.businessYear" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group  col-md-6">
+            <label asp-for="Input.productDealin"></label>
+            <input asp-for="Input.productDealin" placeholder="Enter Product Dealin" class="form-control" />
+            <span asp-validation-for="Input.productDealin" class="text-danger"></span>
+        </div>*@
+
+
                         </div>
-
 
                        
                     </div>
-                    <div class="card-header">
+                    @*<div class="card-header">
                         <h3 class="card-title" style="color:darkorange">Documentation</h3>
                     </div>
                     <div class="card-body">
@@ -156,7 +182,7 @@
 
                             </div>
                             <div class="form-group  col-md-2">
-                                @*<img id="output"  class="imgclass"/>*@
+                                
                                 <img id="CancellerdChequeImg1" class="imgclass" />
                             </div>
                             <div class="form-group  col-md-4">
@@ -232,14 +258,14 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary">Register</button>
+                       
                          
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
          
-    </form>
+    @*</form>*@
 </div>
 
 
@@ -260,14 +286,106 @@
     };
 </script>*@
 <script type="text/javascript">
-     
+
+
+    $("#btnSubmit").hide();
+    $("#txtOtpNo").hide();
+
    // loadCountry();
     $(function () {
-        //$("#CancellerdChequeImg").change(function () {
-        //    //alert($("#CancellerdChequeImg").val());
-        //    $('#CancellerdChequeImg1').attr('src', $("#CancellerdChequeImg").val());
-        //   // $("#CancellerdChequeImg1").val($("#CancellerdChequeImg").val());
-        //});
+        $("#btnOTPSend").click(function () {
+
+            var mobileno = $("#txtMobileNo").val();
+            //  alert($("#inputMobileNo").val());
+            if (mobileno.length != 10 || mobileno == "") {
+                swal("Please Enter Mobile No.", "", "error");
+            }
+            else {
+
+                var u = $("#lblAPIPath").val() + 'user/GetOTPNo?mobileNo=' + $("#txtMobileNo").val();
+                console.log(u);
+                $.ajax({
+                    // url: 'http://localhost:3413/api/person?Name=Sourav',
+                    url: u,
+
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data, textStatus, xhr) {
+                        $("#txtSendOtpNo").val(data.otpNo);
+                        $('#btnviewdetails').text('Save').button("refresh");
+                        //$("#btnOTPSend").attr('value', 'Resend OTP');
+                        $("#btnSubmit").show();
+                        $("#txtOtpNo").show();
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                    //error: function (error) {
+                        if (xhr.status == 409) {
+                            swal("Mobile No Already Exists");
+                        }
+                        
+                        // console.log(textStatus+'Error in Operation');
+                    }
+                });
+            }
+        });
+
+        $("#btnSubmit").click(function () {           
+            
+            var oldOTPNo = $("#txtSendOtpNo").val();
+            var NewOTPNo = $("#txtOtpNo").val();
+
+
+
+
+
+            if (oldOTPNo == NewOTPNo) {               
+
+                $.ajax({
+
+                    type: "POST",
+                    url: $("#lblAPIPath").val() + 'user/saveUSer',
+                    cache: false,
+                    data: JSON.stringify({
+                        "id": "",
+                        "usertype": $("#rolee").val(),
+                        "name": $("#txtname").val(),
+                        "email": $("#txtEmail").val(),
+                        "phoneNumber": $("#txtMobileNo").val(),
+                        "password": $("#txtPassword").val()
+
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    traditional: true,
+                    success: () => {
+                        $("#txtname").val("");
+                        $("#txtname").val("");
+                        $("#txtEmail").val("");
+                        $("#txtMobileNo").val("");
+                        $("#txtPassword").val("");
+                        $("#txtConfirmPassword").val("");
+                        $("#txtSendOtpNo").val("");
+                        $("#txtOtpNo").val("");
+                        $("#btnSubmit").hide();
+                        $("#txtOtpNo").hide();
+                        swal("User Saved Successfully");
+                        window.location.href = '/Admin/Home/Index';
+                    },
+                    error: (error) => { swal("Record Not Saved");}
+                    //success: () => { result.resolve(true); },
+                    //error: (error) => result.reject(error)
+                });
+            }
+            else {
+
+                $("#inputOTPNo").val("");
+                swal("Please Enter Valid OTP Number");
+               
+            }
+        });
+
+        
+
+
         $("#countryid").change(function () {
 
             var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
@@ -309,48 +427,9 @@
                 }
             )
         });
-        //$("#cityid").change(function () {
-        //    alert($("#cityid").val());
-        //    $("#cityid1").val($("#cityid").val());
 
-
-        //    alert($("#cityid1").val());
-        //});
     });
 
-    @*function loadCountry() {
 
-       // $("[data-rel='chosen']").chosen();
-          var url = '@Url.Content("~/")' + 'Admin/GetJsonData/getCountry';
-
-            $.getJSON(url,
-
-                function (data) {
-                console.log(data);
-                    var item = '<option value="0" >Select</option >';
-                   // $("#cityid").empty();
-                    var s = '';
-                    $.each(data, function (i, row) {
-                        s += '<option value="' + row.value + '">' + row.text + '</option>';
-                        //if (row.value == $("#countryid").val()) {
-                        //          s += '<option selected="'+"selected"+'" value="' + row.value + '">' + row.text + '</option>';
-
-                        //    }
-                        //    else {
-                        //          s += '<option value="' + row.value + '">' + row.text + '</option>';
-
-                        //    }
-
-                    });
-                    $("#countryid").html(s);
-                   // $("[data-rel='chosen']").trigger("chosen:updated");
-                    console.log(item);
-                   // $("#cityid").html(item);
-                }
-        )
-
-
-
-    }*@
 
 </script>

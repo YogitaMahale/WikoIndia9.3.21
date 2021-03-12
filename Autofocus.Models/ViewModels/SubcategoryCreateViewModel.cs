@@ -34,7 +34,7 @@ namespace Autofocus.Models.ViewModels
 
         [Required]
         [Display(Name = "Select City")]
-        public int cityid { get; set; } = 0;
+        public int cityIds { get; set; } = 0;
         public string multipleCityIds { get; set; }
     }
 }

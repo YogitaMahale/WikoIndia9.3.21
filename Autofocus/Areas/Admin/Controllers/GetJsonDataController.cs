@@ -39,6 +39,13 @@ namespace Autofocus.Areas.Admin.Controllers
           //  obj.Insert(0, new CityRegistration { id = 0, cityName = "select", isactive = false, isdeleted = false });
             return Json(new SelectList(obj, "id", "cityName"));
         }
+        public JsonResult getCitybyStateid1()
+        {
+
+            IList<CityRegistration> obj = _unitofWork.city.GetAll().ToList();
+            //  obj.Insert(0, new CityRegistration { id = 0, cityName = "select", isactive = false, isdeleted = false });
+            return Json(new SelectList(obj, "id", "cityName"));
+        }
 
     }
 }
