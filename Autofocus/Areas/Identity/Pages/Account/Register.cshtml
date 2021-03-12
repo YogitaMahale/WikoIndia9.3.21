@@ -293,39 +293,65 @@
 
    // loadCountry();
     $(function () {
+        function isEmpty(str) {
+            return (!str || 0 === str.length);
+        }
+
+
         $("#btnOTPSend").click(function () {
 
-            var mobileno = $("#txtMobileNo").val();
-            //  alert($("#inputMobileNo").val());
-            if (mobileno.length != 10 || mobileno == "") {
-                swal("Please Enter Mobile No.", "", "error");
+            if (isEmpty($("#txtname").val())) {
+                //alert("empty ");
+                swal("Name is Required");
+            }
+            else if (isEmpty($("#txtEmail").val())) {
+                //alert("empty ");
+                swal("Email is Required");
+            }
+            else if (isEmpty($("#txtPassword").val())) {
+                //alert("empty ");
+                swal("Password is Required");
+            }
+            else if (isEmpty($("#txtMobileNo").val())) {
+                //alert("empty ");
+                swal("Mobile No is Required");
             }
             else {
+                //alert("empty not");
 
-                var u = $("#lblAPIPath").val() + 'user/GetOTPNo?mobileNo=' + $("#txtMobileNo").val();
-                console.log(u);
-                $.ajax({
-                    // url: 'http://localhost:3413/api/person?Name=Sourav',
-                    url: u,
 
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (data, textStatus, xhr) {
-                        $("#txtSendOtpNo").val(data.otpNo);
-                        $('#btnviewdetails').text('Save').button("refresh");
-                        //$("#btnOTPSend").attr('value', 'Resend OTP');
-                        $("#btnSubmit").show();
-                        $("#txtOtpNo").show();
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                    //error: function (error) {
-                        if (xhr.status == 409) {
-                            swal("Mobile No Already Exists");
+                var mobileno = $("#txtMobileNo").val();
+                //  alert($("#inputMobileNo").val());
+                if (mobileno.length != 10 || mobileno == "") {
+                    swal("Please Enter Mobile No.", "", "error");
+                }
+                else {
+
+                    var u = $("#lblAPIPath").val() + 'user/GetOTPNo?mobileNo=' + $("#txtMobileNo").val();
+                    console.log(u);
+                    $.ajax({
+                        // url: 'http://localhost:3413/api/person?Name=Sourav',
+                        url: u,
+
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data, textStatus, xhr) {
+                            $("#txtSendOtpNo").val(data.otpNo);
+                            $('#btnviewdetails').text('Save').button("refresh");
+                            //$("#btnOTPSend").attr('value', 'Resend OTP');
+                            $("#btnSubmit").show();
+                            $("#txtOtpNo").show();
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            //error: function (error) {
+                            if (xhr.status == 409) {
+                                swal("Mobile No Already Exists");
+                            }
+
+                            // console.log(textStatus+'Error in Operation');
                         }
-                        
-                        // console.log(textStatus+'Error in Operation');
-                    }
-                });
+                    });
+                }
             }
         });
 
@@ -334,7 +360,7 @@
             var oldOTPNo = $("#txtSendOtpNo").val();
             var NewOTPNo = $("#txtOtpNo").val();
 
-
+            
 
 
 

@@ -166,10 +166,10 @@ namespace Autofocus.Webapi
                 }
                 else
                 {
-                    string Msg = "OTP :" + no + ".  Please Use this OTP.This is usable once and expire in 10 minutes"; 
-                    //SendSMS s = new SendSMS();
-                    //bool flg = s.smsSent(mobileNo, Msg);
-                    
+                    string Msg = "OTP :" + no + ".  Please Use this OTP.This is usable once and expire in 10 minutes";
+                    SendSMS s = new SendSMS();
+                    bool flg = s.smsSent(mobileNo, Msg);
+
                     ApplicationUserViewModelDtos objApplicationUserViewModelDtos = new ApplicationUserViewModelDtos();
                     objApplicationUserViewModelDtos.OTPNo = no;
                     objApplicationUserViewModelDtos.PhoneNumber  = mobileNo;
