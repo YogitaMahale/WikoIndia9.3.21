@@ -21,6 +21,7 @@ using Autofocus.DataAccess.Repository.IRepository;
 using Autofocus.DataAccess.Data;
 using Autofocus.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Autofocus.Models.Dtos;
 
 namespace Autofocus.Areas.Admin.Controllers
 {
@@ -51,7 +52,91 @@ namespace Autofocus.Areas.Admin.Controllers
             var obj = new UserIndexViewModel();
             return View(obj);
         }
+        public JsonResult getSubcategory(int mainCategory)
+        {
 
+            IList<Subcategory> obj = _unitofWork.subcategory.GetAll().Where(x => x.mainCategroyId == mainCategory).ToList();
+            
+            return Json(new SelectList(obj, "id", "name"));
+        }
+        [HttpGet]
+        public IActionResult EditBasicInfo(string id)
+        {
+
+
+            var objfromdb = _db.ApplicationUser.FirstOrDefault(u => u.Id == id);
+            ViewBag.Countries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
+            {
+                Text = x.countryname,
+                Value = x.id.ToString()
+            });
+
+            int countryiddd = 0, stateid = 0, countryid = 0;
+
+            if (objfromdb.cityid != null)
+            {
+                int cityiddd = (int)objfromdb.cityid;
+                //  countryiddd = (int)objfromdb.cityid;
+                stateid = _unitofWork.city.Get(cityiddd).stateid;
+                countryid = _unitofWork.state.Get(stateid).countryid;
+            }
+
+            if (objfromdb == null)
+            {
+                return NotFound();
+            }
+        //    Id ,name ,         
+        // companyName ,      
+        // countryid ,       
+        // stateid ,               
+        // cityid ,
+        //    businessYear ,       
+        // productDealin ,         
+        // ExportToCountries ,
+        // userlatitude ,
+        // userlongitude ,
+        // packHouselatitude ,
+        // packHouselongitude ,
+        // packHouseAddress ,
+        // deviceid ,
+        //isBasicInfoFill ,
+        //logo ,
+        //logoName ,
+
+            var model = new EditBasicInformationModel
+            {
+                Id = objfromdb.Id,
+                name = objfromdb.name,
+                companyName  = objfromdb.companyName,
+                businessYear = objfromdb.businessYear,
+                productDealin = objfromdb.productDealin,
+                ExportToCountries = objfromdb.ExportToCountries,
+                userlatitude = objfromdb.userlatitude,
+                userlongitude = objfromdb.userlongitude,
+                packHouselatitude = objfromdb.packHouselatitude,
+                packHouselongitude = objfromdb.packHouselongitude,
+                packHouseAddress = objfromdb.packHouseAddress,
+                deviceid = objfromdb.deviceid,
+                countryid = countryid,
+                stateid = stateid,
+                cityid = (int)objfromdb.cityid,
+                logoName = objfromdb.logo,
+                 
+                 
+            };
+            ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+            {
+                Text = x.StateName,
+                Value = x.id.ToString()
+            });
+            ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
+            {
+                Text = x.cityName,
+                Value = x.id.ToString()
+            });
+            return View(model);
+
+        }
 
 
         //[HttpGet]
@@ -82,25 +167,25 @@ namespace Autofocus.Areas.Admin.Controllers
         //        return NotFound();
         //    }
         //    var model = new ApplicationUserEditModel
-        //    {     
-        //          Id = objfromdb.Id,
+        //    {
+        //        Id = objfromdb.Id,
         //        Email = objfromdb.Email,
-        //        phonenumber = objfromdb.PhoneNumber ,
+        //        phonenumber = objfromdb.PhoneNumber,
         //        CancellerdChequeImgName = objfromdb.CancellerdChequeImg,
         //        Ceritification = objfromdb.Ceritification,
         //        CompanyRegCeritificateName = objfromdb.CompanyRegCeritificate,
         //        ExportToCountries = objfromdb.ExportToCountries,
-        //        VisitingCardImgName = objfromdb.VisitingCardImg ,
+        //        VisitingCardImgName = objfromdb.VisitingCardImg,
         //        aadharBackImgName = objfromdb.aadharBackImg,
-        //        aadharFrontImgName = objfromdb.aadharFrontImg ,
+        //        aadharFrontImgName = objfromdb.aadharFrontImg,
         //        businessYear = objfromdb.businessYear,
-        //        countryid=countryid,
-        //        stateid=stateid ,
-        //        cityid =(int) objfromdb.cityid,
+        //        countryid = countryid,
+        //        stateid = stateid,
+        //        cityid = (int)objfromdb.cityid,
         //        logoName = objfromdb.logo,
-        //        name = objfromdb.name ,
-        //        pancardImgName = objfromdb.pancardImg ,
-        //        productDealin = objfromdb.productDealin 
+        //        name = objfromdb.name,
+        //        pancardImgName = objfromdb.pancardImg,
+        //        productDealin = objfromdb.productDealin
         //    };
         //    ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
         //    {
@@ -320,7 +405,7 @@ namespace Autofocus.Areas.Admin.Controllers
         //                fs.Close();
         //                obj.VisitingCardImg = '/' + uploadDir + '/' + fileName;
         //            }
-                  
+
 
         //            var result = await _userManager.UpdateAsync(obj);
 

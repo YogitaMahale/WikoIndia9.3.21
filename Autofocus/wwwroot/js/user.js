@@ -32,9 +32,9 @@ function loadtable() {
                     if (lockout > today) {
                         return `
 <div class="text-center">
- <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/Edit/${data.id}" >
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
                                                 <i class="fa fa-edit">
-                                                </i>Edit
+                                                </i>Basic Information
                                             </a>
     <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-lock-open"></i> Unlock
@@ -47,9 +47,9 @@ function loadtable() {
                     else {
                         return `
 <div class="text-center">
- <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/Edit/${data.id}" >
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
                                                 <i class="fa fa-edit">
-                                                </i>Edit
+                                                </i>Basic Information
                                             </a>
     <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-unlock-alt"></i> Lock
@@ -158,9 +158,9 @@ function loadtable1(url) {
                     if (lockout > today) {
                         return `
 <div class="text-center">
- <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/Edit/${data.id}" >
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
                                                 <i class="fa fa-edit">
-                                                </i>Edit
+                                                </i>Edit Basic Information
                                             </a>
     <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-lock-open"></i> Unlock
@@ -173,9 +173,9 @@ function loadtable1(url) {
                     else {
                         return `
 <div class="text-center">
- <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/Edit/${data.id}" >
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
                                                 <i class="fa fa-edit">
-                                                </i>Edit
+                                                </i>Edit Basic Information
                                             </a>
     <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-unlock-alt"></i> Lock

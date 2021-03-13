@@ -10,23 +10,33 @@
 
             </ol>
         </div>*@
+    
     <div class="row">
 
         <div class="col-md-12 col-lg-12">
             <div class="card-header">
                 <h3 class="card-title">@ViewData["Title"]</h3>
-
-
-
-
-
-
             </div>
+           
             <div class="card">
                 <div class="form-row">
-                   
+                     
+                    <div class="form-group col-md-6">
+                        <label for="inputState" class="col-form-label"></label>
+                        @*<select name="roleId" id="roleId" asp-for="roleId" class="form-control" asp-items="ViewBag.rolesList">
+                            <option value="">Select</option>
+                        </select>*@
+                        <select  name="roleId" id="roleId" asp-for="roleId"style="padding-left: 10px;"  class="form-control select2-no-search"  asp-items="ViewBag.rolesList">
+                            <option>Select User</option>
+                            
+                        </select>
                     </div>
-                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        
+                    </div>
+                </div>
+                 
+                @*<div class="form-row">
                     <br />
                     <div class="form-group  col-md-1">
                         <br />
@@ -39,35 +49,35 @@
                             <option value="">Select</option>
                         </select>
                     </div>
+                </div>*@
+
+                <div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">
+                    @*<a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add New User</a>*@
+                    <a class="btn btn-sm btn-primary float-md-right;" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-plus"></i> &nbsp; Create New User</a>
                 </div>
 
-                    <div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">
-                        @*<a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add New User</a>*@
-                        <a class="btn btn-sm btn-primary float-md-right;" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-plus"></i> &nbsp; Create New User</a>
-                    </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
 
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    @*<th>Company </th>*@
+                                    @*<th>Role</th>*@
+                                    <th></th>
+                                </tr>
+                            </thead>
 
-
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        @*<th>Company </th>*@
-                                        @*<th>Role</th>*@
-                                        <th></th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

@@ -1,0 +1,241 @@
+﻿
+@model Autofocus.Models.ViewModels.EditBasicInformationModel
+@{
+    ViewData["Title"] = "Edit User";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<style>
+        .imgclass {
+            height: 70px;
+            width: 100px;
+            margin-top: 5px;
+        }
+    </style>*@
+<div class="side-app">
+
+    <!-- end row -->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <form method="post" enctype="multipart/form-data" asp-action="EditBasicInfo">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card m-b-20">
+
+                    <div class="card-header">
+                        <h3 class="card-title" style="color:darkorange">Edit Basci Information.</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="name"></label>
+                                <input asp-for="name" minlength="3" placeholder="Enter Name" class="form-control" />
+                                <span asp-validation-for="name" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="phonenumber "></label>
+                                    <input asp-for="phonenumber" readonly placeholder="Enter Mobile No." class="form-control" />
+                                    <span asp-validation-for="phonenumber" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group  col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email"></label>
+                                    <input asp-for="Email" placeholder="Enter Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group  col-md-6">
+                                <label asp-for="countryid"></label>
+
+                                <select name="countryid" id="countryid" asp-for="countryid" class="form-control"
+                                        asp-items="@ViewBag.Countries"
+                                        onchange="DoPostBack();">
+                                    <option value="">select</option>
+                                </select>
+
+                                <span asp-validation-for="countryid" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="stateid">  </label>
+                                <select class="form-control" name="stateid" id="stateid" asp-for="stateid"
+                                        asp-items="@ViewBag.States" onchange="DoPostBack();">
+                                    @*disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"*@
+                                    <option value="">select</option>
+                                </select>
+
+
+                                <span asp-validation-for="stateid" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" asp-for="cityid">City Name</label>
+                                    <select class="form-control" name="cityid" id="cityid" asp-for="cityid"
+                                            asp-items="@ViewBag.Cities">
+                                        @*disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"*@
+                                        <option value="">select</option>
+                                    </select>
+                                    <span asp-validation-for="cityid" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="ExportToCountries"></label>
+                                <input asp-for="ExportToCountries" class="form-control" />
+                                <span asp-validation-for="ExportToCountries" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="businessYear"></label>
+                                <input asp-for="businessYear" placeholder="Enter Business Year" class="form-control" />
+                                <span asp-validation-for="businessYear" class="text-danger"></span>
+                            </div>
+
+                            <input type="hidden" asp-for="multipleproductDealin" />
+                            <div class="form-group  col-md-6">
+                                <label asp-for="productDealin"></label>
+                                @*<input asp-for="productDealin" placeholder="Enter Product Dealin" class="form-control" />*@
+                                <select id="productDealin" data-rel="chosen" asp-for="productDealin" class="form-control" data-placeholder="select Product Deal in" multiple="">
+                                </select>
+                                <span asp-validation-for="productDealin" class="text-danger"></span>
+
+
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label class="form-label" asp-for="logo">Logo</label>
+                                <div class="btn btn-primary btn-icon-text">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
+                                    <span asp-validation-for="logo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-2">
+
+                                <img src="@Model.logoName" id="logoName" class="imgclass" />
+                            </div>
+                        </div>
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/lib/jquery/dist/jquery.js"></script> 
+@*<script src="~/dropdownselect/chosen.jquery.js" type="text/javascript"></script>
+<script src="~/dropdownselect/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+<script src="~/dropdownselect/docsupport/init.js" type="text/javascript" charset="utf-8"></script>*@
+ 
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("[data-rel='chosen']").chosen();
+    });
+    $(function () {
+
+        $("#countryid").change(function () {
+            //alert($("#countryid").val());
+            var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
+            var ddlsource = "#countryid";
+            $.getJSON(url,
+                { id: $(ddlsource).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = ' <option value="">select</option>';
+                    $("#stateid").empty();
+                    $("#cityid").empty();
+
+
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#stateid").html(item);
+                }
+            )
+        });
+          $("#stateid").change(function () {
+
+            var url = '@Url.Content("~/")' + 'Admin/GetJsonData/getCitybyStateid';
+            var ddlsource1 = "#stateid";
+            $.getJSON(url,
+                { stateid: $(ddlsource1).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = '<option value="">Select</option >';
+                    $("#cityid").empty();
+
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#cityid").html(item);
+                }
+            )
+          });
+
+        $("#cityid").change(function () {
+            loadProduct(1);
+
+
+        });
+        function loadProduct(sectorid) {
+            $("#productDealin").empty();
+        var s = '';
+
+
+        $("[data-rel='chosen']").chosen();
+               var url = '@Url.Content("~/")' + 'Admin/User/getSubcategory?mainCategory=' + sectorid;
+          //  var ddlsource = "#countryid";
+            $.getJSON(url,
+
+                function (data) {
+
+                    $.each(data, function (i, row) {
+                        s += '<option value="' + row.value + '">' + row.text + '</option>';
+
+                    });
+                    $("#productDealin").html(s);
+                    $("[data-rel='chosen']").trigger("chosen:updated");
+                    console.log(item);
+                   // $("#cityid").html(item);
+                }
+        )
+
+
+
+    }
+    });
+
+</script>

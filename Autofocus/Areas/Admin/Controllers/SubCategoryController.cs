@@ -51,13 +51,21 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
             var model = new SubcategoryCreateViewModel();
             return View(model);
         }
-        public JsonResult getCitybyStateid(int stateid)
+        public JsonResult getcitybyState(int state)
         {
 
-            IList<CityRegistration> obj = _unitofWork.city.GetAll().Where(x => x.stateid == stateid).ToList();
-            //  obj.Insert(0, new CityRegistration { id = 0, cityName = "select", isactive = false, isdeleted = false });
+            IList<CityRegistration> obj = _unitofWork.city.GetAll().Where(x => x.stateid == state).ToList();
+
             return Json(new SelectList(obj, "id", "cityName"));
         }
+
+        //public JsonResult getCitybyStateid(int stateid)
+        //{
+
+        //    IList<CityRegistration> obj = _unitofWork.city.GetAll().Where(x => x.stateid == stateid).ToList();
+        //    //  obj.Insert(0, new CityRegistration { id = 0, cityName = "select", isactive = false, isdeleted = false });
+        //    return Json(new SelectList(obj, "id", "cityName"));
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SubcategoryCreateViewModel model)
