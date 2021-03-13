@@ -58,14 +58,7 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
 
             return Json(new SelectList(obj, "id", "cityName"));
         }
-
-        //public JsonResult getCitybyStateid(int stateid)
-        //{
-
-        //    IList<CityRegistration> obj = _unitofWork.city.GetAll().Where(x => x.stateid == stateid).ToList();
-        //    //  obj.Insert(0, new CityRegistration { id = 0, cityName = "select", isactive = false, isdeleted = false });
-        //    return Json(new SelectList(obj, "id", "cityName"));
-        //}
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SubcategoryCreateViewModel model)
@@ -80,7 +73,8 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
                     name  = model.name
                     ,
                     mainCategroyId=model.mainCategroyId
-
+                    ,cityIds=model.multipleCityIds
+                    ,stateid=model.stateid
                    ,
                     isdeleted = false
                     ,
@@ -125,7 +119,23 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
                 Text = x.name,
                 Value = x.id.ToString()
             });
+            ViewBag.AllCountries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
+            {
+                Text = x.countryname,
+                Value = x.id.ToString()
+            });
             var objcategory = _unitofWork.subcategory.Get(id);
+            int countryiddd = 0, stateid = 0, countryid = 0;
+
+            if (objcategory.cityIds != null)
+            {
+                string  cityiddd = objcategory.cityIds;
+                //  countryiddd = (int)objfromdb.cityid;
+                stateid = objcategory.stateid;
+                countryid = _unitofWork.state.Get(stateid).countryid;
+            }
+
+          
             if (objcategory == null)
             {
                 return NotFound();
@@ -135,10 +145,22 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
                 id = objcategory.id,
                 mainCategroyId  = objcategory.mainCategroyId ,
                 name  = objcategory.name ,
-                imgName=objcategory.img
-
+                imgName=objcategory.img,
+                  countryid = countryid,
+                stateid = stateid,
+             //   cityIds = (int)objfromdb.cityid,
+                multipleCityIds = objcategory.cityIds
             };
-
+            ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+            {
+                Text = x.StateName,
+                Value = x.id.ToString()
+            });
+            ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
+            {
+                Text = x.cityName,
+                Value = x.id.ToString() 
+            });
             return View(model);
         }
         [HttpPost]
@@ -156,6 +178,7 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
                 storeobj.id = model.id;
                 storeobj.mainCategroyId = model.mainCategroyId;
                 storeobj.name = model.name ;
+                storeobj.cityIds = model.multipleCityIds;
                 if (model.img != null && model.img.Length > 0)
                 {
                     var uploadDir = @"uploads/Subcategory";

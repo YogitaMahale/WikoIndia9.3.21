@@ -37,7 +37,48 @@
 
                                 </div>
                             </div>
+                            <div class="form-group  col-md-6">
+                                <label asp-for="countryid"></label>
+
+                                <select name="countryid" id="countryid" asp-for="countryid" class="form-control"
+                                        asp-items="@ViewBag.AllCountries" onchange="DoPostBack();">
+                                    <option value="">select</option>
+                                </select>
+
+                                <span asp-validation-for="countryid" class="text-danger"></span>
+                            </div>
                             <div class="form-group col-md-6">
+                                <label asp-for="stateid">  </label>
+                                <select class="form-control" name="stateid" id="stateid" asp-for="stateid"
+                                        asp-items="@ViewBag.States" onchange="DoPostBack();">
+                                    @*disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"*@
+                                    <option value="">select</option>
+                                </select>
+
+
+                                <span asp-validation-for="stateid" class="text-danger"></span>
+
+                            </div>
+                            <input type="hidden" asp-for="multipleCityIds" />
+                            <div class="form-group  col-md-6">
+                                <label asp-for="cityIds"></label>
+                                <select id="cityIds" data-rel="chosen" asp-for="cityIds"  asp-items="@ViewBag.Cities"  class="form-control" data-placeholder="" multiple="">
+                                </select>
+                                <span asp-validation-for="cityIds" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" asp-for="cityIds">City Name</label>
+                                        <select class="form-control" name="cityid" id="cityid" asp-for="cityIds"
+                                                asp-items="@ViewBag.Cities">
+                                            disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"
+                                            <option value="">select</option>
+                                        </select>
+                                        <span asp-validation-for="cityIds" class="text-danger"></span>
+
+                                    </div>
+                                </div>*@
+                            <div class="form-group col-md-3">
                                 <label class="form-label" asp-for="img">Image</label>
                                 <input asp-for="img" type="file" class="dropify" data-="@Model.imgName" data-default-file="@Model.imgName" data-height="50" value="Upload" />
                                 <span asp-validation-for="img" class="text-danger"></span>
@@ -66,3 +107,89 @@
 @section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[data-rel='chosen']").chosen();
+        var s = $("#multipleCityIds").val();//multipleCityIds  ["22", "25", "27"]
+       // var str = s;
+        var str_array = s.split(',');
+        for (var i = 0; i < str_array.length; i++) {
+            str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+        } 
+        $('#cityIds').val(str_array).trigger('chosen:updated');
+        //$('#cityIds').val(["1", "2", "3"]).trigger('chosen:updated');
+
+
+      //  $("#cityIds").val(str_array).trigger("chosen:updated");
+       
+     //   
+    });
+
+
+
+
+    $(function () {
+
+        $("#countryid").change(function () {
+
+            var url = '@Url.Content("~/")' + 'Admin/CityRegistration/getstatebyid';
+            var ddlsource = "#countryid";
+            $.getJSON(url,
+                { id: $(ddlsource).val() },
+                function (data) {
+                //   console.log(data);
+                    var item = '<option value="">Select</option >';
+                    $("#stateid").empty();
+                   // $("#cityid").empty();
+                    $.each(data, function (i, row) {
+
+                        item += "<option value='" + row.value + "'>" + row.text + "  </option > ";
+                       // alert(row);
+                    });
+                    $("#stateid").html(item);
+                }
+            )
+        });
+
+
+
+        $("#cityIds").change(function () {
+            $("#multipleCityIds").val($("#cityIds").val());
+        });
+
+        $("#stateid").change(function () {
+            $("#cityIds").empty();
+        var s = '';
+
+
+            //$("[data-rel='chosen']").chosen();
+            var url = '@Url.Content("~/")' + 'Admin/SubCategory/getcitybyState?state=' + $("#stateid").val();
+          //  var ddlsource = "#countryid";
+            $.getJSON(url,
+
+                function (data) {
+
+                    $.each(data, function (i, row) {
+                        s += '<option value="' + row.value + '">' + row.text + '</option>';
+                       
+                    });
+                    $("#cityIds").html(s);
+                    $("[data-rel='chosen']").trigger("chosen:updated");
+                    console.log(item);
+                   // $("#cityid").html(item);
+                }
+        )
+
+
+
+        });
+
+    });
+   // $("[data-rel='chosen']").trigger("chosen:updated");
+
+
+</script>

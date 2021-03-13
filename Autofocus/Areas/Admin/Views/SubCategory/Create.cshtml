@@ -76,14 +76,12 @@
                                 <span asp-validation-for="stateid" class="text-danger"></span>
 
                             </div>
-                            <input type="text" asp-for="multipleCityIds" />
+                            <input type="hidden" asp-for="multipleCityIds" />
                             <div class="form-group  col-md-6">
                                 <label asp-for="cityIds"></label>
                                 <select id="cityIds" data-rel="chosen" asp-for="cityIds" class="form-control" data-placeholder="select City" multiple="">
                                 </select>
                                 <span asp-validation-for="cityIds" class="text-danger"></span>
-
-
                             </div>
 
 
