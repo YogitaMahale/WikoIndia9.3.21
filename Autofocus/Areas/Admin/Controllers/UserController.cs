@@ -52,10 +52,12 @@ namespace Autofocus.Areas.Admin.Controllers
             var obj = new UserIndexViewModel();
             return View(obj);
         }
-        public JsonResult getSubcategory(int mainCategory)
-        {
 
-            IList<Subcategory> obj = _unitofWork.subcategory.GetAll().Where(x => x.mainCategroyId == mainCategory).ToList();
+        public JsonResult getSubcategory(int cityid)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@cityId", cityid);
+            var obj = _unitofWork.sp_call.List<SubcategoryDtos>("GetSubCategorybyCityId", parameter);
             
             return Json(new SelectList(obj, "id", "name"));
         }
@@ -500,6 +502,12 @@ namespace Autofocus.Areas.Admin.Controllers
 
             return Json(new { success = true, message = "Delete Successfuly" });
         }
+
+        public IActionResult map()
+        {
+            return View();
+        }
+
         #endregion
     }
 }

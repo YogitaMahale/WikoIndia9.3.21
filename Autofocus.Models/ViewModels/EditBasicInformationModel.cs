@@ -36,6 +36,7 @@ namespace Autofocus.Models.ViewModels
         public string multipleproductDealin { get; set; }
         [Display(Name = "Export To Countries")]
         public string ExportToCountries { get; set; }
+        public string multipleExportToCountries { get; set; }
 
         public string userlatitude { get; set; }
         public string userlongitude { get; set; }
