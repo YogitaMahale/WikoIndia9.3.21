@@ -36,6 +36,7 @@ namespace Autofocus.Mappers
             CreateMap<ProductMaster, ProductMasterUpsertDtos>().ReverseMap();
             CreateMap<productSize, productSizeViewModelDtos>().ReverseMap();
             CreateMap<Product, ProductbyIdViewModelDtos>().ReverseMap();
+            CreateMap<ApplicationUser, UserInformationViewModelDtos>().ReverseMap();
 
         }
     }

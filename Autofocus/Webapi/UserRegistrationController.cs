@@ -553,5 +553,29 @@ namespace Autofocus.Webapi
 
         }
 
+
+        [HttpGet]
+        [Route("GetUserDetails")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserInformationViewModelDtos))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult GetUserDetails(String id)
+        {
+            // var affilatereg = _db.applicationUsers.FirstOrDefault(u => u.Id == model.id);
+            var obj = _unitofWork.applicationUser.GetAll().Where(x => x.Id == id).FirstOrDefault();
+            //var obj = _unitofWork.applicationUser.GetAll().Where(x => x.Id == id).FirstOrDefault();
+
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var Dtosobj = new UserInformationViewModelDtos();
+                Dtosobj = _mapper.Map<UserInformationViewModelDtos>(obj);
+                return Ok(Dtosobj);
+            }
+
+            return Ok(obj);
+        }
     }
 }
