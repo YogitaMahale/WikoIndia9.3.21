@@ -22,6 +22,7 @@ using Autofocus.DataAccess.Data;
 using Autofocus.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Autofocus.Models.Dtos;
+using Autofocus.Repository.IRepository;
 
 namespace Autofocus.Areas.Admin.Controllers
 {
@@ -35,12 +36,14 @@ namespace Autofocus.Areas.Admin.Controllers
         private readonly IUnitofWork _unitofWork;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ApplicationDbContext _db;
-        public UserController(IWebHostEnvironment hostingEnvironment, IUnitofWork unitofWork, ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        private readonly IUserRegistrationAPIRepository _userRegistrationAPIRepository;
+        public UserController(IWebHostEnvironment hostingEnvironment, IUnitofWork unitofWork, ApplicationDbContext db, UserManager<IdentityUser> userManager, IUserRegistrationAPIRepository userRegistrationAPIRepository)
         {
             _unitofWork = unitofWork;         
             _hostingEnvironment = hostingEnvironment;
             _db = db;
             _userManager = userManager;
+            _userRegistrationAPIRepository = userRegistrationAPIRepository;
         }
         public IActionResult Index()
         {
@@ -140,6 +143,110 @@ namespace Autofocus.Areas.Admin.Controllers
 
         }
 
+
+ 
+        //EditBasicInformationModel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditBasicInfo(EditBasicInformationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    var obj = _db.ApplicationUser.FirstOrDefault(u => u.Id == model.Id);
+                    if (obj == null)
+                    {
+                        return NotFound();
+                    }
+                    /*
+                        Id  
+                    name
+                   companyName
+        cityid
+         businessYear
+          productDealin
+          ExportToCountries
+          userlatitude
+          userlongitude
+          packHouselatitude
+          packHouselongitude
+          packHouseAddress
+          deviceid
+           isBasicInfoFill
+          logo*/
+                    BasicInformationDtos objBasicInformationDtos = new BasicInformationDtos();
+
+                    objBasicInformationDtos.Id = model.Id;
+                    objBasicInformationDtos.name = model.name;
+                    objBasicInformationDtos.companyName = model.companyName;
+                    objBasicInformationDtos.cityid = model.cityid;
+                    objBasicInformationDtos.businessYear = model.businessYear;
+                    objBasicInformationDtos.productDealin = model.productDealin;
+                    objBasicInformationDtos.ExportToCountries = model.ExportToCountries;
+                    objBasicInformationDtos.userlatitude = model.userlatitude;
+                    objBasicInformationDtos.userlongitude = model.userlongitude;
+                    objBasicInformationDtos.packHouselatitude = model.packHouselatitude;
+
+                    objBasicInformationDtos.packHouselongitude = model.packHouselongitude;
+                    objBasicInformationDtos.packHouseAddress = model.packHouseAddress;
+                    objBasicInformationDtos.isBasicInfoFill = model.isBasicInfoFill;
+                    if (model.logo != null && model.logo.Length > 0)
+                    {
+
+                        using (var ms = new MemoryStream())
+                        {
+                            model.logo.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objBasicInformationDtos.logo = s;
+                            ms.Close();
+                            // act on the Base64 data
+                        }
+                    }
+
+
+                    string path1 = SD.APIBaseUrl + "user/UpdateBasicInformation";
+                    //bool res = await _userManager.UpdateAsync(path1, objBasicInformationDtos);
+                    TempData["success"] = "Record Update successfully";
+                }
+                catch { }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                //ViewBag.Countries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
+                //{
+                //    Text = x.countryname,
+                //    Value = x.id.ToString()
+                //});
+
+                //int countryiddd = 0, stateid = 0, countryid = 0;
+
+
+
+                //if (model.cityid != null)
+                //{
+                //    int cityiddd = (int)model.cityid;
+                //    //  countryiddd = (int)objfromdb.cityid;
+                //    stateid = _unitofWork.city.Get(cityiddd).stateid;
+                //    countryid = _unitofWork.state.Get(stateid).countryid;
+                //}
+                //ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+                //{
+                //    Text = x.StateName,
+                //    Value = x.id.ToString()
+                //});
+                //ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
+                //{
+                //    Text = x.cityName,
+                //    Value = x.id.ToString()
+                //});
+                return View(model);
+            }
+
+        }
 
         //[HttpGet]
         //public IActionResult Edit(string id)
@@ -507,7 +614,10 @@ namespace Autofocus.Areas.Admin.Controllers
         {
             return View();
         }
-
+        public IActionResult test()
+        {
+            return View();
+        }
         #endregion
     }
 }
