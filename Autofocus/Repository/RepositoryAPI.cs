@@ -40,7 +40,7 @@ namespace Autofocus.Repository
 
 
             HttpResponseMessage response = await client.SendAsync(request);
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            if (response.StatusCode == System.Net.HttpStatusCode.Created|| response.StatusCode== System.Net.HttpStatusCode.OK)
             {
                 return true;
             }

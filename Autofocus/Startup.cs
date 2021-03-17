@@ -53,7 +53,10 @@ namespace Autofocus
             services.AddScoped<IMainCategoryAPIRepository, MainCategoryAPIRepository>();
             services.AddScoped<IProductMasterAPIRepository, ProductMasterAPIRepository>();
             services.AddScoped<IUserRegistrationAPIRepository, UserRegistrationAPIRepository>();
+          
             services.AddScoped<IUnitofWork, UnitofWork>();
+
+
            // services.AddScoped<ISP_CALL, SP_CALL>();
             services.AddAutoMapper(typeof(WinkoIndiaMappings));
             services.AddHttpClient();

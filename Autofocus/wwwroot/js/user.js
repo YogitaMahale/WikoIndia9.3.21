@@ -162,6 +162,12 @@ function loadtable1(url) {
                                                 <i class="fa fa-edit">
                                                 </i>Edit Basic Information
                                             </a>
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserCertification/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Certification
+                                            </a>
+
+
     <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-lock-open"></i> Unlock
     </a>
@@ -176,6 +182,10 @@ function loadtable1(url) {
  <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
                                                 <i class="fa fa-edit">
                                                 </i>Edit Basic Information
+                                            </a>
+ <a class="btn btn-primary text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserCertification/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Certification
                                             </a>
     <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        <i class="fa fa-unlock-alt"></i> Lock

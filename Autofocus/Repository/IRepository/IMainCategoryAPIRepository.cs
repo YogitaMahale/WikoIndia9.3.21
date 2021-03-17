@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Autofocus.Repository.IRepository
 {
-    public interface IMainCategoryAPIRepository : IRepositoryAPI<MainCategoryDtos>
+    public interface IMainCategoryAPIRepository : IRepositoryAPI<MainCategoryDtos> 
     {
 
     }

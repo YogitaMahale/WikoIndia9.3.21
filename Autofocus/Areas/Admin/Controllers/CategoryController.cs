@@ -66,7 +66,15 @@ namespace Autofocus.Areas.Admin.Controllers
                 bool res = await _mainCategoryRepository.CreateAsync(path, obj);
                 //_unitofWork.mainCategory.Add(obj);
                 //bool res = _unitofWork.Save();
-                TempData["success"] = "Record Save successfully";
+                if(res)
+                {
+                    TempData["success"] = "Record Save successfully";
+                }
+                else
+                {
+                    TempData["error"] = "Record Not Save";
+                }
+              
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -123,20 +131,7 @@ namespace Autofocus.Areas.Admin.Controllers
         //}
         public async Task<IActionResult> Edit(int id)
         {
-
-            //var objcategory = _unitofWork.mainCategory.Get(id);
-            //if (objcategory == null)
-            //{
-            //    return NotFound();
-            //}
-            //var model = new MainCategoryCreateViewModel()
-            //{
-            //    id = objcategory.id,
-            //    name = objcategory.name,
-            //    imgName = objcategory.img
-
-            //};
-            //return View(model);
+ 
             string path = SD.APIBaseUrl + "Maincategory/GetMainCategorybyid?maincategoryId=";
 
             MainCategoryDtos objcategory = await _mainCategoryRepository.GetAsync(path, id);
@@ -182,10 +177,22 @@ namespace Autofocus.Areas.Admin.Controllers
                         // act on the Base64 data
                     }
                 }
+                else
+                {
+                    obj.img = "";
+                }
 
                string  path1 = SD.APIBaseUrl + "Maincategory/UpdateMainCategory";
                 bool res = await _mainCategoryRepository.UpdateAsync(path1, obj);
-                TempData["success"] = "Record Update successfully";
+                if (res)
+                {
+                    TempData["success"] = "Record Update successfully";
+                }
+                else
+                {
+                    TempData["error"] = "Record Not Update";
+                }
+               
                 return RedirectToAction(nameof(Index));
             }
             else

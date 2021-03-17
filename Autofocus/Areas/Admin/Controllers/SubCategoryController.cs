@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.Http;
 
 namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
 {
@@ -26,6 +27,8 @@ namespace Autofocus.Controllers//CoreMoryatools.Areas.Admin.Controllers
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IUnitofWork _unitofWork;
+       
+
         public SubCategoryController(IUnitofWork unitofWork, IWebHostEnvironment hostingEnvironment)
         {
             _unitofWork = unitofWork;

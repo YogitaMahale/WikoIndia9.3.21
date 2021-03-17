@@ -3,6 +3,7 @@ using Autofocus.Models;
 using Autofocus.Models.Dtos;
 using Autofocus.Utility;
 using AutoMapper;
+using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -26,8 +27,9 @@ namespace Autofocus.Webapi
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+       
 
-        public UserRegistrationController(IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
+        public UserRegistrationController( IConfiguration configuration,IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
         {
             _unitofWork = unitofWork;
             _mapper = mapper;
@@ -35,6 +37,7 @@ namespace Autofocus.Webapi
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+           
 
 
         }
