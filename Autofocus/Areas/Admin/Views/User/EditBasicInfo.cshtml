@@ -29,7 +29,7 @@
 </style>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="side-app">
- 
+
     <!-- end row -->
     <div class="row" style="margin-top:10px;">
         <div class="col-md-12">
@@ -130,18 +130,26 @@
 
 
                             </div>
-                            <div class="form-group  col-md-4">
-                                <label class="form-label" asp-for="logo">Logo</label>
-                                <div class="btn btn-primary btn-icon-text">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
-                                    <span asp-validation-for="logo" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="form-group  col-md-2">
 
-                                <img src="@Model.logoName" id="logoName" class="imgclass" />
+
+                            <div class="form-group  col-md-4">
+
+                                <label class="form-label" asp-for="logo">Image</label>
+                                <input asp-for="logo" type="file" class="dropify" data-="@Model.logoName" data-default-file="@Model.logoName" data-height="50" value="Upload" />
+                                <span asp-validation-for="logo" class="text-danger"></span>
+
+
+
+
+
+                                @*<label class="form-label" asp-for="logo">Logo</label>
+                                    <div class="btn btn-primary btn-icon-text">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
+                                        <span asp-validation-for="logo" class="text-danger"></span>
+                                    </div>*@
                             </div>
+
 
 
                         </div>
@@ -149,10 +157,10 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Select Pack House Location</h3>
-                                    <div id="floating-panel">
+                                    @*<div id="floating-panel">
                                         <input id="latlng" type="text" value="40.714224,-73.961452" />
                                         <input id="submit" type="button" value="Reverse Geocode" />
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="card-body">
                                     <div class="map-header">
@@ -161,14 +169,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="display:none;">
                                 <label asp-for="packHouselatitude"></label>
                                 <input id="txtpackHouselatitude" readonly asp-for="packHouselatitude" class="form-control" />
                                 <span asp-validation-for="packHouselatitude" class="text-danger"></span>
                             </div>
 
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="display:none;">
                                 <div class="form-group">
                                     <label asp-for="packHouselongitude "></label>
                                     <input id="txtpackHouselongitude" readonly asp-for="packHouselongitude" class="form-control" />
@@ -176,25 +184,25 @@
                                 </div>
 
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <div class="form-group">
                                     <label asp-for="packHouseAddress "></label>
-                                    <input id="txtpackHouseAddress" readonly asp-for="packHouseAddress" class="form-control" />
+                                    <input id="txtpackHouseAddress" asp-for="packHouseAddress" class="form-control" />
                                     <span asp-validation-for="packHouseAddress" class="text-danger"></span>
                                 </div>
 
                             </div>
                         </div>
                         @*<div class="form-row">
-            <div class="map-header">
-                <div class="map-header-layer" id="map"></div>
-            </div>
+                                <div class="map-header">
+                                    <div class="map-header-layer" id="map"></div>
+                                </div>
 
-            <div class="form-group col-md-6" id="map">
-                </div>
-                <div class="form-group col-md-6">
-                </div>
-        </div>*@
+                                <div class="form-group col-md-6" id="map">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                    </div>
+                            </div>*@
                         <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
                         <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
 
@@ -232,13 +240,67 @@
 
 <script type="text/javascript">
 
+
+
+    function isEmpty(val) {
+        return (val === undefined || val == null || val.length <= 0) ? true : false;
+    }
     $(document).ready(function () {
         $("[data-rel='chosen']").chosen();
+        //----------------------------
         loadExportCountries();
 
+        if (isEmpty($("#cityid").val())) {
+           // alert("empty");
+        }
+        else {
+           // alert("not empty");
+            loadProduct($("#cityid").val());
+        }
+       //
+        $("#cityid").change(function () {
+          //  alert("test");
+            $("#multipleproductDealin").empty();
+            loadProduct($("#cityid").val());
+            
+
+
+        });
+
+           function loadProduct(cityid) {
+           // alert(cityid);
+            $("#productDealin").empty();
+           var s = '';
+        $("[data-rel='chosen']").chosen();
+            var url = '@Url.Content("~/")' + 'Admin/User/getSubcategory?cityid=' + cityid;
+          //  var ddlsource = "#countryid";
+            $.getJSON(url,
+                function (data) {
+                    $.each(data, function (i, row) {
+                        s += '<option value="' + row.value + '">' + row.text + '</option>';
+                    });
+                    $("#productDealin").html(s);
+                    //multipleproductDealin
+
+                    var str_array = $("#multipleproductDealin").val().split(',');
+                    for (var i = 0; i < str_array.length; i++) {
+                        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                    }
+                   // console.log(str_array);
+                    $('#productDealin').val(str_array).trigger('chosen:updated');
+
+                    $("[data-rel='chosen']").trigger("chosen:updated");
+                  //  console.log(item);
+                   // $("#cityid").html(item);
+                }
+        )
+        }
+
+    
 
             function loadExportCountries(cityid) {
-              $("#ExportToCountries").empty();
+                $("#ExportToCountries").empty();
+
               var s = '';
             $("[data-rel='chosen']").chosen();
               var url = '@Url.Content("~/")' + 'Admin/GetJsonData/getCountry';
@@ -249,8 +311,18 @@
                         s += '<option value="' + row.value + '">' + row.text + '</option>';
                     });
                     $("#ExportToCountries").html(s);
+
+                    var str_array = $("#multipleExportToCountries").val().split(',');
+                    for (var i = 0; i < str_array.length; i++) {
+                        str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+                    }
+                  //  console.log(str_array);
+                    $('#ExportToCountries').val(str_array).trigger('chosen:updated');
+
+
+                    //console.log(s);
                     $("[data-rel='chosen']").trigger("chosen:updated");
-                    console.log(item);
+                   // console.log(item);
                    // $("#cityid").html(item);
                 }
         )
@@ -304,35 +376,14 @@
             )
           });
 
-        $("#cityid").change(function () {
-            loadProduct($("#cityid").val());
+         
 
-
+        $("#ExportToCountries").change(function () {
+            $("#multipleExportToCountries").val($("#ExportToCountries").val());
         });
-        function loadProduct(cityid) {
-            $("#productDealin").empty();
-           var s = '';
-
-
-        $("[data-rel='chosen']").chosen();
-            var url = '@Url.Content("~/")' + 'Admin/User/getSubcategory?cityid=' + cityid;
-          //  var ddlsource = "#countryid";
-            $.getJSON(url,
-                function (data) {
-                    $.each(data, function (i, row) {
-                        s += '<option value="' + row.value + '">' + row.text + '</option>';
-                    });
-                    $("#productDealin").html(s);
-                    $("[data-rel='chosen']").trigger("chosen:updated");
-                    console.log(item);
-                   // $("#cityid").html(item);
-                }
-        )
-
-
-
-        }
-
+        $("#productDealin").change(function () {
+            $("#multipleproductDealin").val($("#productDealin").val());
+        });
     });
 
 </script>

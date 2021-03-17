@@ -320,7 +320,7 @@ namespace Autofocus.Webapi
             }
             if (model.logo == null || model.logo.Trim() == "")
             {
-                obj.logo = "";
+               // obj.logo = "";
             }
             else
             {
@@ -575,7 +575,7 @@ namespace Autofocus.Webapi
                 return Ok(Dtosobj);
             }
 
-            return Ok(obj);
+             
         }
     }
 }

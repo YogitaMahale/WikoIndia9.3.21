@@ -114,8 +114,10 @@ namespace Autofocus.Areas.Admin.Controllers
                 name = objfromdb.name,
                 companyName  = objfromdb.companyName,
                 businessYear = objfromdb.businessYear,
-                productDealin = objfromdb.productDealin,
-                ExportToCountries = objfromdb.ExportToCountries,
+                //productDealin = objfromdb.productDealin,
+                multipleproductDealin = objfromdb.productDealin,
+                //ExportToCountries = objfromdb.ExportToCountries,
+                multipleExportToCountries = objfromdb.ExportToCountries,
                 userlatitude = objfromdb.userlatitude,
                 userlongitude = objfromdb.userlongitude,
                 packHouselatitude = objfromdb.packHouselatitude,
@@ -126,6 +128,8 @@ namespace Autofocus.Areas.Admin.Controllers
                 stateid = stateid,
                 cityid = (int)objfromdb.cityid,
                 logoName = objfromdb.logo,
+                Email=objfromdb.Email,
+                phonenumber=objfromdb.PhoneNumber
                  
                  
             };
@@ -160,22 +164,7 @@ namespace Autofocus.Areas.Admin.Controllers
                     {
                         return NotFound();
                     }
-                    /*
-                        Id  
-                    name
-                   companyName
-        cityid
-         businessYear
-          productDealin
-          ExportToCountries
-          userlatitude
-          userlongitude
-          packHouselatitude
-          packHouselongitude
-          packHouseAddress
-          deviceid
-           isBasicInfoFill
-          logo*/
+                   
                     BasicInformationDtos objBasicInformationDtos = new BasicInformationDtos();
 
                     objBasicInformationDtos.Id = model.Id;
@@ -183,15 +172,15 @@ namespace Autofocus.Areas.Admin.Controllers
                     objBasicInformationDtos.companyName = model.companyName;
                     objBasicInformationDtos.cityid = model.cityid;
                     objBasicInformationDtos.businessYear = model.businessYear;
-                    objBasicInformationDtos.productDealin = model.productDealin;
-                    objBasicInformationDtos.ExportToCountries = model.ExportToCountries;
+                    objBasicInformationDtos.productDealin = model.multipleproductDealin;
+                    objBasicInformationDtos.ExportToCountries = model.multipleExportToCountries;
                     objBasicInformationDtos.userlatitude = model.userlatitude;
                     objBasicInformationDtos.userlongitude = model.userlongitude;
                     objBasicInformationDtos.packHouselatitude = model.packHouselatitude;
 
                     objBasicInformationDtos.packHouselongitude = model.packHouselongitude;
                     objBasicInformationDtos.packHouseAddress = model.packHouseAddress;
-                    objBasicInformationDtos.isBasicInfoFill = model.isBasicInfoFill;
+                    objBasicInformationDtos.isBasicInfoFill = true ;
                     if (model.logo != null && model.logo.Length > 0)
                     {
 
@@ -208,7 +197,8 @@ namespace Autofocus.Areas.Admin.Controllers
 
 
                     string path1 = SD.APIBaseUrl + "user/UpdateBasicInformation";
-                    //bool res = await _userManager.UpdateAsync(path1, objBasicInformationDtos);
+                  //  var datalist = await _mainCategoryRepository.GetAllAsync(SD.APIBaseUrl + "Maincategory/GetMainCategory");
+                    bool res = await _userRegistrationAPIRepository.UpdateAsync(path1, objBasicInformationDtos);
                     TempData["success"] = "Record Update successfully";
                 }
                 catch { }
@@ -216,33 +206,31 @@ namespace Autofocus.Areas.Admin.Controllers
             }
             else
             {
-                //ViewBag.Countries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
-                //{
-                //    Text = x.countryname,
-                //    Value = x.id.ToString()
-                //});
 
-                //int countryiddd = 0, stateid = 0, countryid = 0;
-
-
-
-                //if (model.cityid != null)
-                //{
-                //    int cityiddd = (int)model.cityid;
-                //    //  countryiddd = (int)objfromdb.cityid;
-                //    stateid = _unitofWork.city.Get(cityiddd).stateid;
-                //    countryid = _unitofWork.state.Get(stateid).countryid;
-                //}
-                //ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
-                //{
-                //    Text = x.StateName,
-                //    Value = x.id.ToString()
-                //});
-                //ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
-                //{
-                //    Text = x.cityName,
-                //    Value = x.id.ToString()
-                //});
+                ViewBag.Countries = _unitofWork.country.GetAll().Where(x => x.isdeleted == false).Select(x => new SelectListItem()
+                {
+                    Text = x.countryname,
+                    Value = x.id.ToString()
+                });                             
+              
+                int countryiddd = 0, stateid = 0, countryid = 0;
+                if (model.cityid != null)
+                {
+                    int cityiddd = (int)model.cityid;
+                    //  countryiddd = (int)objfromdb.cityid;
+                    stateid = _unitofWork.city.Get(cityiddd).stateid;
+                    countryid = _unitofWork.state.Get(stateid).countryid;
+                }
+                ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+                {
+                    Text = x.StateName,
+                    Value = x.id.ToString()
+                });
+                ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
+                {
+                    Text = x.cityName,
+                    Value = x.id.ToString()
+                });
                 return View(model);
             }
 

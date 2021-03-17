@@ -11,6 +11,12 @@ function showPosition(position) {
     latitude1 = position.coords.latitude;
     longitude1 = position.coords.longitude;
 
+ //   alert(latitude1);
+
+    //$("#txtpackHouselatitude").val(jsondata.lat);
+    //$("#txtpackHouselongitude").val(jsondata.lng);
+
+
     const myLatlng = { lat: position.coords.latitude, lng: position.coords.longitude };
     // const myLatlng = { lat: 19.987, lng: 73.779 };
     const map = new google.maps.Map(document.getElementById("map"), {
