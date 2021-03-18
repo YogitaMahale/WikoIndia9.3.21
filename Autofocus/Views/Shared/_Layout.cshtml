@@ -341,8 +341,8 @@
                                     <a class="side-menu__item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
                                 </li>
                                 @*<li>
-                                        <a class="side-menu__item" asp-area="Admin" asp-controller="MainCategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
-                                    </li>*@
+                        <a class="side-menu__item" asp-area="Admin" asp-controller="MainCategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
+                    </li>*@
                                 <li>
                                     <a class="side-menu__item" asp-area="Admin" asp-controller="Subcategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Sub Category</span></a>
                                 </li>
@@ -379,10 +379,12 @@
                             <a class="side-menu__item" data-toggle="slide"><i class="side-menu__icon typcn typcn-th-list-outline"></i><span class="side-menu__label">Users</span><i class="angle fa fa-angle-right"></i></a>
                             <ul class="slide-menu">
                                 <li>
-                                    <a class="slide-item" asp-area="Admin" asp-controller="User" asp-action="Index"><i class="fa fa-angle-right mr-1"></i>User List</a>
+                                    @*<a class="btn btn-sm btn-primary float-md-right;" asp-area="Identity" asp-page="/Account/Register"><i class="ion-plus" data-toggle="tooltip" title="ion-plus"></i> &nbsp; Create New User</a>*@
+                                    <a class="slide-item" asp-area="Identity" asp-page="/Account/Register"><i class="fa fa-angle-right mr-1"></i>Create New User</a>
                                 </li>
+
                                 <li>
-                                    <a class="slide-item" asp-area="Admin" asp-controller="User" asp-action="map"><i class="fa fa-angle-right mr-1"></i>User List</a>
+                                    <a class="slide-item" asp-area="Admin" asp-controller="User" asp-action="Index"><i class="fa fa-angle-right mr-1"></i>User List</a>
                                 </li>
 
 
@@ -393,7 +395,35 @@
 
                     }
 
+                    @if (User.IsInRole(SD.Role_Seller)|| User.IsInRole(SD.Role_Buyer))
+                    {
+                        @*<li>
+                            <a class="side-menu__item" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label">Dashboard</span></a>
+                        </li>*@
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide"><i class="side-menu__icon typcn typcn-th-list-outline"></i><span class="side-menu__label">Information</span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
 
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="Profile"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Profile</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="Profile"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Basic Information</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="Profile"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Certification</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="Profile"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Documentation</span></a>
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+
+
+                    }
 
 
 

@@ -11,6 +11,7 @@ namespace Autofocus.Models.ViewModels
     {
        
         public string Id { get; set; }
+        public string userType { get; set; }
         [Required]
         [Display(Name = "Name")]
         public string name { get; set; }

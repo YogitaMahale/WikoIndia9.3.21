@@ -40,15 +40,16 @@ namespace Autofocus.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ApplicationDbContext _db;
         private readonly IUserRegistrationAPIRepository _userRegistrationAPIRepository;
-         
-        public UserController( IWebHostEnvironment hostingEnvironment, IUnitofWork unitofWork, ApplicationDbContext db, UserManager<IdentityUser> userManager, IUserRegistrationAPIRepository userRegistrationAPIRepository)
+        private readonly IHttpClientFactory _clientFactory;
+        public UserController(IHttpClientFactory clientFactory,IWebHostEnvironment hostingEnvironment, IUnitofWork unitofWork, ApplicationDbContext db, UserManager<IdentityUser> userManager, IUserRegistrationAPIRepository userRegistrationAPIRepository)
         {
             _unitofWork = unitofWork;         
             _hostingEnvironment = hostingEnvironment;
             _db = db;
             _userManager = userManager;
             _userRegistrationAPIRepository = userRegistrationAPIRepository;
-            
+            _clientFactory = clientFactory;
+
         }
         public IActionResult Index()
         {
@@ -73,7 +74,7 @@ namespace Autofocus.Areas.Admin.Controllers
 
         //*******************************************************
         [HttpGet]
-        public IActionResult EditBasicInfo(string id)
+        public async Task<IActionResult> EditBasicInfo(string id)
         {
 
 
@@ -98,23 +99,8 @@ namespace Autofocus.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-        //    Id ,name ,         
-        // companyName ,      
-        // countryid ,       
-        // stateid ,               
-        // cityid ,
-        //    businessYear ,       
-        // productDealin ,         
-        // ExportToCountries ,
-        // userlatitude ,
-        // userlongitude ,
-        // packHouselatitude ,
-        // packHouselongitude ,
-        // packHouseAddress ,
-        // deviceid ,
-        //isBasicInfoFill ,
-        //logo ,
-        //logoName ,
+            var user = await _userManager.FindByIdAsync(id);
+            var roles = await _userManager.GetRolesAsync(user);
 
             var model = new EditBasicInformationModel
             {
@@ -132,25 +118,35 @@ namespace Autofocus.Areas.Admin.Controllers
                 packHouselongitude = objfromdb.packHouselongitude,
                 packHouseAddress = objfromdb.packHouseAddress,
                 deviceid = objfromdb.deviceid,
-                countryid = countryid,
-                stateid = stateid,
-                cityid = (int)objfromdb.cityid,
+                //countryid = countryid,
+                //stateid = stateid,
+                //cityid = (int)objfromdb.cityid,
                 logoName = objfromdb.logo,
                 Email=objfromdb.Email,
-                phonenumber=objfromdb.PhoneNumber
-                 
-                 
+                phonenumber=objfromdb.PhoneNumber,
+                userType= roles[0].ToString()
+
+
             };
-            ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+
+            if (objfromdb.cityid != null)
             {
-                Text = x.StateName,
-                Value = x.id.ToString()
-            });
-            ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
-            {
-                Text = x.cityName,
-                Value = x.id.ToString()
-            });
+                model.countryid = countryid;
+                model.stateid = stateid;
+                model.cityid = (int)objfromdb.cityid;
+
+                ViewBag.States = _unitofWork.state.GetAll().Where(x => x.isdeleted == false && x.countryid == model.countryid).Select(x => new SelectListItem()
+                {
+                    Text = x.StateName,
+                    Value = x.id.ToString()
+                });
+                ViewBag.Cities = _unitofWork.city.GetAll().Where(x => x.isdeleted == false && x.stateid == model.stateid).Select(x => new SelectListItem()
+                {
+                    Text = x.cityName,
+                    Value = x.id.ToString()
+                });
+            }
+         
             return View(model);
 
         }
@@ -201,12 +197,26 @@ namespace Autofocus.Areas.Admin.Controllers
                             // act on the Base64 data
                         }
                     }
+                    else
+                    {
+                        objBasicInformationDtos.logo = null;
+                    }
 
 
                     string path1 = SD.APIBaseUrl + "user/UpdateBasicInformation";
                   //  var datalist = await _mainCategoryRepository.GetAllAsync(SD.APIBaseUrl + "Maincategory/GetMainCategory");
                     bool res = await _userRegistrationAPIRepository.UpdateAsync(path1, objBasicInformationDtos);
-                    TempData["success"] = "Record Update successfully";
+
+                    if(res)
+                    {
+                        TempData["success"] = "Record Update successfully";
+                    }
+                    else
+                    {
+                        TempData["error"] = "Record Not Update";
+
+                    }
+                    
                 }
                 catch { }
                 return RedirectToAction(nameof(Index));
@@ -244,6 +254,11 @@ namespace Autofocus.Areas.Admin.Controllers
         }
         //*******************************************************
         //---- Certification
+
+
+       
+
+
         [HttpGet]
         public IActionResult EditUserCertification(string id)
         {
@@ -286,7 +301,8 @@ namespace Autofocus.Areas.Admin.Controllers
 
                     CertificationInformationDtos objCertificationInformationDtos = new CertificationInformationDtos();
                     objCertificationInformationDtos.Id = model.Id;
-                        //Ceritication_IEC, Ceritication_APEDA, Ceritication_FIEO, Ceritication_GlobalGap, Ceritication_Others
+                    //Ceritication_IEC, Ceritication_APEDA, Ceritication_FIEO, Ceritication_GlobalGap, Ceritication_Others
+                    objCertificationInformationDtos.isCertificationFill = true;
                     if (model.Ceritication_IEC != null && model.Ceritication_IEC.Length > 0)
                     {
                         using (var ms = new MemoryStream())
@@ -344,38 +360,41 @@ namespace Autofocus.Areas.Admin.Controllers
                             ms.Close();
                         }
                     }
-                  
 
-                    //string url = SD.APIBaseUrl + "user/UpdateCertificationInformation";
-                    //var request = new HttpRequestMessage(HttpMethod.Patch, url);
-                    //if (objCertificationInformationDtos != null)
-                    //{
-                    //    request.Content = new StringContent(
-                    //        JsonConvert.SerializeObject(objCertificationInformationDtos), Encoding.UTF8, "application/json");
-                    //}
-                    //else
-                    //{
-                    //    //return false;
-                    //}
+                    #region "API CALL"
 
-                    //var client = _clientFactory.CreateClient();
-                    ////if (token != null && token.Length != 0)
-                    ////{
-                    ////    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                    ////}
-                    //HttpResponseMessage response = await client.SendAsync(request);
-                    //if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                    //{
-                    //   // return true;
-                    //}
-                    //else
-                    //{
-                    //   // return false;
-                    //}
+                    string url = SD.APIBaseUrl + "user/UpdateCertificationInformation";
+                    var request = new HttpRequestMessage(HttpMethod.Patch, url);
+                    if (objCertificationInformationDtos != null)
+                    {
+                        request.Content = new StringContent(
+                            JsonConvert.SerializeObject(objCertificationInformationDtos), Encoding.UTF8, "application/json");
+                    }
+                    else
+                    {
+                        //return false;
+                    }
 
+                    var client = _clientFactory.CreateClient();
+                    //if (token != null && token.Length != 0)
+                    //{
+                    //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    //}
+                    HttpResponseMessage response = await client.SendAsync(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent|| response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        TempData["success"] = "Record Update successfully";
+                        // return true;
+                    }
+                    else
+                    {
+                        TempData["error"] = "Record Not Update";
+                        // return false;
+                    }
+                    #endregion
                     //    string path1 = SD.APIBaseUrl + "user/UpdateCertificationInformation";                   
                     //bool res = await _userRegistrationAPIRepository.UpdateAsync(path1, objCertificationInformationDtos);
-                    TempData["success"] = "Record Update successfully";
+                   
                 }
                 catch { }
                 return RedirectToAction(nameof(Index));
@@ -393,6 +412,185 @@ namespace Autofocus.Areas.Admin.Controllers
 
 
 
+        //****************EditUserDocumentation******************
+        [HttpGet]
+        public IActionResult EditUserDocumentation(string id)
+        {
+            //UserDocumentationEditViewModel
+            var objfromdb = _db.ApplicationUser.FirstOrDefault(u => u.Id == id);
+
+            if (objfromdb == null)
+            {
+                return NotFound();
+            }             
+
+        var model = new UserDocumentationEditViewModel
+            {
+                Id = objfromdb.Id,
+            CancellerdChequeImgName = objfromdb.CancellerdChequeImg,
+            CeritificationImg = objfromdb.Ceritification,
+            CompanyRegCeritificateImg = objfromdb.CompanyRegCeritificate,
+            VisitingCardImgName = objfromdb.VisitingCardImg,
+            aadharBackImgName = objfromdb.aadharBackImg,
+             aadharFrontImgName = objfromdb.aadharFrontImg,
+            pancardImgName = objfromdb.pancardImg,
+             
+        };
+
+            return View(model);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUserDocumentation(UserDocumentationEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    var obj = _db.ApplicationUser.FirstOrDefault(u => u.Id == model.Id);
+                    if (obj == null)
+                    {
+                        return NotFound();
+                    }
+
+                    DocumentationDtos objCertificationInformationDtos = new DocumentationDtos();
+                    objCertificationInformationDtos.Id = model.Id;
+       
+                    objCertificationInformationDtos.isDocumentationFill = true;
+                    if (model.CancellerdChequeImg != null && model.CancellerdChequeImg.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.CancellerdChequeImg.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.CancellerdChequeImg = s;
+                            ms.Close();
+                        }
+                    }
+                    if (model.Ceritification != null && model.Ceritification.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.Ceritification.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.Ceritification = s;
+                            ms.Close();
+                        }
+                    }
+
+                    if (model.CompanyRegCeritificate != null && model.CompanyRegCeritificate.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.CompanyRegCeritificate.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.CompanyRegCeritificate = s;
+                            ms.Close();
+                        }
+                    }
+                    if (model.VisitingCardImg != null && model.VisitingCardImg.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.VisitingCardImg.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.VisitingCardImg = s;
+                            ms.Close();
+                        }
+                    }
+
+                    if (model.aadharBackImg != null && model.aadharBackImg.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.aadharBackImg.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.aadharBackImg = s;
+                            ms.Close();
+                        }
+                    }
+
+
+                    if (model.aadharFrontImg != null && model.aadharFrontImg.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.aadharFrontImg.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.aadharFrontImg = s;
+                            ms.Close();
+                        }
+                    }
+
+
+                    if (model.pancardImg != null && model.pancardImg.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            model.pancardImg.CopyTo(ms);
+                            var fileBytes = ms.ToArray();
+                            string s = Convert.ToBase64String(fileBytes);
+                            objCertificationInformationDtos.pancardImg = s;
+                            ms.Close();
+                        }
+                    }
+
+                    #region "API CALL"
+
+                    string url = SD.APIBaseUrl + "user/UpdateUserDocumentation";
+                    var request = new HttpRequestMessage(HttpMethod.Patch, url);
+                    if (objCertificationInformationDtos != null)
+                    {
+                        request.Content = new StringContent(
+                            JsonConvert.SerializeObject(objCertificationInformationDtos), Encoding.UTF8, "application/json");
+                    }
+                    else
+                    {
+                        //return false;
+                    }
+
+                    var client = _clientFactory.CreateClient();
+                    //if (token != null && token.Length != 0)
+                    //{
+                    //    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    //}
+                    HttpResponseMessage response = await client.SendAsync(request);
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent || response.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        TempData["success"] = "Record Update successfully";
+                        // return true;
+                    }
+                    else
+                    {
+                        TempData["error"] = "Record Not Update";
+                        // return false;
+                    }
+                    #endregion
+                    //    string path1 = SD.APIBaseUrl + "user/UpdateCertificationInformation";                   
+                    //bool res = await _userRegistrationAPIRepository.UpdateAsync(path1, objCertificationInformationDtos);
+
+                }
+                catch { }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+
+
+
+                return View(model);
+            }
+
+        }
 
 
         //[HttpGet]
@@ -757,14 +955,7 @@ namespace Autofocus.Areas.Admin.Controllers
             return Json(new { success = true, message = "Delete Successfuly" });
         }
 
-        public IActionResult map()
-        {
-            return View();
-        }
-        public IActionResult test()
-        {
-            return View();
-        }
+        
         #endregion
     }
 }

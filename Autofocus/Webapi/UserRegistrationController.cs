@@ -1,9 +1,25 @@
-﻿using Autofocus.DataAccess.Repository.IRepository;
+﻿//using Autofocus.DataAccess.Repository.IRepository;
+//using Autofocus.Models;
+//using Autofocus.Models.Dtos;
+//using Autofocus.Utility;
+//using AutoMapper;
+//using AutoMapper.Configuration;
+//using Microsoft.AspNetCore.Hosting;
+//using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Identity;
+//using Microsoft.AspNetCore.Mvc;
+//using Newtonsoft.Json;
+//using System;
+//using System.Collections.Generic;
+//using System.IO;
+//using System.Linq;
+//using System.Net;
+//using System.Threading.Tasks;
+using Autofocus.DataAccess.Repository.IRepository;
 using Autofocus.Models;
 using Autofocus.Models.Dtos;
 using Autofocus.Utility;
 using AutoMapper;
-using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +29,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Autofocus.Webapi
@@ -29,7 +44,7 @@ namespace Autofocus.Webapi
         private readonly SignInManager<IdentityUser> _signInManager;
        
 
-        public UserRegistrationController( IConfiguration configuration,IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
+        public UserRegistrationController( IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
         {
             _unitofWork = unitofWork;
             _mapper = mapper;
@@ -369,7 +384,7 @@ namespace Autofocus.Webapi
 
                 if (model.Ceritication_IEC == null || model.Ceritication_IEC.Trim() == "")
                 {
-                    obj.Ceritication_IEC = "";
+                    //obj.Ceritication_IEC = "";
                 }
                 else
                 {
@@ -380,7 +395,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.Ceritication_APEDA == null || model.Ceritication_APEDA.Trim() == "")
                 {
-                    obj.Ceritication_APEDA = "";
+                   // obj.Ceritication_APEDA = "";
                 }
                 else
                 {
@@ -391,7 +406,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.Ceritication_FIEO == null || model.Ceritication_FIEO.Trim() == "")
                 {
-                    obj.Ceritication_FIEO = "";
+                   // obj.Ceritication_FIEO = "";
                 }
                 else
                 {
@@ -402,7 +417,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.Ceritication_GlobalGap == null || model.Ceritication_GlobalGap.Trim() == "")
                 {
-                    obj.Ceritication_GlobalGap = "";
+                    //obj.Ceritication_GlobalGap = "";
                 }
                 else
                 {
@@ -413,7 +428,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.Ceritication_Others == null || model.Ceritication_Others.Trim() == "")
                 {
-                    obj.Ceritication_Others = "";
+                   // obj.Ceritication_Others = "";
                 }
                 else
                 {
@@ -462,7 +477,7 @@ namespace Autofocus.Webapi
   
                 if (model.CancellerdChequeImg == null || model.CancellerdChequeImg.Trim() == "")
                 {
-                    obj.CancellerdChequeImg = "";
+                  //  obj.CancellerdChequeImg = "";
                 }
                 else
                 {
@@ -473,7 +488,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.Ceritification == null || model.Ceritification.Trim() == "")
                 {
-                    obj.Ceritification = "";
+                   // obj.Ceritification = "";
                 }
                 else
                 {
@@ -484,7 +499,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.CompanyRegCeritificate == null || model.CompanyRegCeritificate.Trim() == "")
                 {
-                    obj.CompanyRegCeritificate = "";
+                   // obj.CompanyRegCeritificate = "";
                 }
                 else
                 {
@@ -495,7 +510,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.VisitingCardImg == null || model.VisitingCardImg.Trim() == "")
                 {
-                    obj.VisitingCardImg = "";
+                  //  obj.VisitingCardImg = "";
                 }
                 else
                 {
@@ -506,7 +521,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.aadharBackImg == null || model.aadharBackImg.Trim() == "")
                 {
-                    obj.aadharBackImg = "";
+                 //   obj.aadharBackImg = "";
                 }
                 else
                 {
@@ -517,7 +532,7 @@ namespace Autofocus.Webapi
                 }
                 if (model.aadharFrontImg == null || model.aadharFrontImg.Trim() == "")
                 {
-                    obj.aadharFrontImg = "";
+                  //  obj.aadharFrontImg = "";
                 }
                 else
                 {
@@ -529,7 +544,7 @@ namespace Autofocus.Webapi
                
                 if (model.pancardImg == null || model.pancardImg.Trim() == "")
                 {
-                    obj.pancardImg = "";
+                    //obj.pancardImg = "";
                 }
                 else
                 {

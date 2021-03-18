@@ -1,0 +1,99 @@
+﻿@model Autofocus.Models.ViewModels.UserDocumentationEditViewModel
+@{
+    ViewData["Title"] = "Edit Documentation Photos";
+}
+
+@*<h2>EditUserCertification</h2>*@
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<div class="side-app">
+
+    <!-- end row -->
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-12">
+            <form method="post" enctype="multipart/form-data" asp-action="EditUserDocumentation">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="card m-b-20">
+
+                    <div class="card-header">
+                        <h3 class="card-title" style="color:darkorange">@ViewData["Title"]</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="CancellerdChequeImg"></label>
+                                <input asp-for="CancellerdChequeImg" type="file" class="dropify" data-default-file="@Model.CancellerdChequeImgName" data-height="50" value="Upload" />
+                                <span asp-validation-for="CancellerdChequeImg" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="Ceritification"></label>
+                                <input asp-for="Ceritification" type="file" class="dropify" data-default-file="@Model.CeritificationImg" data-height="50" value="Upload" />
+                                <span asp-validation-for="Ceritification" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="CompanyRegCeritificate"></label>
+                                <input asp-for="CompanyRegCeritificate" type="file" class="dropify" data-default-file="@Model.CompanyRegCeritificateImg" data-height="50" value="Upload" />
+                                <span asp-validation-for="CompanyRegCeritificate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="VisitingCardImg"></label>
+                                <input asp-for="VisitingCardImg" type="file" class="dropify" data-default-file="@Model.VisitingCardImgName" data-height="50" value="Upload" />
+                                <span asp-validation-for="VisitingCardImg" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="aadharBackImg"></label>
+                                <input asp-for="aadharBackImg" type="file" class="dropify" data-default-file="@Model.aadharBackImgName" data-height="50" value="Upload" />
+                                <span asp-validation-for="aadharBackImg" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="aadharFrontImg"></label>
+                                <input asp-for="aadharFrontImg" type="file" class="dropify" data-default-file="@Model.aadharFrontImgName" data-height="50" value="Upload" />
+                                <span asp-validation-for="aadharFrontImg" class="text-danger"></span>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <label class="form-label" asp-for="pancardImg"></label>
+                                <input asp-for="pancardImg" type="file" class="dropify" data-default-file="@Model.pancardImgName" data-height="50" value="Upload" />
+                                <span asp-validation-for="pancardImg" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
+                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ 
+@*<script src="~/dropdownselect/chosen.jquery.js" type="text/javascript"></script>
+    <script src="~/dropdownselect/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/dropdownselect/docsupport/init.js" type="text/javascript" charset="utf-8"></script>*@
+
+
+
+ 

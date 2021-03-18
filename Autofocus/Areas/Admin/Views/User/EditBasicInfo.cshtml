@@ -106,30 +106,40 @@
 
                                 </div>
                             </div>
-                            <input type="hidden" asp-for="multipleExportToCountries" />
-                            <div class="form-group  col-md-6">
-                                <label asp-for="ExportToCountries"></label>
-                                <select id="ExportToCountries" data-rel="chosen" asp-for="ExportToCountries" class="form-control" data-placeholder="select Export Country" multiple="">
-                                </select>
-
-                                <span asp-validation-for="ExportToCountries" class="text-danger"></span>
-                            </div>
-                            <div class="form-group  col-md-6">
-                                <label asp-for="businessYear"></label>
-                                <input asp-for="businessYear" placeholder="Enter Business Year" class="form-control" />
-                                <span asp-validation-for="businessYear" class="text-danger"></span>
-                            </div>
-
-                            <input type="hidden" asp-for="multipleproductDealin" />
-                            <div class="form-group  col-md-6">
-                                <label asp-for="productDealin"></label>
-                                @*<input asp-for="productDealin" placeholder="Enter Product Dealin" class="form-control" />*@
-                                <select id="productDealin" data-rel="chosen" asp-for="productDealin" class="form-control" data-placeholder="select Product Deal in" multiple="">
-                                </select>
-                                <span asp-validation-for="productDealin" class="text-danger"></span>
 
 
-                            </div>
+
+                            @if (Model.userType == "Buyer")
+                            {
+                                <input type="hidden" asp-for="multipleExportToCountries" />
+                                <div class="form-group  col-md-6">
+                                    <label asp-for="ExportToCountries"></label>
+                                    <select id="ExportToCountries" data-rel="chosen" asp-for="ExportToCountries" class="form-control" data-placeholder="select Export Country" multiple="">
+                                    </select>
+
+                                    <span asp-validation-for="ExportToCountries" class="text-danger"></span>
+                                </div>
+                                <div class="form-group  col-md-6">
+                                    <label asp-for="businessYear"></label>
+                                    <input type="number" asp-for="businessYear" placeholder="Enter Business Year" value="@DateTime.Now.Year" class="form-control" />
+                                    <span asp-validation-for="businessYear" class="text-danger"></span>
+                                </div>
+
+                                <input type="hidden" asp-for="multipleproductDealin" />
+                                <div class="form-group  col-md-6">
+                                    <label asp-for="productDealin"></label>
+                                    @*<input asp-for="productDealin" placeholder="Enter Product Dealin" class="form-control" />*@
+                                    <select id="productDealin" data-rel="chosen" asp-for="productDealin" class="form-control" data-placeholder="select Product Deal in" multiple="">
+                                    </select>
+                                    <span asp-validation-for="productDealin" class="text-danger"></span>
+
+
+                                </div>
+                            }
+                            else if (Model.userType == "Seller")
+                            {
+                            }
+
 
 
                             <div class="form-group  col-md-4">
@@ -143,11 +153,11 @@
 
 
                                 @*<label class="form-label" asp-for="logo">Logo</label>
-                                    <div class="btn btn-primary btn-icon-text">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                        <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
-                                        <span asp-validation-for="logo" class="text-danger"></span>
-                                    </div>*@
+            <div class="btn btn-primary btn-icon-text">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
+                <span asp-validation-for="logo" class="text-danger"></span>
+            </div>*@
                             </div>
 
 

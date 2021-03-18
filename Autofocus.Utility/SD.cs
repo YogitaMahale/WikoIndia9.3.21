@@ -25,10 +25,12 @@ namespace Autofocus.Utility
 
         // public static string APIBaseUrl = "https://localhost:44375/";
 
+        /*
+         *   public static string APIBaseUrl = "https://localhost:44368/"; 
+         * */
 
 
-
-       public static string APIBaseUrl = "https://localhost:44368/";  
+        public static string APIBaseUrl = "https://localhost:44368/";  
      // public static string APIBaseUrl = "http://wikoindia.onlineerp.org/";
         //public static string APIBaseUrls = "https://wikoindia.onlineerp.org/";
         public static string MainCategoryAPIPath = APIBaseUrl + "api/v1/MainCategory";
