@@ -70,7 +70,7 @@ namespace Autofocus.DataAccess.Repository
             using (SqlConnection con = new SqlConnection(ConnenctioString))
             {
                 con.Open();
-                var val= con.Query<T>(ProcedureName, commandType: System.Data.CommandType.StoredProcedure);
+                var val= con.Query<T>(ProcedureName, param, commandType: System.Data.CommandType.StoredProcedure);
                 return (T)Convert.ChangeType(val.FirstOrDefault(), typeof(T));
 
             }
