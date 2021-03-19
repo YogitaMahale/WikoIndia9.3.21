@@ -60,10 +60,30 @@ namespace Autofocus.Areas.Admin.Controllers
             return RedirectToAction("EditUserDocumentation", "User", new { area = "Admin", id = usr.Id });
 
         }
-        //[HttpGet]
-        //public IActionResult EditUserCertification(string id)
-        //{
+        [HttpGet]
+        public async Task<IActionResult> ProductList()
+        {
+            //IdentityUser usr = await GetCurrentUserAsync();
+            //var paramter = new DynamicParameters();
+            //paramter.Add("@Id", usr.Id);
+            //var objInfo = _unitofWork.sp_call.OneRecord<GetUserInformationbyIdModel>("getProductListbyuserId", paramter);
+            ////return usr?.Id;
+            return View();
+        }
+        #region "API CALL"
+        [HttpGet]
+        public async Task<IActionResult> GetALL(string id)
+        {
+            IdentityUser usr = await GetCurrentUserAsync();
+           
+            var paramter = new DynamicParameters();
+            paramter.Add("@Id", usr.Id);
+            var objInfo = _unitofWork.sp_call.List<ProductListbyUserIdViewModel>("getProductListbyUserId", paramter);
 
-        //}
+            return Json(new { data = objInfo.ToList() });
+
+        }
+
+        #endregion
     }
 }

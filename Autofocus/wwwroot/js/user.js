@@ -2,8 +2,24 @@
 $(document).ready(function () {
     datatable = $('#tblData').DataTable({  });
     $("#roleId").change(function () {
+        //alert($("#roleId  option:selected").text());
+        if ($("#roleId  option:selected").text() == "Admin") {
+            AdminLoadData("/Admin/User/GetALL?id=" + $("#roleId").val())
+        }
+        else if ($("#roleId  option:selected").text() == "Buyer") {
+            BuyerLoadData("/Admin/User/GetALL?id=" + $("#roleId").val())
+        }
+        else if ($("#roleId  option:selected").text() == "Employee") {
+            EmployeeLoadData("/Admin/User/GetALL?id=" + $("#roleId").val())
+        }
+        else if ($("#roleId  option:selected").text() == "CHA") {
+            CHALoadData("/Admin/User/GetALL?id=" + $("#roleId").val())
+        }
+        else if ($("#roleId  option:selected").text() == "Seller") {
+            SellerLoadData("/Admin/User/GetALL?id=" + $("#roleId").val())
+        }
+
        
-        loadtable1("/Admin/User/GetALL?id="+$("#roleId").val())
     });
   //  loadtable();
 });
@@ -132,8 +148,8 @@ function Delete(id) {
 
 
 
-function loadtable1(url) {
-    //alert(url);
+function AdminLoadData(url) {
+   
     datatable = $('#tblData').DataTable({
         "ajax": {
             //"url": "/Admin/User/GetALL"
@@ -153,9 +169,90 @@ function loadtable1(url) {
                     id: "id", lockoutEnd: "lockoutEnd"
                 },
                 "render": function (data) {
+
+                     
+
                     var today = new Date().getTime();
                     var lockout = new Date(data.lockoutEnd).getTime();
                     if (lockout > today) {
+                       
+                      
+
+
+
+
+                        return `
+<div class="text-center">
+  
+    <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+    <i class="ion-unlocked" data-toggle="tooltip" title="ion-unlocked"></i> Unlock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+       <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+                    else {
+                        return `
+<div class="text-center">
+  
+    <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+       
+
+<i class="ion-locked" data-toggle="tooltip" title="ion-locked"></i>
+Lock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+      <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+
+
+
+
+                }, "width": "40%"
+
+            }
+
+        ]
+        , "bDestroy": true
+    });
+}
+
+function BuyerLoadData(url) {
+
+    datatable = $('#tblData').DataTable({
+        "ajax": {
+            //"url": "/Admin/User/GetALL"
+            "url": url
+            // "type": "GET",
+            //"datatype": "json"
+        },
+        "columns": [
+            { "data": "name", "width": "30% " },
+
+            { "data": "email", "width": "15%" },
+            { "data": "phoneNumber", "width": "15%" },
+            //{ "data": "company.name", "width": "15%" },
+            //{ "data": "role", "width": "15%" },
+            {
+                "data": {
+                    id: "id", lockoutEnd: "lockoutEnd"
+                },
+                "render": function (data) {
+
+
+
+                    var today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+
+
+
+
+
+
                         return `
 <div class="text-center">
  <a class="btn btn-indigo text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
@@ -195,6 +292,246 @@ function loadtable1(url) {
                                                 <i class="fa fa-edit">
                                                 </i>Documentation
                                             </a>
+    <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+       
+
+<i class="ion-locked" data-toggle="tooltip" title="ion-locked"></i>
+Lock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+      <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+
+
+
+
+                }, "width": "40%"
+
+            }
+
+        ]
+        , "bDestroy": true
+    });
+}
+
+function SellerLoadData(url) {
+
+    datatable = $('#tblData').DataTable({
+        "ajax": {
+            //"url": "/Admin/User/GetALL"
+            "url": url
+            // "type": "GET",
+            //"datatype": "json"
+        },
+        "columns": [
+            { "data": "name", "width": "30% " },
+
+            { "data": "email", "width": "15%" },
+            { "data": "phoneNumber", "width": "15%" },
+            //{ "data": "company.name", "width": "15%" },
+            //{ "data": "role", "width": "15%" },
+            {
+                "data": {
+                    id: "id", lockoutEnd: "lockoutEnd"
+                },
+                "render": function (data) {
+
+
+
+                    var today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+
+
+
+
+
+
+                        return `
+<div class="text-center">
+ <a class="btn btn-indigo text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Basic Information
+                                            </a>
+ <a class="btn btn-orange text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserCertification/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Certification
+                                            </a>
+
+ <a class="btn btn-cyan text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserDocumentation/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Documentation
+                                            </a>
+    <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+    <i class="ion-unlocked" data-toggle="tooltip" title="ion-unlocked"></i> Unlock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+       <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+                    else {
+                        return `
+<div class="text-center">
+ <a class="btn btn-indigo text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditBasicInfo/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i> Basic Information
+                                            </a>
+ <a class="btn btn-orange text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserCertification/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Certification
+                                            </a>
+
+ <a class="btn btn-cyan text-white btn-sm" data-toggle="tooltip" data-original-title="View" href="/Admin/User/EditUserDocumentation/${data.id}" >
+                                                <i class="fa fa-edit">
+                                                </i>Documentation
+                                            </a>
+    <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+       
+
+<i class="ion-locked" data-toggle="tooltip" title="ion-locked"></i>
+Lock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+      <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+
+
+
+
+                }, "width": "40%"
+
+            }
+
+        ]
+        , "bDestroy": true
+    });
+}
+
+function EmployeeLoadData(url) {
+
+    datatable = $('#tblData').DataTable({
+        "ajax": {
+            //"url": "/Admin/User/GetALL"
+            "url": url
+            // "type": "GET",
+            //"datatype": "json"
+        },
+        "columns": [
+            { "data": "name", "width": "30% " },
+
+            { "data": "email", "width": "15%" },
+            { "data": "phoneNumber", "width": "15%" },
+            //{ "data": "company.name", "width": "15%" },
+            //{ "data": "role", "width": "15%" },
+            {
+                "data": {
+                    id: "id", lockoutEnd: "lockoutEnd"
+                },
+                "render": function (data) {
+
+
+
+                    var today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+
+
+
+
+
+
+                        return `
+<div class="text-center">
+ 
+    <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+    <i class="ion-unlocked" data-toggle="tooltip" title="ion-unlocked"></i> Unlock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+       <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+                    else {
+                        return `
+<div class="text-center">
+  
+    <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+       
+
+<i class="ion-locked" data-toggle="tooltip" title="ion-locked"></i>
+Lock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+      <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+
+
+
+
+                }, "width": "40%"
+
+            }
+
+        ]
+        , "bDestroy": true
+    });
+}
+
+function CHALoadData(url) {
+
+    datatable = $('#tblData').DataTable({
+        "ajax": {
+            //"url": "/Admin/User/GetALL"
+            "url": url
+            // "type": "GET",
+            //"datatype": "json"
+        },
+        "columns": [
+            { "data": "name", "width": "30% " },
+
+            { "data": "email", "width": "15%" },
+            { "data": "phoneNumber", "width": "15%" },
+            //{ "data": "company.name", "width": "15%" },
+            //{ "data": "role", "width": "15%" },
+            {
+                "data": {
+                    id: "id", lockoutEnd: "lockoutEnd"
+                },
+                "render": function (data) {
+
+
+
+                    var today = new Date().getTime();
+                    var lockout = new Date(data.lockoutEnd).getTime();
+                    if (lockout > today) {
+
+
+
+
+
+
+                        return `
+<div class="text-center">
+ 
+    <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
+    <i class="ion-unlocked" data-toggle="tooltip" title="ion-unlocked"></i> Unlock
+    </a>
+  <a  class="btn btn-danger text-white btn-sm" style="cursor:pointer" onclick=Delete('${data.id}')>
+       <i class="ion-trash-b" data-toggle="tooltip" title="ion-trash-b"></i>Delete
+    </a>
+</div>`
+                    }
+                    else {
+                        return `
+<div class="text-center">
+  
     <a  class="btn btn-success text-white btn-sm" style="cursor:pointer" onclick=Lockunlock('${data.id}')>
        
 

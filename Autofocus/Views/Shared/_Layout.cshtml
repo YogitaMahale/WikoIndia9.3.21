@@ -341,8 +341,8 @@
                                     <a class="side-menu__item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
                                 </li>
                                 @*<li>
-                        <a class="side-menu__item" asp-area="Admin" asp-controller="MainCategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
-                    </li>*@
+                                        <a class="side-menu__item" asp-area="Admin" asp-controller="MainCategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Main Category</span></a>
+                                    </li>*@
                                 <li>
                                     <a class="side-menu__item" asp-area="Admin" asp-controller="Subcategory" asp-action="Index"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Sub Category</span></a>
                                 </li>
@@ -395,11 +395,9 @@
 
                     }
 
-                    @if (User.IsInRole(SD.Role_Seller)|| User.IsInRole(SD.Role_Buyer))
+                    @if (User.IsInRole(SD.Role_Seller) || User.IsInRole(SD.Role_Buyer))
                     {
-                        @*<li>
-                            <a class="side-menu__item" asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label">Dashboard</span></a>
-                        </li>*@
+
                         <li class="slide">
                             <a class="side-menu__item" data-toggle="slide"><i class="side-menu__icon typcn typcn-th-list-outline"></i><span class="side-menu__label">ACCOUNT SETTINGS</span><i class="angle fa fa-angle-right"></i></a>
                             <ul class="slide-menu">
@@ -421,7 +419,9 @@
 
                             </ul>
                         </li>
-
+                        <li>
+                            <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="ProductList"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label">Product</span></a>
+                        </li>
 
                     }
 
@@ -524,9 +524,8 @@
     <script src="~/dropdownselect/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
     <script src="~/dropdownselect/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
 
- 
+
 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
- 

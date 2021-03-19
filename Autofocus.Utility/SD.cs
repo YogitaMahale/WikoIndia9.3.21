@@ -19,6 +19,7 @@ namespace Autofocus.Utility
         public const string Role_Buyer = "Buyer";
         public const string Role_Seller = "Seller";
         public const string Role_Employee = "Employee";
+        public const string Role_CHA = "CHA";
 
         //public const string Role_Vendor = "Vendor";
         //public const string Role_Account = "Account";

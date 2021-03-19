@@ -1,0 +1,83 @@
+﻿@model Autofocus.Models.ViewModels.UserIndexViewModel
+@{
+    ViewData["Title"] = "Product List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+    @*<div class="page-header">
+            <h4 class="page-title">Tax</h4>
+            <ol class="breadcrumb">
+
+            </ol>
+        </div>*@
+
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card-header">
+                <h3 class="card-title">@ViewData["Title"]</h3>
+            </div>
+
+            <div class="card">
+                <!--<div class="form-row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputState" class="col-form-label"></label>-->
+                        @*<select name="roleId" id="roleId" asp-for="roleId" class="form-control" asp-items="ViewBag.rolesList">
+                                <option value="">Select</option>
+                            </select>*@
+                        <!--<select name="roleId" id="roleId" asp-for="roleId" style="padding-left: 10px;" class="form-control select2-no-search" asp-items="ViewBag.rolesList">
+                            <option>Select User</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+
+                    </div>
+                </div>-->
+
+             
+
+                <!--<div style="text-align:right;padding-right: 20px;padding-left: 0px;padding-top: 10px;">-->
+                    @*<a class="btn btn-sm btn-primary float-md-right;" asp-action="Create"> Add New User</a>*@
+                    <!--<a class="btn btn-sm btn-primary float-md-right;" asp-area="Identity" asp-page="/Account/Register"><i class="ion-plus" data-toggle="tooltip" title="ion-plus"></i> &nbsp; Create New User</a>
+                </div>-->
+
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="tblData" width="100%" class="hover table-bordered border-top-0 border-bottom-0">
+
+
+                            <thead>
+                                <tr>
+                                    <th>Trade ID</th>
+                                    <th>Variety</th>
+                                    <th>Spot Rate</th>
+                                    <th>Packing bag</th>
+                                    <th>Packing size </th>
+                                    
+                                    <th>Location</th>
+                                    <th>Rate Valid Till </th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts{
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/js/ProductList.js"></script>
+}
+

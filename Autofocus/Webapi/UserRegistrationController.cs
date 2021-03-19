@@ -114,6 +114,12 @@ namespace Autofocus.Webapi
                     {
                         await _roleManager.CreateAsync(new IdentityRole(SD.Role_Seller));
                     }
+                    if (!await _roleManager.RoleExistsAsync(SD.Role_CHA))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_CHA));
+                    }
+
+
 
                     // await _userManager.AddToRoleAsync(user, SD.Role_Admin);
                     if (model.usertype.ToUpper().Trim() == "Buyer".ToUpper().Trim())
@@ -123,6 +129,10 @@ namespace Autofocus.Webapi
                     else if (model.usertype.ToUpper().Trim() == "Seller".ToUpper().Trim())
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_Seller);
+                    }
+                    else if (model.usertype.ToUpper().Trim() == "CHA".ToUpper().Trim())
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Role_CHA);
                     }
 
 
