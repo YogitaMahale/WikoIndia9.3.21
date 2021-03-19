@@ -216,6 +216,16 @@ namespace Autofocus.Areas.Admin.Controllers
                         TempData["error"] = "Record Not Update";
 
                     }
+
+                    if(model.userType== "Admin")
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                         
+                        return RedirectToAction("Profile", "UserLogin", new { area = "Admin", id = model.Id });
+                    }
                     
                 }
                 catch { }
@@ -383,7 +393,7 @@ namespace Autofocus.Areas.Admin.Controllers
                     HttpResponseMessage response = await client.SendAsync(request);
                     if (response.StatusCode == System.Net.HttpStatusCode.NoContent|| response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
-                        TempData["success"] = "Record Update successfully";
+                        TempData["success"] = "Certification Doucument update successfully";
                         // return true;
                     }
                     else
@@ -397,7 +407,20 @@ namespace Autofocus.Areas.Admin.Controllers
                    
                 }
                 catch { }
-                return RedirectToAction(nameof(Index));
+                var user = await _userManager.FindByIdAsync(model.Id);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (roles[0].ToString() == "Admin")
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+
+                    return RedirectToAction("Profile", "UserLogin", new { area = "Admin", id = model.Id });
+                }
+
+               // return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -580,7 +603,20 @@ namespace Autofocus.Areas.Admin.Controllers
 
                 }
                 catch { }
-                return RedirectToAction(nameof(Index));
+
+
+                var user = await _userManager.FindByIdAsync(model.Id);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (roles[0].ToString() == "Admin")
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+
+                    return RedirectToAction("Profile", "UserLogin", new { area = "Admin", id = model.Id });
+                }
             }
             else
             {

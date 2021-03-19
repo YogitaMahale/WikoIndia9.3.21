@@ -45,7 +45,7 @@
                         <div class="form-row">
 
 
-
+                            <input type="hidden" asp-for="userType" />
                             <div class="form-group col-md-6">
                                 <label asp-for="name"></label>
                                 <input asp-for="name" minlength="3" placeholder="Enter Name" class="form-control" />
@@ -96,7 +96,7 @@
 
                             <div class="form-group col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" asp-for="cityid">City Name</label>
+                                    <label class="form-label" asp-for="cityid"></label>
                                     <select class="form-control" name="cityid" id="cityid" asp-for="cityid"
                                             asp-items="@ViewBag.Cities">
                                         @*disabled="@(ViewBag.StateEnabled == false ? "disabled" : null)"*@
@@ -214,7 +214,7 @@
                                     </div>
                             </div>*@
                         <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
-                        <a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+                        @*<a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>*@
 
                     </div>
 

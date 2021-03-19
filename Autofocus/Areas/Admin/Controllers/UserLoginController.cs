@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Autofocus.Areas.Admin.Controllers
 {
     [Area("Admin")]
-     //[Authorize(Roles = SD.Role_Buyer)]
+    //[Authorize(Roles = SD.Role_Buyer)]
     [Authorize(Roles = SD.Role_Buyer + "," + SD.Role_Seller)]
     public class UserLoginController : Controller
     {
@@ -34,10 +34,36 @@ namespace Autofocus.Areas.Admin.Controllers
         {
             IdentityUser usr = await GetCurrentUserAsync();
             var paramter = new DynamicParameters();
-            paramter.Add("@Id", usr.Id);             
-            var objInfo =_unitofWork.sp_call.OneRecord<GetUserInformationbyIdModel>("GetUserDetailsbyId", paramter);
+            paramter.Add("@Id", usr.Id);
+            var objInfo = _unitofWork.sp_call.OneRecord<GetUserInformationbyIdModel>("GetUserDetailsbyId", paramter);
             //return usr?.Id;
             return View(objInfo);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditBasicInfo(string id)
+        {
+            IdentityUser usr = await GetCurrentUserAsync();
+            return RedirectToAction("EditBasicInfo", "User", new { area = "Admin", id = usr.Id });
+            
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditCertification(string id)
+        {
+            IdentityUser usr = await GetCurrentUserAsync();
+            return RedirectToAction("EditUserCertification", "User", new { area = "Admin", id = usr.Id });
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditDocumentation(string id)
+        {
+            IdentityUser usr = await GetCurrentUserAsync();
+            return RedirectToAction("EditUserDocumentation", "User", new { area = "Admin", id = usr.Id });
+
+        }
+        //[HttpGet]
+        //public IActionResult EditUserCertification(string id)
+        //{
+
+        //}
     }
 }
