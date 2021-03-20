@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ProductDetails>
+@{
+    ViewData["Title"] = "Bag Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="side-app">
+    @*<div class="page-header">
+            <h4 class="page-title">Tax</h4>
+            <ol class="breadcrumb">
+
+            </ol>
+        </div>*@
+    <div class="row">
+
+        <div class="col-md-12 col-lg-12">
+            
+            <br />
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered border-top mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Bag Size</th>
+                                    <th>Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.packingSize.name</th>
+                                        <th>@item.amount</th>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                        <div style="text-align:center;"> 
+                            <br />
+                            <a asp-area="Admin" asp-controller="UserLogin" asp-action="Product" class="btn btn-rounded btn-info mdi-format-float-center"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+             
+        </div>
+    </div>
+</div>
+
+
+
+ 
