@@ -216,9 +216,9 @@ namespace Autofocus.Webapi
         [Route("LoginWithMobileNoandPassword")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginWhiteMobilenoandPasswordDtos))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> LoginWithMobileNoandPassword([FromBody] LoginViewModel model)
+        public async Task<ActionResult> LoginWithMobileNoandPassword(string mobileNo,string password)//([FromBody] LoginViewModel model)
         {
-            if (model == null)
+            if (string.IsNullOrEmpty(mobileNo)|| string.IsNullOrEmpty(password))
             {
                 return BadRequest(ModelState);
             }
@@ -228,10 +228,10 @@ namespace Autofocus.Webapi
                 return BadRequest(ModelState);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(model.mobileNo, model.password, true, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(mobileNo,password, true, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var obj = _unitofWork.applicationUser.GetAll().Where(x => x.PhoneNumber == model.mobileNo).FirstOrDefault();
+                var obj = _unitofWork.applicationUser.GetAll().Where(x => x.PhoneNumber == mobileNo).FirstOrDefault();
 
                 if (obj == null)
                 {
