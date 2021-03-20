@@ -986,9 +986,18 @@ namespace Autofocus.Areas.Admin.Controllers
            
 
             _unitofWork.applicationUser.Remove(obj);
-            _unitofWork.Save();
+            var ress= _unitofWork.Save();
+            if(ress)
+            {
+                return Json(new { success = true, message = "Delete Successfuly" });
+            }
+            else
+            {
+                return Json(new { success = true, message = "Error while deleteing" });
 
-            return Json(new { success = true, message = "Delete Successfuly" });
+            }
+
+            
         }
 
         

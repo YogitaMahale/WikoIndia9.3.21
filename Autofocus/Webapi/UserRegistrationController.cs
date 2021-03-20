@@ -18,8 +18,10 @@
 using Autofocus.DataAccess.Repository.IRepository;
 using Autofocus.Models;
 using Autofocus.Models.Dtos;
+using Autofocus.Models.ViewModels;
 using Autofocus.Utility;
 using AutoMapper;
+using Dapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -195,8 +197,8 @@ namespace Autofocus.Webapi
                 else
                 {
                     string Msg = "OTP :" + no + ".  Please Use this OTP.This is usable once and expire in 10 minutes";
-                    //SendSMS s = new SendSMS();
-                    //bool flg = s.smsSent(mobileNo, Msg);
+                    SendSMS s = new SendSMS();
+                    bool flg = s.smsSent(mobileNo, Msg);
 
                     ApplicationUserViewModelDtos objApplicationUserViewModelDtos = new ApplicationUserViewModelDtos();
                     objApplicationUserViewModelDtos.OTPNo = no;
@@ -588,22 +590,34 @@ namespace Autofocus.Webapi
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult GetUserDetails(String id)
         {
-            // var affilatereg = _db.applicationUsers.FirstOrDefault(u => u.Id == model.id);
-            var obj = _unitofWork.applicationUser.GetAll().Where(x => x.Id == id).FirstOrDefault();
+            //// var affilatereg = _db.applicationUsers.FirstOrDefault(u => u.Id == model.id);
             //var obj = _unitofWork.applicationUser.GetAll().Where(x => x.Id == id).FirstOrDefault();
+            ////var obj = _unitofWork.applicationUser.GetAll().Where(x => x.Id == id).FirstOrDefault();
 
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            //else
+            //{
+            //    var Dtosobj = new UserInformationViewModelDtos();
+            //    Dtosobj = _mapper.Map<UserInformationViewModelDtos>(obj);
+            //    return Ok(Dtosobj);
+            //}
+
+            var parameter = new DynamicParameters();
+            parameter.Add("@Id", id);
+            var obj = _unitofWork.sp_call.OneRecord<UserInformationViewModelDtos>("getUserDetails", parameter);
             if (obj == null)
             {
                 return NotFound();
             }
             else
             {
-                var Dtosobj = new UserInformationViewModelDtos();
-                Dtosobj = _mapper.Map<UserInformationViewModelDtos>(obj);
-                return Ok(Dtosobj);
+                
+                return Ok(obj);
             }
 
-             
         }
     }
 }

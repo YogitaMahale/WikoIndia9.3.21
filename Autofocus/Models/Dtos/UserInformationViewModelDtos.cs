@@ -7,6 +7,9 @@ namespace Autofocus.Models.Dtos
 {
     public class UserInformationViewModelDtos
     {
+   //       Email            cityName            
+   //productDealin  
+
 
         public string  Id { get; set; }
         
@@ -18,7 +21,9 @@ namespace Autofocus.Models.Dtos
         public string companyName { get; set; }
 
 
-         
+        public int countryid { get; set; }
+        public int stateid { get; set; }
+
         public int? cityid { get; set; }      
 
         public string businessYear { get; set; }
