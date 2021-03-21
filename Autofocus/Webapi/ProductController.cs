@@ -108,10 +108,10 @@ namespace Autofocus.Webapi
             // }
             var paramter = new DynamicParameters();
             //  paramter.Add("@Latitude", Latitude);
-            paramter.Add("@userId", userId);
+            paramter.Add("@Id", userId);
             //  paramter.Add("@distance", 5);
             //storedetailsListViewmodel
-            var storeList = _unitofWork.sp_call.List<productListbyUserID>("getProductListbyUserId", paramter);
+            var storeList = _unitofWork.sp_call.List<productListbyUserID>("getProductListbyUserIdWebapi", paramter);
             if (storeList != null)
             {
                 return Ok(storeList);
@@ -180,6 +180,59 @@ namespace Autofocus.Webapi
                 return BadRequest(myJson);
 
             }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MainCategoryDtos))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult GetProductDetailsbyUserIdJson(string userId)
+        {
+
+            //  var obj = _unitofWork.product.GetAll(includeProperties: "ApplicationUser,ProductMaster,productSize,CityRegistration,packingType").Where(x => x.isdeleted == false).ToList();
+            //var obj = _unitofWork.product.GetAll(includeProperties: "ProductMaster,productSize,packingType").Where(x => x.isdeleted == false).ToList();
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            //return Ok(obj);
+            var paramter = new DynamicParameters();
+            //  paramter.Add("@Latitude", Latitude);
+            paramter.Add("@Id", userId);
+            //  paramter.Add("@distance", 5);
+            //storedetailsListViewmodel
+            var storeList = _unitofWork.sp_call.List<productListbyUserID>("getProductList", paramter);
+            foreach (var item in storeList)
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@pid", item.id);
+
+                var obj = _unitofWork.sp_call.List<ProductDetailsDtos>("bagDetailsbyProductId", parameter);
+                item.productdetails = obj;
+                //ProductDetailsDtos
+                //var obj1 = _unitofWork.productDetails.GetAll().Where(x => x.pid == item.id).ToList();
+                //item.productdetails = obj1;
+                //var dtos = new IEnumerable<ProductDetailsbyidViewModelDtos>();
+                //foreach (var itemm in obj1)
+                //{
+                //    var objProductdetails = _mapper.Map<ProductDetailsbyidViewModelDtos>(itemm);
+
+                //    _unitofWork.productDetails.Add(objProductdetails);
+                //}
+
+            }
+            if (storeList != null)
+            {
+                return Ok(storeList);
+
+            }
+            else
+            {
+                return NotFound();
+            }
+
+
+
         }
     }
 }
