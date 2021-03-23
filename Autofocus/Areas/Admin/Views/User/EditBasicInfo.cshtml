@@ -29,7 +29,7 @@
 </style>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <div class="side-app">
-
+  
     <!-- end row -->
     <div class="row" style="margin-top:10px;">
         <div class="col-md-12">
@@ -41,11 +41,12 @@
                         <h3 class="card-title" style="color:darkorange">Edit Basic Information.</h3>
                     </div>
                     <div class="card-body">
-
+                        <input type="hidden" asp-for="loginType" />
                         <div class="form-row">
 
 
-                            <input type="hidden" asp-for="userType" />
+
+                            <input type="hidden" asp-for="userType"/>
                             <div class="form-group col-md-6">
                                 <label asp-for="name"></label>
                                 <input asp-for="name" minlength="3" placeholder="Enter Name" class="form-control" />
@@ -136,9 +137,6 @@
 
                                 </div>
                             }
-                            else if (Model.userType == "Seller")
-                            {
-                            }
 
 
 
@@ -148,71 +146,66 @@
                                 <input asp-for="logo" type="file" class="dropify" data-="@Model.logoName" data-default-file="@Model.logoName" data-height="50" value="Upload" />
                                 <span asp-validation-for="logo" class="text-danger"></span>
 
-
-
-
-
-                                @*<label class="form-label" asp-for="logo">Logo</label>
-            <div class="btn btn-primary btn-icon-text">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <input asp-for="logo" type="file" onchange="loadFile(event,'logoName')" />
-                <span asp-validation-for="logo" class="text-danger"></span>
-            </div>*@
                             </div>
 
 
 
                         </div>
-                        <div class="form-row">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Select Pack House Location</h3>
-                                    @*<div id="floating-panel">
-                                        <input id="latlng" type="text" value="40.714224,-73.961452" />
-                                        <input id="submit" type="button" value="Reverse Geocode" />
-                                    </div>*@
-                                </div>
-                                <div class="card-body">
-                                    <div class="map-header">
-                                        <div class="map-header-layer" id="map"></div>
+                        @if (Model.userType == "Seller")
+                        {
+                            <div class="form-row">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Select Pack House Location</h3>
+                                        @*<div id="floating-panel">
+                            <input id="latlng" type="text" value="40.714224,-73.961452" />
+                            <input id="submit" type="button" value="Reverse Geocode" />
+                        </div>*@
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="map-header">
+                                            <div class="map-header-layer" id="map"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-6" style="display:none;">
-                                <label asp-for="packHouselatitude"></label>
-                                <input id="txtpackHouselatitude" readonly asp-for="packHouselatitude" class="form-control" />
-                                <span asp-validation-for="packHouselatitude" class="text-danger"></span>
-                            </div>
-
-
-                            <div class="form-group col-md-6" style="display:none;">
-                                <div class="form-group">
-                                    <label asp-for="packHouselongitude "></label>
-                                    <input id="txtpackHouselongitude" readonly asp-for="packHouselongitude" class="form-control" />
-                                    <span asp-validation-for="packHouselongitude" class="text-danger"></span>
+                                <div class="form-group col-md-6" style="display:none;">
+                                    <label asp-for="packHouselatitude"></label>
+                                    <input id="txtpackHouselatitude" readonly asp-for="packHouselatitude" class="form-control" />
+                                    <span asp-validation-for="packHouselatitude" class="text-danger"></span>
                                 </div>
 
-                            </div>
-                            <div class="form-group col-md-12">
-                                <div class="form-group">
-                                    <label asp-for="packHouseAddress "></label>
-                                    <input id="txtpackHouseAddress" asp-for="packHouseAddress" class="form-control" />
-                                    <span asp-validation-for="packHouseAddress" class="text-danger"></span>
-                                </div>
 
+                                <div class="form-group col-md-6" style="display:none;">
+                                    <div class="form-group">
+                                        <label asp-for="packHouselongitude "></label>
+                                        <input id="txtpackHouselongitude" readonly asp-for="packHouselongitude" class="form-control" />
+                                        <span asp-validation-for="packHouselongitude" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="packHouseAddress "></label>
+                                        <input id="txtpackHouseAddress" asp-for="packHouseAddress" class="form-control" />
+                                        <span asp-validation-for="packHouseAddress" class="text-danger"></span>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
+                        }
+
+
                         @*<div class="form-row">
-                                <div class="map-header">
-                                    <div class="map-header-layer" id="map"></div>
-                                </div>
+            <div class="map-header">
+                <div class="map-header-layer" id="map"></div>
+            </div>
 
-                                <div class="form-group col-md-6" id="map">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                    </div>
-                            </div>*@
+            <div class="form-group col-md-6" id="map">
+                </div>
+                <div class="form-group col-md-6">
+                </div>
+        </div>*@
                         <button type="submit" style="margin-right:5px;" class="btn btn-primary "><i class="fa fa-save" style="margin-right:0.7em"></i>Update</button>
                         @*<a asp-action="index" class="btn btn-rounded btn-info float-right"><i class="fa fa-backward" style="margin-right:0.7em"></i>Back</a>*@
 

@@ -12,6 +12,7 @@ namespace Autofocus.Models.ViewModels
        
         public string Id { get; set; }
         public string userType { get; set; }
+        public string loginType { get; set; }
         [Required]
         [Display(Name = "Name")]
         public string name { get; set; }
@@ -60,5 +61,6 @@ namespace Autofocus.Models.ViewModels
         public string Email { get; set; }
         [Display(Name = "Phone Number")]
         public string phonenumber { get; set; }
+     
     }
 }

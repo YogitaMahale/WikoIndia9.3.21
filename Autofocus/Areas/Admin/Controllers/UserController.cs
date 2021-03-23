@@ -71,11 +71,16 @@ namespace Autofocus.Areas.Admin.Controllers
             return Json(new SelectList(obj, "id", "name"));
         }
 
+        private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         //*******************************************************
         [HttpGet]
         public async Task<IActionResult> EditBasicInfo(string id)
         {
+            IdentityUser usr = await GetCurrentUserAsync();
+            var user1 = await _userManager.FindByIdAsync(usr.Id);
+            var role1 = await _userManager.GetRolesAsync(user1);
+            string logintypee = role1[0].ToString();
 
 
             var objfromdb = _db.ApplicationUser.FirstOrDefault(u => u.Id == id);
@@ -124,7 +129,8 @@ namespace Autofocus.Areas.Admin.Controllers
                 logoName = objfromdb.logo,
                 Email=objfromdb.Email,
                 phonenumber=objfromdb.PhoneNumber,
-                userType= roles[0].ToString()
+                userType= roles[0].ToString(),
+                loginType= logintypee
 
 
             };
@@ -217,7 +223,8 @@ namespace Autofocus.Areas.Admin.Controllers
 
                     }
 
-                    if(model.userType== "Admin")
+                    //if(model.userType== "Admin")
+                    if (model.loginType == "Admin")
                     {
                         return RedirectToAction(nameof(Index));
                     }
@@ -270,8 +277,12 @@ namespace Autofocus.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public IActionResult EditUserCertification(string id)
+        public async Task<IActionResult> EditUserCertification(string id)
         {
+            IdentityUser usr = await GetCurrentUserAsync();
+            var user1 = await _userManager.FindByIdAsync(usr.Id);
+            var role1 = await _userManager.GetRolesAsync(user1);
+            string logintypee = role1[0].ToString();
 
 
             var objfromdb = _db.ApplicationUser.FirstOrDefault(u => u.Id == id);
@@ -288,8 +299,9 @@ namespace Autofocus.Areas.Admin.Controllers
                 Ceritication_APEDAImg = objfromdb.Ceritication_APEDA,
                 Ceritication_FIEOImg = objfromdb.Ceritication_FIEO,                
                 Ceritication_GlobalGapImg = objfromdb.Ceritication_GlobalGap,                
-                Ceritication_OthersImg = objfromdb.Ceritication_Others
-           };
+                Ceritication_OthersImg = objfromdb.Ceritication_Others,
+                loginType= logintypee
+            };
           
             return View(model);
 
@@ -410,7 +422,8 @@ namespace Autofocus.Areas.Admin.Controllers
                 var user = await _userManager.FindByIdAsync(model.Id);
                 var roles = await _userManager.GetRolesAsync(user);
 
-                if (roles[0].ToString() == "Admin")
+                //if (roles[0].ToString() == "Admin")
+                if (model.loginType == "Admin")
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -437,8 +450,14 @@ namespace Autofocus.Areas.Admin.Controllers
 
         //****************EditUserDocumentation******************
         [HttpGet]
-        public IActionResult EditUserDocumentation(string id)
+        public async Task<IActionResult> EditUserDocumentation(string id)
         {
+            IdentityUser usr = await GetCurrentUserAsync();
+            var user1 = await _userManager.FindByIdAsync(usr.Id);
+            var role1 = await _userManager.GetRolesAsync(user1);
+            string logintypee = role1[0].ToString();
+
+
             //UserDocumentationEditViewModel
             var objfromdb = _db.ApplicationUser.FirstOrDefault(u => u.Id == id);
 
@@ -457,7 +476,8 @@ namespace Autofocus.Areas.Admin.Controllers
             aadharBackImgName = objfromdb.aadharBackImg,
              aadharFrontImgName = objfromdb.aadharFrontImg,
             pancardImgName = objfromdb.pancardImg,
-             
+            loginType= logintypee
+
         };
 
             return View(model);
@@ -608,7 +628,8 @@ namespace Autofocus.Areas.Admin.Controllers
                 var user = await _userManager.FindByIdAsync(model.Id);
                 var roles = await _userManager.GetRolesAsync(user);
 
-                if (roles[0].ToString() == "Admin")
+                //if (roles[0].ToString() == "Admin")
+                if (model.loginType == "Admin")
                 {
                     return RedirectToAction(nameof(Index));
                 }

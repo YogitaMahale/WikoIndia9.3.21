@@ -9,6 +9,7 @@ namespace Autofocus.Models.ViewModels
   public  class CertificationInformationEditViewModel
     {
         public string Id { get; set; }
+        public string loginType { get; set; }
         [Display(Name = "IEC")]
         public IFormFile Ceritication_IEC { get; set; }
         public string Ceritication_IECImg { get; set; }

@@ -9,6 +9,7 @@ namespace Autofocus.Models.ViewModels
    public class UserDocumentationEditViewModel
     {
         public string Id { get; set; }
+        public string loginType { get; set; }
         [Display(Name = "Cancelled Cheque")]
         public IFormFile CancellerdChequeImg { get; set; }
         public string CancellerdChequeImgName { get; set; }

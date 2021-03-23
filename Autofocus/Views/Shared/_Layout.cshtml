@@ -395,7 +395,8 @@
 
                     }
 
-                    @if (User.IsInRole(SD.Role_Seller) || User.IsInRole(SD.Role_Buyer))
+
+                    @if (User.IsInRole(SD.Role_Seller))
                     {
 
                         <li class="slide">
@@ -428,7 +429,36 @@
 
                     }
 
+                    @if ( User.IsInRole(SD.Role_Buyer))
+                    {
 
+                        <li class="slide">
+                            <a class="side-menu__item" data-toggle="slide"><i class="side-menu__icon typcn typcn-th-list-outline"></i><span class="side-menu__label">ACCOUNT SETTINGS</span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="Profile"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Profile</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="EditBasicInfo"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Manage Basic Information</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="EditCertification"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Manage Certification</span></a>
+                                </li>
+                                <li>
+                                    <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="EditDocumentation"><i class="fa fa-angle-right mr-1"></i><span class="side-menu__label">Manage Documentation</span></a>
+                                </li>
+
+
+
+                            </ul>
+                        </li>
+                        @*<li>
+                <a class="side-menu__item" asp-area="Admin" asp-controller="UserLogin" asp-action="ProductList"><i class="side-menu__icon typcn typcn-th-large-outline"></i><span class="side-menu__label">Product</span></a>
+            </li>*@
+                        
+
+                    }
 
 
 
