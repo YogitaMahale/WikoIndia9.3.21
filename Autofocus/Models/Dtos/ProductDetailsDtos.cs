@@ -8,6 +8,7 @@ namespace Autofocus.Models.Dtos
     public class ProductDetailsDtos
     {
         public int id { get; set; }
+        public int packingSizeId { get; set; }
         public string sizename { get; set; }
         public decimal amount { get; set; }
     }

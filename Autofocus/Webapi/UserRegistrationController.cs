@@ -25,12 +25,15 @@ using Dapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Autofocus.Webapi
@@ -44,9 +47,9 @@ namespace Autofocus.Webapi
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-       
+        private readonly Microsoft.AspNetCore.Identity.UI.Services.IEmailSender _emailSender;
 
-        public UserRegistrationController( IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
+        public UserRegistrationController( IUnitofWork unitofWork, IMapper mapper, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
         {
             _unitofWork = unitofWork;
             _mapper = mapper;
@@ -54,7 +57,7 @@ namespace Autofocus.Webapi
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-           
+            _emailSender = emailSender;
 
 
         }
@@ -619,5 +622,55 @@ namespace Autofocus.Webapi
             }
 
         }
+
+
+
+        [HttpGet]
+        [Route("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(string mobileNo)
+        {
+
+
+            try
+            {
+                var user = await _userManager.FindByNameAsync(mobileNo);
+                //if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (user == null)
+                {
+
+                    return NotFound("Not Found");
+                }
+
+
+                // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Page(
+                    "/Account/ResetPassword",
+                    pageHandler: null,
+                    values: new { area = "Identity", code },
+                    protocol: Request.Scheme);
+
+                await _emailSender.SendEmailAsync(
+                    user.Email,
+                    "Reset Password",
+                    $"Please reset your password by <a href='{System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+
+                string myJson = "{\"Message\": " + "\"Please check your email to reset your password.\"" + "}";
+                return Ok(myJson);
+            }
+            catch (Exception obj)
+            {
+
+                string ff = obj.Message.ToString();
+            }
+            return BadRequest("Bad Request");
+
+
+
+
+        }
+
     }
 }

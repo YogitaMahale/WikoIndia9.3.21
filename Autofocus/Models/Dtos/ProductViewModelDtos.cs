@@ -23,7 +23,7 @@ namespace Autofocus.Models.Dtos
         [Required]
         public decimal quantityAvailable { get; set; }
         [Required]
-        public DateTime rateTill { get; set; }
+        public string  rateTillTime { get; set; }
         [Required]
         public int cityId { get; set; }
         [Required]

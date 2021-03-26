@@ -62,6 +62,7 @@ namespace Autofocus.Webapi
             DateTime dt3 = new DateTime(2015, 12, 31, 5, 10, 20);
             var objProduct = _mapper.Map<Product>(model);
             objProduct.tradeId = traderId;
+            objProduct.rateTill = Convert.ToDateTime(model.rateTillTime);
             //  objProduct.isdeleted = false; 
             _unitofWork.product.Add(objProduct);
             if (!_unitofWork.Save())
