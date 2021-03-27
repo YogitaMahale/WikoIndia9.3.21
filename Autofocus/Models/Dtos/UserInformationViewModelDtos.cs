@@ -62,6 +62,12 @@ namespace Autofocus.Models.Dtos
         public string packHouselongitude { get; set; }
         public string packHouseAddress { get; set; }
         public string deviceid { get; set; }
+
+        public string countryName { get; set; }
+        public string stateName { get; set; }
+        public string cityName { get; set; }
+        public string ProductDealInProduct { get; set; }
+        public string ExportCountryName { get; set; }
         //-*-----Status Flag----------------
        
         public Boolean isBasicInfoFill { get; set; }
