@@ -38,7 +38,7 @@ namespace Autofocus.Models
         public virtual CityRegistration CityRegistration { get; set; }
 
 
-        public int packingTypeId { get; set; }
+        public int? packingTypeId { get; set; }
         [ForeignKey("packingTypeId")]
         public virtual packingType packingType { get; set; }
 

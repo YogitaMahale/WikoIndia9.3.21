@@ -26,8 +26,8 @@ namespace Autofocus.Models.Dtos
         public string  rateTillTime { get; set; }
         [Required]
         public int cityId { get; set; }
-        [Required]
-        public int packingTypeId { get; set; }
+        //[Required]
+        public int? packingTypeId { get; set; }
         [Required]
         public Boolean isNegotiable { get; set; }
         public Boolean isAvailable { get; set; }
