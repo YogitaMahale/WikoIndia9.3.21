@@ -13,6 +13,7 @@ namespace Autofocus.Models.Dtos
       //  public int pid { get; set; }  
         public int packingSizeId { get; set; } 
         public decimal amount { get; set; }
+        public bool isNegotiable { get; set; }
 
         
     }

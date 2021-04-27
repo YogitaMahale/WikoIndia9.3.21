@@ -64,6 +64,10 @@ namespace Autofocus.Webapi
             objProduct.tradeId = traderId;
             objProduct.rateTill = Convert.ToDateTime(model.rateTillTime);
             //  objProduct.isdeleted = false; 
+            if(model.packingTypeId==0)
+            {
+                objProduct.packingTypeId = null;
+            }
             _unitofWork.product.Add(objProduct);
             if (!_unitofWork.Save())
             {
@@ -76,6 +80,7 @@ namespace Autofocus.Webapi
             {
                 var objProductdetails = _mapper.Map<ProductDetails>(item);
                 objProductdetails.pid = objProduct.id;
+                //objProductdetails.isNegotiable= objProductdetails.isNegotiable;
                 _unitofWork.productDetails.Add(objProductdetails);
             }
 
@@ -88,7 +93,7 @@ namespace Autofocus.Webapi
             // return Ok(model);
 
 
-            string output = JsonConvert.SerializeObject(model);
+            string output = JsonConvert.SerializeObject(objProduct);
             string finalResult = "{\"success\" : 1, \"message\" : \" Record Saved Successfully\", \"data\" :" + output + "}";
             return Ok(finalResult);
 
