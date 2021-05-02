@@ -18,6 +18,13 @@ namespace Autofocus.Models
         [ForeignKey("packingSizeId")]
         public virtual packingSize packingSize { get; set; }
 
+
+
+
+        public int packingeTypeId { get; set; }
+        //[ForeignKey("packingeTypeId")]
+        //public virtual packingType packingType { get; set; }
+
         //[Column(TypeName = "decimal(18, 2)")]
         //public decimal bagPrice { get; set; }
 
