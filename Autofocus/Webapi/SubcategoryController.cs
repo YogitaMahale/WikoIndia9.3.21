@@ -259,5 +259,39 @@ namespace Autofocus.Webapi
         //    return NoContent();
         //}
 
+
+        [HttpGet]
+        [Route("GetSubCategorybyUserId")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SubcategoryDtos))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult GetSubCategorybyUserId(string  userId)
+        {
+            try
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@userId", userId);
+                var obj = _unitofWork.sp_call.List<SubcategoryDtos>("GetSubCategorybyUserId", parameter);
+                if (obj == null)
+                {
+                    string finalResult = "{\"success\" : 0, \"message\" : \"No Data \", \"data\" : \"\"}";
+                    return Ok(finalResult);
+                }
+                else
+                {
+
+                    string output = JsonConvert.SerializeObject(obj);
+                    string finalResult = "{\"success\" : 1, \"message\" : \" Category  Data\", \"data\" :" + output + "}";
+                    return Ok(finalResult);
+                }
+            }
+            catch (Exception obj)
+            {
+                string myJson = "{\"Message\": " + "\"Bad Request\"" + "}";
+                return BadRequest(myJson);
+
+            }
+        }
+
+
     }
 }

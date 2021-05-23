@@ -36,8 +36,8 @@ namespace Autofocus.Models.Dtos
         
         public int cityId { get; set; }
         public string cityName { get; set; }
-        public int packingTypeId { get; set; }
-        public string packingType { get; set; }
+        //public int packingTypeId { get; set; }
+        //public string packingType { get; set; }
         public bool  isAvailable { get; set; }
 
          

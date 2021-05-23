@@ -27,7 +27,7 @@ namespace Autofocus.Models.Dtos
         [Required]
         public int cityId { get; set; }
         //[Required]
-        public int? packingTypeId { get; set; }
+      //  public int? packingTypeId { get; set; }
         //[Required]
         //public Boolean isNegotiable { get; set; }
         public Boolean isAvailable { get; set; }

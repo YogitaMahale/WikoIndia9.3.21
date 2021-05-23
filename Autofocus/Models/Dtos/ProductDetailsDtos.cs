@@ -15,5 +15,6 @@ namespace Autofocus.Models.Dtos
         //public int packingeTypeId { get; set; }
         //public string packingeTypeName { get; set; }
         public decimal amount { get; set; }
+        public bool isNegotiable { get; set; }
     }
 }

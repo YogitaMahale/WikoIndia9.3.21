@@ -64,10 +64,10 @@ namespace Autofocus.Webapi
             objProduct.tradeId = traderId;
             objProduct.rateTill = Convert.ToDateTime(model.rateTillTime);
             //  objProduct.isdeleted = false; 
-            if(model.packingTypeId==0)
-            {
+            //if(model.packingTypeId==0)
+            //{
                 objProduct.packingTypeId = null;
-            }
+            //}
             _unitofWork.product.Add(objProduct);
             if (!_unitofWork.Save())
             {
