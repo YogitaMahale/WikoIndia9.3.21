@@ -7,6 +7,7 @@ function getLocation() {
     else { x.innerHTML = "Geolocation is not supported by this browser."; }
 }
 function showPosition(position) {
+    alert("showPosition");
     var latlondata = position.coords.latitude + "," + position.coords.longitude;
     latitude1 = position.coords.latitude;
     longitude1 = position.coords.longitude;
@@ -144,20 +145,21 @@ function geocodeLatLng(geocoder, map, infowindow) {
 
 function showError(error) {
     if (error.code == 1) {
-        x.innerHTML = "User denied the request for Geolocation."
+      //  x.innerHTML = "User denied the request for Geolocation."
     }
     else if (err.code == 2) {
-        x.innerHTML = "Location information is unavailable."
+       // x.innerHTML = "Location information is unavailable."
     }
     else if (err.code == 3) {
-        x.innerHTML = "The request to get user location timed out."
+       // x.innerHTML = "The request to get user location timed out."
     }
     else {
-        x.innerHTML = "An unknown error occurred."
+        //x.innerHTML = "An unknown error occurred."
     }
 }
 
 function initMap() {
+   // alert('initMap');
     getLocation();
 
 }

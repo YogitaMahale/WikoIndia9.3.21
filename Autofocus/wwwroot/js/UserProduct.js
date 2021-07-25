@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 $("#mainCategroyId").change(function () {
 
-
+    alert("main category");
     var url = $("#txtURLpath").val() + 'subcategory/GetSubCategorybyMaincategoryId';
 
     var ddlsource = "#mainCategroyId";
@@ -31,6 +31,7 @@ $("#mainCategroyId").change(function () {
 });
 
 $("#subCategroyId").change(function () {
+    alert("sub category");
     // alert($("#subCategroyId").val());
     var url = loadtable("/Admin/UserLogin/GetALL?subcategoryId=" + $("#subCategroyId").val())
     //LoadData(url);
