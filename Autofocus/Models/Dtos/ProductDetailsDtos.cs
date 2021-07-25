@@ -10,6 +10,11 @@ namespace Autofocus.Models.Dtos
         public int id { get; set; }
         public int packingSizeId { get; set; }
         public string sizename { get; set; }
+        public int packingeTypeId { get; set; }
+        public string  packingeTypeName { get; set; }
+        //public int packingeTypeId { get; set; }
+        //public string packingeTypeName { get; set; }
         public decimal amount { get; set; }
+        public bool isNegotiable { get; set; }
     }
 }
